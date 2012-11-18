@@ -1,0 +1,8 @@
+[
+    {"date": "20", "month": "05", "year": "2010", "title": "ISTQB Advanced", "place":"Bucharest, Romania"},
+    {"date": "21", "month": "05", "year": "2011", "title": "ISTQB Foundation", "place":"Sofia, Bulgaria"},
+    {"date": "30", "month": "05", "year": "2012", "title": "ISTQB Advanced", "place":"Burgas, Bulgaria"},
+    {"date": "2", "month": "05", "year": "2013", "title": "ISTQB Foundation", "place":"Bucharest, Romania"},
+    {"date": "12", "month": "05", "year": "2014", "title": "ISTQB Advanced", "place":"Sofia, Bulgaria"},
+    {"date": "8", "month": "05", "year": "2015", "title": "ISTQB Advanced", "place":"Sofia, Bulgaria"}
+]
