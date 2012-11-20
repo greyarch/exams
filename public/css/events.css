@@ -1,0 +1,57 @@
+/* Events list */
+.events {
+	list-style-type: none;
+	margin-left: 0;
+	color: #a0a0a0;
+	}
+	.events > li {
+		border-top: 1px solid #e6e6e6;
+		position: relative;
+		padding: 17px 20px 17px 100px;
+		min-height: 44px;
+		}
+		.events > li:first-child {
+			border-top: 0;
+		}
+		.event-date {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 80px;
+			line-height: 80px;
+			font-size: 48px;
+			font-family: 'Open Sans', sans-serif;
+			color: #999999;
+			text-align: center;
+			border-right: 1px solid #e6e6e6;
+			}
+			.with-month {
+				line-height: 66px;
+			}
+			.event-month {
+				display: block;
+				font-size: 10px;
+				line-height: 10px;
+				font-family: Arial, Helvetica, sans-serif;
+				text-transform: uppercase;
+				color: #bfbfbf;
+				margin-top: -12px;
+			}
+		.event-description {
+			display: block;
+			margin: -17px -20px;
+			padding: 17px 20px;
+			min-height: 44px;
+			}
+			a.event-description {
+				color: #a0a0a0;
+				}
+				a.event-description:hover {
+					background-color: #f0f5fa;
+				}
+			.events h4 {
+				color: #666666;
+				margin: 0 0 8px;
+			}
