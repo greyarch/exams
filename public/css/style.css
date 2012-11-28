@@ -2056,7 +2056,8 @@ li.message-menu {
 	.icon-target:before				{ content: '4'; }
 	.icon-path:before				{ content: '5'; }
 	.icon-heart:before				{ content: '6'; }
-	.icon-star:before				{ content: '7'; }
+.icon-star:before				{ content: '7'; }
+.icon-star:before				{ content: '7'; }
 	.icon-like:before				{ content: '8'; }
 	.icon-chat:before				{ content: '9'; }
 	.icon-speech:before				{ content: ':'; }
