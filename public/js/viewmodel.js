@@ -10,22 +10,20 @@ function AppViewModel() {
 
     deleteExam = function(exam) {
         $.ajax({
-            url: "exam/" + exam._id,
+            url: "exam/" + exam.id,
             type: "DELETE",
             success: function() {
-                self.exams.remove(exam);
+                self.getAllExams();
             },
-            error: function(jqXhr, status, error) {
-                console.log("error is: " + jqXhr.responseText)
+            error: function(jqXhr) {
+                console.log("error is: " + jqXhr.responseText);
             }
         });
-    }
+    };
 
-    showParticipants = function() {
-        $.getJSON('data/participants.json', function(data) {
-            self.participants(data);
-        });
-    }
+    showParticipants = function(exam) {
+        self.participants(exam.participants);
+    };
     
     self.getAllExams = function() {
         $.getJSON('exam', function(data) {
@@ -33,7 +31,7 @@ function AppViewModel() {
             self.exams([]);
             self.exams(data);
         });
-    }
+    };
 
     newExam = function() {
         console.log("adding an exam");
@@ -49,13 +47,13 @@ function AppViewModel() {
                     year: "2010",
                     title: self.examTitle(), 
                     place:self.selectedPlace()
-                }, function(data) {
+                }, function() {
                     console.log("created the exam");
                     self.getAllExams();
                 }, "json");
             }
         });
-    }
+    };
 }
 
 $(function(){

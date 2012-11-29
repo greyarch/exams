@@ -1,8 +1,7 @@
 var express = require("express");
-var util = require("util");
+var idgen = require("idgen");
 var app = express();
-var exams = require("./public/data/exams.json");
-
+var exams = require("./data.json");
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
@@ -13,9 +12,12 @@ app.get('/', function(req, res) {
 });
 
 app.post('/exam', function(req, res) {
+    var exam = req.body;
+    exam.id = idgen(20);
     console.log("creating an exam: ");
-    console.dir(req.body);
-    res.end();
+    console.dir(exam);
+    exams.unshift(exam);
+    res.json(exam);
 });
 
 app.get('/exam', function(req, res) {
@@ -25,6 +27,9 @@ app.get('/exam', function(req, res) {
 
 app.delete('/exam/:id', function(req, res) {
     console.log("deleting an exam with an id " + req.params.id);
+    exams = exams.filter(function(exam) {
+        return (exam.id != req.params.id);
+    });
     res.end();
 });
 
