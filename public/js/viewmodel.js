@@ -16,7 +16,7 @@ function AppViewModel() {
                 self.getAllExams();
             },
             error: function(jqXhr) {
-                console.log("error is: " + jqXhr.responseText);
+                console.log("the error is: " + jqXhr.responseText);
             }
         });
     };
@@ -35,7 +35,7 @@ function AppViewModel() {
 
     newExam = function() {
         console.log("adding an exam");
-        openModal('Add new exam', 'My modal content', {
+        openModal('Add new exam', {
             'Cancel': function(modal) {
                 modal.closeModal();
             },
