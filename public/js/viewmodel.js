@@ -70,10 +70,18 @@ function AppViewModel() {
 
 $(function() {
     $(".datepicker").click(function() {
-        $(".datepicker").glDatePicker({zIndex: 100});
+        $(".datepicker").glDatePicker({
+            zIndex: 100,
+            onChange: function(target, newDate)
+            {
+                target.val(
+                        newDate.getDate() + "/" +
+                        (newDate.getMonth() + 1) + "/" +
+                        newDate.getFullYear());
+            }
+        });
     });
 
-    console.log("apply KO");
     appVM = new AppViewModel();
     ko.applyBindings(appVM);
     appVM.getAllExams();
