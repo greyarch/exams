@@ -19,7 +19,7 @@ app.post('/exam', function(req, res) {
     console.log("creating an exam: ");
     console.dir(exam);
     exams.unshift(exam);
-    res.json(exam);
+    res.json(201, exam);
 });
 
 //get all exams
@@ -42,10 +42,10 @@ app.put('/exam', function(req, res){
     var exam = req.body;
     console.log("updating an exam");
     console.dir(exam);
-    exams = exams.map(function(item){
+    exams = exams.map(function(item) {
         return item.id === exam.id ? exam : item;
     });
-    res.end(exam);
+    res.json(exam);
 });
 
 app.listen(3000);

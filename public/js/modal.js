@@ -1,22 +1,8 @@
-function openModal(title, saveFunction) {
-    $("#add-exam").modal({
+function openModal(selector, title) {
+    $(selector).modal({
         title:title,
-        buttons:{
-            'Cancel':{
-                click: function(modal) {
-                    modal.closeModal();
-                },
-                classes:"icon-cross glossy red-gradient"
-            },
-            'Save':{
-                click: function(modal) {
-                    modal.closeModal();
-                    saveFunction();
-                },
-                classes: "icon-tick glossy green-gradient"
-            }
-        },
+        buttons: {},
         buttonsAlign:'center',
-        resizable:true
+        resizable:false
     });
 };
