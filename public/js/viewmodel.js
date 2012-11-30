@@ -1,3 +1,27 @@
+function Exam(json) {
+    var self = this;
+    self.participants = ko.observableArray(json.participants);
+    self.place = ko.observable(json.place);
+    self.title = ko.observable(json.title);
+    self.id = ko.observable(json.id);
+
+    self.date = ko.computed(function() {
+        return moment(json.date, "DD-MM-YYYY");
+    });
+
+    self.day = ko.computed(function() {
+        return self.date().date();
+    });
+
+    self.month = ko.computed(function() {
+        return self.date().month() + 1;
+    });
+
+    self.year = ko.computed(function() {
+        return self.date().year();
+    });
+}
+
 function AppViewModel() {
     var self = this;
 
@@ -6,11 +30,12 @@ function AppViewModel() {
 
     self.examTitle = ko.observable();
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
-    self.selectedPlace = ko.observable();
+    self.examPlace = ko.observable();
+    self.examDate = ko.observable();
 
     deleteExam = function (exam) {
         $.ajax({
-            url:"exam/" + exam.id,
+            url:"exam/" + exam.id(),
             type:"DELETE",
             success:function () {
                 self.getAllExams();
@@ -22,47 +47,41 @@ function AppViewModel() {
     };
 
     showParticipants = function (exam) {
-        self.participants(exam.participants);
+        self.participants(exam.participants());
     };
 
     self.getAllExams = function () {
         $.getJSON('exam', function (data) {
             console.log("getting all exams");
-            self.exams([]);
-            self.exams(data);
+            self.exams($.map(data, function(item){
+                return new Exam(item);
+            }));
         });
     };
 
     newExam = function () {
         console.log("adding an exam");
-        openModal('Add new exam', {
-            'Cancel':{
-                click:function (modal) {
-                    modal.closeModal();
-                },
-                classes: "icon-cross glossy red-gradient"
-            },
-            'Save':{
-                click:function (modal) {
-                    modal.closeModal();
-                    $.post('exam', {
-                        date:"20",
-                        month:"05",
-                        year:"2010",
-                        title:self.examTitle(),
-                        place:self.selectedPlace()
-                    }, function () {
-                        console.log("created the exam");
-                        self.getAllExams();
-                    }, "json");
-                },
-                classes: "icon-tick glossy green-gradient"
-            }
+        console.log(self.examDate());
+        console.log(self.examTitle());
+        console.log(self.examPlace());
+        openModal('Add new exam', function () {
+            $.post('exam', {
+                date:self.examDate(),
+                title:self.examTitle(),
+                place:self.examPlace()
+            }, function () {
+                console.log("created the exam");
+                self.getAllExams();
+            }, "json");
         });
     };
 }
 
 $(function () {
+    $(".datepicker").click(function () {
+        $(".datepicker").glDatePicker({ zIndex:100 });
+    });
+
     console.log("apply KO");
     appVM = new AppViewModel();
     ko.applyBindings(appVM);

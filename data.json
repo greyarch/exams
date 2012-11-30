@@ -1,9 +1,7 @@
 [
     {
         "id":1,
-        "date":"20",
-        "month":"05",
-        "year":"2010",
+        "date":"20/01/2010",
         "title":"ISTQB Advanced",
         "place":"Bucharest, Romania",
         "participants":[
@@ -41,9 +39,7 @@
     },
     {
         "id":2,
-        "date":"21",
-        "month":"05",
-        "year":"2011",
+        "date":"21/02/2011",
         "title":"ISTQB Foundation",
         "place":"Sofia, Bulgaria",
         "participants":[
@@ -81,9 +77,7 @@
     },
     {
         "id":3,
-        "date":"30",
-        "month":"05",
-        "year":"2012",
+        "date":"30/03/2012",
         "title":"ISTQB Advanced",
         "place":"Burgas, Bulgaria",
         "participants":[
@@ -109,9 +103,7 @@
     },
     {
         "id":4,
-        "date":"2",
-        "month":"05",
-        "year":"2013",
+        "date":"02/04/2013",
         "title":"ISTQB Foundation",
         "place":"Bucharest, Romania",
         "participants":[
@@ -137,9 +129,7 @@
     },
     {
         "id":5,
-        "date":"12",
-        "month":"05",
-        "year":"2014",
+        "date":"12/05/2014",
         "title":"ISTQB Advanced",
         "place":"Sofia, Bulgaria",
         "participants":[
@@ -165,9 +155,7 @@
     },
     {
         "id":6,
-        "date":"8",
-        "month":"05",
-        "year":"2015",
+        "date":"8/06/2015",
         "title":"ISTQB Advanced",
         "place":"Sofia, Bulgaria",
         "participants":[

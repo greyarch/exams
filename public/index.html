@@ -42,6 +42,8 @@
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="js/libs/glDatePicker/developr.css">
 
     <!-- Webfonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
@@ -123,7 +125,7 @@
                     <ul class="events" data-bind="foreach: exams">
                         <li>
                             <span class="event-date with-month">
-                                <span data-bind="text: date"></span>
+                                <span data-bind="text: day"></span>
                                 <span class="event-month">
                                     <span data-bind="text: month"></span>
                                     /
@@ -178,7 +180,14 @@
                 <div class="field-block button-height">
                     <label for="examPlace" class="label">Place</label>
                     <select class="select" id="examPlace"
-                            data-bind="options: availablePlaces, value: selectedPlace"></select>
+                            data-bind="options: availablePlaces, value: examPlace"></select>
+                </div>
+                <div class="field-block button-height">
+                    <label for="examPlace" class="label">Date</label>
+                    <span class="input">
+                        <span class="icon-calendar"></span>
+                        <input id="examDate" type="text" class="input-unstyled datepicker" data-bind="value: examDate">
+                    </span>
                 </div>
             </fieldset>
         </div>
@@ -198,6 +207,8 @@
 <script src="js/setup.js"></script>
 <script src="js/developr.modal.js"></script>
 <script src="js/developr.input.js"></script>
+<script src="js/libs/glDatePicker/glDatePicker.min.js"></script>
+<script src="js/moment.min.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/viewmodel.js"></script>
 

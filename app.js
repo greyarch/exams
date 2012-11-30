@@ -15,6 +15,7 @@ app.get('/', function(req, res) {
 app.post('/exam', function(req, res) {
     var exam = req.body;
     exam.id = idgen(20);
+    exam.participants = [];
     console.log("creating an exam: ");
     console.dir(exam);
     exams.unshift(exam);
