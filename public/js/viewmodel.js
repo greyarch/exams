@@ -20,6 +20,8 @@ function Exam(json) {
     self.year = ko.computed(function() {
         return self.date().year();
     });
+
+    self.selected = ko.observable(false);
 }
 
 function AppViewModel() {
@@ -42,7 +44,18 @@ function AppViewModel() {
         });
     };
 
+    selectExam = function(exam) {
+        console.log("selected exam");
+        if (!exam.selected()) {
+            $.map(self.exams(), function(item) {
+                item.selected(exam === item);
+            });
+            showParticipants(exam);
+        }
+    };
+
     showParticipants = function(exam) {
+        console.log("showing exam participants");
         self.participants(exam.participants());
     };
 

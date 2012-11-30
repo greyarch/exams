@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                             <ul class="events" data-bind="foreach: exams">
-                                <li>
+                                <li data-bind="style: {'background-color': selected() ? 'lightyellow' : ''}">
                                     <span class="event-date with-month">
                                         <span data-bind="text: day"></span>
                                         <span class="event-month">
@@ -132,7 +132,7 @@
                                             <span data-bind="text: year"></span>
                                         </span>
                                     </span>
-                                    <a href="#" class="event-description" data-bind="click: showParticipants">
+                                    <a href="#" class="event-description" data-bind="click: selectExam">
                                         <h4 data-bind="text: title"></h4>
 
                                         <p data-bind="text: place">Sofia, Bulgaria</p>
