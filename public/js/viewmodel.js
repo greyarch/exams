@@ -21,7 +21,7 @@ function Exam(json) {
         return self.date().year();
     });
 
-    self.selected = ko.observable(false);
+//    self.selected = ko.observable(false);
 }
 
 function AppViewModel() {
@@ -29,6 +29,8 @@ function AppViewModel() {
 
     self.exams = ko.observableArray([]);
     self.participants = ko.observableArray([]);
+    self.selectedExam = ko.observable();
+
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
     deleteExam = function(exam) {
@@ -46,10 +48,8 @@ function AppViewModel() {
 
     selectExam = function(exam) {
         console.log("selected exam");
-        if (!exam.selected()) {
-            $.map(self.exams(), function(item) {
-                item.selected(exam === item);
-            });
+        if (exam !== self.selectedExam()) {
+            self.selectedExam(exam);
             showParticipants(exam);
         }
     };

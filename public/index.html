@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <ul class="events" data-bind="foreach: exams">
-                        <li data-bind="style: {'background-color': selected() ? 'lightyellow' : ''}">
+                        <li data-bind="style: {'background-color': $data === $root.selectedExam() ? 'lightyellow' : ''}">
                             <a href="#" data-bind="click: selectExam">
                                 <span class="event-date with-month">
                                     <span data-bind="text: day"></span>
