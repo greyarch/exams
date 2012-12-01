@@ -36,11 +36,11 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="97" selection-start="6180" selection-end="6180" vertical-scroll-proportion="-1.6153846">
+            <state line="130" column="77" selection-start="6557" selection-end="6557" vertical-scroll-proportion="-4.8846154">
               <folding>
-                <marker date="1354391333461" expanded="true" signature="4783:5025" placeholder="..." />
-                <marker date="1354391333461" expanded="true" signature="4820:4893" placeholder="..." />
-                <marker date="1354391333461" expanded="true" signature="4900:4995" placeholder="..." />
+                <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
+                <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
+                <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
                 <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -51,7 +51,7 @@
       <file leaf-file-name="viewmodel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="36" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.14945056">
+            <state line="51" column="40" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.96263736">
               <folding />
             </state>
           </provider>
@@ -311,7 +311,11 @@
       <created>1354390632032</created>
       <updated>1354390632032</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="improved exam selection">
+      <created>1354391633936</created>
+      <updated>1354391633936</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -373,7 +377,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved the visualisation&#10;clear selection and partiipants table on exam deletion" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved exam selection" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -392,6 +396,7 @@
     <MESSAGE value="visual improvements in the modal dialog" />
     <MESSAGE value="improved the view model - separate Exam vm&#10;problem with reading the date when creating a new exam" />
     <MESSAGE value="improved the visualisation&#10;clear selection and partiipants table on exam deletion" />
+    <MESSAGE value="improved exam selection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,9 +422,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="193" column="0" selection-start="9464" selection-end="9464" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1354391333461" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354391333461" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354391333461" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -493,11 +498,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="97" selection-start="6180" selection-end="6180" vertical-scroll-proportion="-1.6153846">
+        <state line="130" column="77" selection-start="6557" selection-end="6557" vertical-scroll-proportion="-4.8846154">
           <folding>
-            <marker date="1354391333461" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354391333461" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354391333461" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -506,7 +511,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="36" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.14945056">
+        <state line="51" column="40" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.96263736">
           <folding />
         </state>
       </provider>
