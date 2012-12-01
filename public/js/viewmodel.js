@@ -36,7 +36,7 @@ function AppViewModel() {
             url: "exam/" + exam.id(),
             type: "DELETE",
             success: function() {
-                self.getAllExams();
+                self.loadAllExams();
             },
             error: function(jqXhr) {
                 console.log("the error is: " + jqXhr.responseText);
@@ -59,12 +59,13 @@ function AppViewModel() {
         self.participants(exam.participants());
     };
 
-    self.getAllExams = function() {
+    self.loadAllExams = function() {
         $.getJSON('exam', function(data) {
             console.log("getting all exams");
             self.exams($.map(data, function(item) {
                 return new Exam(item);
             }));
+            self.participants([]);
         });
     };
 
@@ -76,7 +77,7 @@ function AppViewModel() {
             place: place
         }, function() {
             console.log("created the exam");
-            self.getAllExams();
+            self.loadAllExams();
         }, "json");
     };
 }
@@ -97,5 +98,5 @@ $(function() {
 
     appVM = new AppViewModel();
     ko.applyBindings(appVM);
-    appVM.getAllExams();
+    appVM.loadAllExams();
 });
