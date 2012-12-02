@@ -317,7 +317,11 @@
       <created>1354457871925</created>
       <updated>1354457871925</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="can specify port now">
+      <created>1354457876802</created>
+      <updated>1354457876802</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
