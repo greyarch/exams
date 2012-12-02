@@ -36,11 +36,11 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="77" selection-start="6557" selection-end="6557" vertical-scroll-proportion="-4.8846154">
+            <state line="125" column="87" selection-start="6170" selection-end="6170" vertical-scroll-proportion="-13.384615">
               <folding>
-                <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
-                <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
-                <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
+                <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
+                <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
+                <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
                 <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -51,7 +51,7 @@
       <file leaf-file-name="viewmodel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="40" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.96263736">
+            <state line="68" column="43" selection-start="1935" selection-end="1935" vertical-scroll-proportion="2.5406594">
               <folding />
             </state>
           </provider>
@@ -315,15 +315,19 @@
       <created>1354391633936</created>
       <updated>1354391633936</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="keep the exam selection on adding/deleting an exam">
+      <created>1354393283193</created>
+      <updated>1354393283193</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.48970398" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.47940797" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.47940797" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22522523" sideWeight="0.6703911" order="3" side_tool="false" content_ui="tabs" x="1335" y="78" width="239" height="442" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18725869" sideWeight="0.6703911" order="1" side_tool="false" content_ui="combo" />
@@ -377,7 +381,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved exam selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="keep the exam selection on adding/deleting an exam" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -397,6 +401,7 @@
     <MESSAGE value="improved the view model - separate Exam vm&#10;problem with reading the date when creating a new exam" />
     <MESSAGE value="improved the visualisation&#10;clear selection and partiipants table on exam deletion" />
     <MESSAGE value="improved exam selection" />
+    <MESSAGE value="keep the exam selection on adding/deleting an exam" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -422,9 +427,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="193" column="0" selection-start="9464" selection-end="9464" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -446,13 +451,6 @@
     <entry file="file://$PROJECT_DIR$/public/js/libs/glDatePicker/android.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="70" selection-start="70" selection-end="70" vertical-scroll-proportion="0.03736264" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="18" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/dashboard.css">
@@ -496,13 +494,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="18" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="77" selection-start="6557" selection-end="6557" vertical-scroll-proportion="-4.8846154">
+        <state line="125" column="87" selection-start="6170" selection-end="6170" vertical-scroll-proportion="-13.384615">
           <folding>
-            <marker date="1354392812257" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354392812257" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354392812257" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -511,7 +516,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="40" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.96263736">
+        <state line="68" column="43" selection-start="1935" selection-end="1935" vertical-scroll-proportion="2.5406594">
           <folding />
         </state>
       </provider>

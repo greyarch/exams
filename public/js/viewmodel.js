@@ -31,6 +31,12 @@ function AppViewModel() {
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
+    isSelectedExam = function (exam) {
+        if (self.selectedExam()) {
+            return exam.id() === self.selectedExam().id();
+        } else return false;
+    };
+
     deleteExam = function (exam) {
         console.log("deleting exam with id: ", exam.id());
         $.ajax({
@@ -64,11 +70,7 @@ function AppViewModel() {
             console.log("getting all exams");
             self.exams($.map(data, function (item) {
                 var newExam = new Exam(item);
-                if (self.selectedExam()) {
-                    if (self.selectedExam().id() === newExam.id()) {
-                        selectExam(newExam);
-                    }
-                }
+                if (isSelectedExam(newExam)) self.showParticipants(newExam);
                 return newExam;
             }));
         });
