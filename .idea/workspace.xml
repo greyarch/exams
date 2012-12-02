@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="70f52ca7-350c-45b3-b023-2f52ca73f1a6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/viewmodel.js" afterPath="$PROJECT_DIR$/public/js/viewmodel.js" />
     </list>
     <ignored path="exams.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -316,7 +313,11 @@
       <created>1354439404159</created>
       <updated>1354439404159</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="can specify port now">
+      <created>1354457871925</created>
+      <updated>1354457871925</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -378,7 +379,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved selection handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="can specify port now" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -400,6 +401,7 @@
     <MESSAGE value="improved exam selection" />
     <MESSAGE value="keep the exam selection on adding/deleting an exam" />
     <MESSAGE value="improved selection handling" />
+    <MESSAGE value="can specify port now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
