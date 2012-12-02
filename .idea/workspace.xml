@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="70f52ca7-350c-45b3-b023-2f52ca73f1a6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/viewmodel.js" afterPath="$PROJECT_DIR$/public/js/viewmodel.js" />
     </list>
@@ -24,43 +25,35 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="38" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="87" selection-start="6170" selection-end="6170" vertical-scroll-proportion="-13.384615">
+            <state line="227" column="32" selection-start="11524" selection-end="11524" vertical-scroll-proportion="-7.5">
               <folding>
-                <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
-                <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
-                <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
+                <marker date="1354441540261" expanded="true" signature="4783:5025" placeholder="..." />
+                <marker date="1354441540261" expanded="true" signature="4820:4893" placeholder="..." />
+                <marker date="1354441540261" expanded="true" signature="4900:4995" placeholder="..." />
                 <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewmodel.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="viewmodel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="43" selection-start="1935" selection-end="1935" vertical-scroll-proportion="2.5406594">
+            <state line="93" column="36" selection-start="2706" selection-end="2706" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/modal.js">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="18" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+            <state line="45" column="44" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.51428574">
               <folding />
             </state>
           </provider>
@@ -94,12 +87,12 @@
         <option value="$PROJECT_DIR$/data/exams.json" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/js/developr.input.js" />
-        <option value="$PROJECT_DIR$/public/js/modal.js" />
         <option value="$PROJECT_DIR$/public/js/moment.min.js" />
         <option value="$PROJECT_DIR$/data.json" />
-        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/public/js/modal.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/js/viewmodel.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -319,7 +312,11 @@
       <created>1354393283193</created>
       <updated>1354393283193</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="improved selection handling">
+      <created>1354439404159</created>
+      <updated>1354439404159</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -381,7 +378,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="keep the exam selection on adding/deleting an exam" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved selection handling" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -402,6 +399,7 @@
     <MESSAGE value="improved the visualisation&#10;clear selection and partiipants table on exam deletion" />
     <MESSAGE value="improved exam selection" />
     <MESSAGE value="keep the exam selection on adding/deleting an exam" />
+    <MESSAGE value="improved selection handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -427,11 +425,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="193" column="0" selection-start="9464" selection-end="9464" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -445,7 +444,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="16" selection-start="121" selection-end="121" vertical-scroll-proportion="0.22417583" />
+        <state line="6" column="16" selection-start="121" selection-end="121" vertical-scroll-proportion="0.22417583">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/libs/glDatePicker/android.css">
@@ -455,12 +456,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="20" selection-start="4137" selection-end="4137" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -487,36 +483,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="18" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+        <state line="3" column="18" selection-start="101" selection-end="101" vertical-scroll-proportion="0.11208791">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="87" selection-start="6170" selection-end="6170" vertical-scroll-proportion="-13.384615">
+        <state line="227" column="32" selection-start="11524" selection-end="11524" vertical-scroll-proportion="-7.5">
           <folding>
-            <marker date="1354439206341" expanded="true" signature="4783:5025" placeholder="..." />
-            <marker date="1354439206341" expanded="true" signature="4820:4893" placeholder="..." />
-            <marker date="1354439206341" expanded="true" signature="4900:4995" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4783:5025" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4820:4893" placeholder="..." />
+            <marker date="1354441540261" expanded="true" signature="4900:4995" placeholder="..." />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="31" selection-start="4285" selection-end="4285" vertical-scroll-proportion="0.62637365">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="43" selection-start="1935" selection-end="1935" vertical-scroll-proportion="2.5406594">
+        <state line="93" column="36" selection-start="2706" selection-end="2706" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="44" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.51428574">
           <folding />
         </state>
       </provider>

@@ -87,6 +87,23 @@ function AppViewModel() {
             self.loadAllExams();
         }, "json");
     };
+
+    newParticipant = function (name, tags) {
+        console.log("adding a participant");
+        var exam = self.selectedExam();
+        ko.toJS(exam.participants()).push({name:name, tags:tags, country:'Bulgaria', actions:''});
+        console.dir(exam.participants);
+//        self.showParticipants(exam);
+        $.ajax({
+            url:"exam",
+            type:"PUT",
+            data:ko.toJSON(exam),
+            dataType:"json",
+            success:function () {
+                console.log("created the participant");
+                self.loadAllExams();
+            }});
+    };
 }
 
 $(function () {

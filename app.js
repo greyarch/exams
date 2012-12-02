@@ -1,4 +1,5 @@
 var express = require("express");
+var util = require("util");
 var idgen = require("idgen");
 var app = express();
 var exams = require("./data.json");
@@ -41,11 +42,12 @@ app.delete('/exam/:id', function(req, res) {
 app.put('/exam', function(req, res){
     var exam = req.body;
     console.log("updating an exam");
-    console.dir(exam);
-    exams = exams.map(function(item) {
-        return item.id === exam.id ? exam : item;
-    });
+    console.log(util.inspect(exam));
+    //    exams = exams.map(function(item) {
+//        return item.id == exam.id ? exam : item;
+//    });
     res.json(exam);
 });
 
-app.listen(3000);
+PORT = process.argv[2];
+app.listen(PORT ? PORT : 3000);
