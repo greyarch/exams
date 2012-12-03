@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="70f52ca7-350c-45b3-b023-2f52ca73f1a6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/viewmodel.js" afterPath="$PROJECT_DIR$/public/js/viewmodel.js" />
     </list>
     <ignored path="exams.iws" />
@@ -36,7 +35,7 @@
       <file leaf-file-name="viewmodel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="48" selection-start="784" selection-end="784" vertical-scroll-proportion="-1.5318681">
+            <state line="112" column="0" selection-start="3275" selection-end="3275" vertical-scroll-proportion="0.62637365">
               <folding />
             </state>
           </provider>
@@ -320,20 +319,24 @@
       <created>1354457882236</created>
       <updated>1354457882236</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="adding of participant implemented">
+      <created>1354519343709</created>
+      <updated>1354519343709</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.47683397" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.47425997" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22522523" sideWeight="0.6703911" order="3" side_tool="false" content_ui="tabs" x="1335" y="78" width="239" height="442" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18983269" sideWeight="0.6703911" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1924067" sideWeight="0.6703911" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.5186615" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.5212355" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.494852" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -382,7 +385,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="can specify port now" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding of participant implemented" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -405,6 +408,7 @@
     <MESSAGE value="keep the exam selection on adding/deleting an exam" />
     <MESSAGE value="improved selection handling" />
     <MESSAGE value="can specify port now" />
+    <MESSAGE value="adding of participant implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -497,7 +501,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/viewmodel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="48" selection-start="784" selection-end="784" vertical-scroll-proportion="-1.5318681">
+        <state line="112" column="0" selection-start="3275" selection-end="3275" vertical-scroll-proportion="0.62637365">
           <folding />
         </state>
       </provider>

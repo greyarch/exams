@@ -101,9 +101,8 @@ function AppViewModel() {
     newParticipant = function (name, tags) {
         console.log("adding a participant");
         var exam = self.selectedExam().toJSON();
-        exam.participants.push({name:name, tags:tags, country:'Bulgaria', actions:''});
-//        console.dir(exam.participants);
-//        self.showParticipants(exam);
+        var newParticipant = {name:name, tags:tags, country:'Bulgaria', actions:''};
+        exam.participants.push(newParticipant);
         $.ajax({
             url:"exam",
             type:"PUT",
