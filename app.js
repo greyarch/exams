@@ -43,9 +43,9 @@ app.put('/exam', function(req, res){
     var exam = req.body;
     console.log("updating an exam");
     console.log(util.inspect(exam));
-    //    exams = exams.map(function(item) {
-//        return item.id == exam.id ? exam : item;
-//    });
+        exams = exams.map(function(item) {
+        return item.id == exam.id ? exam : item;
+    });
     res.json(exam);
 });
 

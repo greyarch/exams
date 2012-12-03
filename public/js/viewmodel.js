@@ -20,6 +20,16 @@ function Exam(json) {
     self.year = ko.computed(function () {
         return self.date().year();
     });
+
+    self.toJSON = function() {
+        return {
+            id: self.id(),
+            title: self.title(),
+            place: self.place(),
+            date: self.date().format("DD/MM/YYYY"),
+            participants: self.participants()
+        }
+    }
 }
 
 function AppViewModel() {
@@ -90,14 +100,14 @@ function AppViewModel() {
 
     newParticipant = function (name, tags) {
         console.log("adding a participant");
-        var exam = self.selectedExam();
-        ko.toJS(exam.participants()).push({name:name, tags:tags, country:'Bulgaria', actions:''});
-        console.dir(exam.participants);
+        var exam = self.selectedExam().toJSON();
+        exam.participants.push({name:name, tags:tags, country:'Bulgaria', actions:''});
+//        console.dir(exam.participants);
 //        self.showParticipants(exam);
         $.ajax({
             url:"exam",
             type:"PUT",
-            data:ko.toJSON(exam),
+            data:exam,
             dataType:"json",
             success:function () {
                 console.log("created the participant");
