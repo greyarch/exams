@@ -41,9 +41,8 @@ app.delete('/exam/:id', function(req, res) {
 //update exam - currently used to add/delete participants
 app.put('/exam', function(req, res){
     var exam = req.body;
-    console.log("updating an exam");
-    console.log(util.inspect(exam));
-        exams = exams.map(function(item) {
+    console.log("updating exam with id: ", exam.id);
+    exams = exams.map(function(item) {
         return item.id == exam.id ? exam : item;
     });
     res.json(exam);
