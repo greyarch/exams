@@ -155,17 +155,17 @@
                             </div>
                             <table class="table responsive-table responsive-table-on">
                                 <thead>
-                                <th scope="col" class="header">Name</th>
-                                <th scope="col" class="header">Country</th>
-                                <th scope="col" class="header">Tags</th>
+                                <th scope="col" class="header">First Name</th>
+                                <th scope="col" class="header">Last Name</th>
+                                <th scope="col" class="header">Company</th>
                                 <th scope="col" class="header">Actions</th>
                                 </thead>
                                 <tbody data-bind="foreach: participants">
                                     <tr>
-                                        <td data-bind="text: name"></td>
-                                        <td data-bind="text: country"></td>
-                                        <td data-bind="text: tags"></td>
-                                        <td data-bind="text: actions"></td>
+                                        <td data-bind="text: first_name"></td>
+                                        <td data-bind="text: last_name"></td>
+                                        <td data-bind="text: company"></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -207,12 +207,16 @@
                 <form id="add-participant" style="display: none; width: 500px;">
                     <fieldset class="fieldset fields-list">
                         <div class="field-block button-height">
-                            <label for="part-name" class="label">Name</label>
-                            <input type="text" name="input" id="part-name" class="input">
+                            <label for="part-first-name" class="label">First Name</label>
+                            <input type="text" name="input" id="part-first-name" class="input">
                         </div>
                         <div class="field-block button-height">
-                            <label for="part-tags" class="label">Tags</label>
-                            <input type="text" name="input" id="part-tags" class="input">
+                            <label for="part-last-name" class="label">Last Name</label>
+                            <input type="text" name="input" id="part-last-name" class="input">
+                        </div>
+                        <div class="field-block button-height">
+                            <label for="part-company" class="label">Company</label>
+                            <input type="text" name="input" id="part-company" class="input">
                         </div>
                     </fieldset>
                     <div class="buttons align-center">
@@ -222,7 +226,7 @@
                         </button>
                         <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
                                 data-bind="click: function() {$.modal.current.closeModal();
-                                newParticipant($('#part-name').val(), $('#part-tags').val());}">
+                                newParticipant($('#part-first-name').val(), $('#part-last-name').val(), $('#part-company').val());}">
                             Save
                         </button>
                     </div>

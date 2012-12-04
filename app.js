@@ -32,10 +32,33 @@ app.post('/exam', function(req, res) {
     });
 });
 
+//create participant for exam
+app.post('/exam/:id/participant', function(req, res) {
+    var part = req.body;
+    part.exam_id = req.params.id;
+    console.log("creating a participant for exam with id ", req.params.id);
+    console.dir(part);
+    connection.query('INSERT INTO participants SET ?', part, function(err, result) {
+        if (err) throw err; //TODO report error here
+        console.log('result is: ', result);
+        res.json(201, part);
+    });
+});
+
 //get all exams
 app.get('/exam', function(req, res) {
     console.log("loading all exams");
-    connection.query('SELECT * FROM exams', function(err, rows, fields) {
+    connection.query('SELECT * FROM exams', function(err, rows) {
+        if (err) throw err; //TODO report error here
+        console.log('exams are: ', rows);
+        res.json(200, rows);
+    });
+});
+
+//get all participants in an exam
+app.get('/exam/:id/participant', function(req, res) {
+    console.log("loading all participants in exam with id ", req.params.id);
+    connection.query('SELECT * FROM participants WHERE exam_id = ' + req.params.id, function(err, rows) {
         if (err) throw err; //TODO report error here
         console.log('rows are: ', rows);
         res.json(200, rows);
