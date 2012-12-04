@@ -10,7 +10,8 @@ var connection = mysql.createConnection({
     host: 'localhost',
     database: 'admin_exams',
     user: 'admin_exams',
-    password: 'apppass'
+    password: 'apppass',
+    insecureAuth: true
 });
 
 connection.connect();
