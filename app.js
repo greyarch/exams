@@ -58,9 +58,9 @@ app.get('/exam', function(req, res) {
 //get all participants in an exam
 app.get('/exam/:id/participant', function(req, res) {
     console.log("loading all participants in exam with id ", req.params.id);
-    connection.query('SELECT * FROM participants WHERE exam_id = ' + req.params.id, function(err, rows) {
+    connection.query('SELECT * FROM participants WHERE exam_id = ?', [req.params.id], function(err, rows) {
         if (err) throw err; //TODO report error here
-        console.log('rows are: ', rows);
+        console.log('participants are: ', rows);
         res.json(200, rows);
     });
 });
@@ -68,7 +68,7 @@ app.get('/exam/:id/participant', function(req, res) {
 //delete exam with an id
 app.delete('/exam/:id', function(req, res) {
     console.log("deleting an exam with id " + req.params.id);
-    connection.query('DELETE FROM exams WHERE id = ' + req.params.id, function(err, result) {
+    connection.query('DELETE FROM exams WHERE id = ?', [req.params.id], function(err, result) {
         if (err) throw err; //TODO report error here
         console.log('result is: ', result);
         res.end();
