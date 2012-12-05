@@ -5,19 +5,19 @@ function Exam(json) {
     self.title = ko.observable(json.title);
     self.id = ko.observable(json.id);
 
-    self.date = ko.computed(function () {
+    self.date = ko.computed(function() {
         return moment(json.date, "DD-MM-YYYY");
     });
 
-    self.day = ko.computed(function () {
+    self.day = ko.computed(function() {
         return self.date().date();
     });
 
-    self.month = ko.computed(function () {
+    self.month = ko.computed(function() {
         return self.date().month() + 1;
     });
 
-    self.year = ko.computed(function () {
+    self.year = ko.computed(function() {
         return self.date().year();
     });
 
@@ -41,27 +41,28 @@ function AppViewModel() {
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
-    isSelectedExam = function (exam) {
+    isSelectedExam = function(exam) {
         if (self.selectedExam()) {
             return exam.id() === self.selectedExam().id();
-        } else return false;
+        } else
+            return false;
     };
 
-    deleteExam = function (exam) {
+    deleteExam = function(exam) {
         console.log("deleting exam with id: ", exam.id());
         $.ajax({
-            url:"exam/" + exam.id(),
-            type:"DELETE",
-            success:function () {
+            url: "exam/" + exam.id(),
+            type: "DELETE",
+            success: function() {
                 self.loadAllExams();
             },
-            error:function (jqXhr) {
+            error: function(jqXhr) {
                 console.log("the error is: " + jqXhr.responseText);
             }
         });
     };
 
-    selectExam = function (exam) {
+    selectExam = function(exam) {
         console.log("selected exam with id: ", exam.id());
         if (exam !== self.selectedExam()) {
             self.selectedExam(exam);
@@ -69,59 +70,56 @@ function AppViewModel() {
         }
     };
 
-    self.showParticipants = function (exam) {
-        console.log("showing exam participants");
-        self.participants(exam.participants());
+    self.showParticipants = function(exam) {
+        console.log("getting all participants for exam with id ", exam.id());
+        $.getJSON('exam/' + exam.id() + '/participant', function(data) {
+            self.participants(data);
+        });
     };
 
-    self.loadAllExams = function () {
+    self.loadAllExams = function() {
         self.participants([]);
-        $.getJSON('exam', function (data) {
+        $.getJSON('exam', function(data) {
             console.log("getting all exams");
-            self.exams($.map(data, function (item) {
+            self.exams($.map(data, function(item) {
                 var newExam = new Exam(item);
-                if (isSelectedExam(newExam)) self.showParticipants(newExam);
+                if (isSelectedExam(newExam))
+                    self.showParticipants(newExam);
                 return newExam;
             }));
         });
     };
 
-    newExam = function (title, place, date) {
+    newExam = function(title, place, date) {
         console.log("adding an exam");
         $.post('exam', {
-            date:date,
-            title:title,
-            place:place
-        }, function () {
+            date: date,
+            title: title,
+            place: place
+        }, function() {
             console.log("created the exam");
             self.loadAllExams();
         }, "json");
     };
 
-    newParticipant = function (name, tags) {
+    newParticipant = function(firstName, lastName, company) {
         console.log("adding a participant");
-        var exam = self.selectedExam().toJSON();
-        var newParticipant = {name:name, tags:tags, country:'Bulgaria', actions:''};
-        exam.participants.push(newParticipant);
-        $.ajax({
-            url:"exam",
-            type:"PUT",
-            data:exam,
-            dataType:"json",
-            success:function () {
-                console.log("created the participant");
-                self.loadAllExams();
-            }});
+        var examId = self.selectedExam().id();
+        var newParticipant = {first_name: firstName, last_name: lastName, company: company};
+        $.post("exam/" + examId + "/participant", newParticipant, function() {
+            console.log("created the participant");
+            self.loadAllExams();
+        });
     };
 }
 
-$(function () {
-    $(".datepicker").click(function () {
+$(function() {
+    $(".datepicker").click(function() {
         $(".datepicker").glDatePicker({
-            zIndex:100,
-            onChange:function (target, newDate) {
+            zIndex: 100,
+            onChange: function(target, newDate) {
                 target.val(
-                    newDate.getDate() + "/" +
+                        newDate.getDate() + "/" +
                         (newDate.getMonth() + 1) + "/" +
                         newDate.getFullYear());
             }
