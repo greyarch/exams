@@ -75,6 +75,16 @@ app.delete('/exam/:id', function(req, res) {
     });
 });
 
+//delete a participant with an id
+app.delete('/participant/:id', function(req, res) {
+    console.log("deleting a participant with id " + req.params.id);
+    connection.query('DELETE FROM participants WHERE id = ?', [req.params.id], function(err, result) {
+        if (err) throw err; //TODO report error here
+        console.log('result is: ', result);
+        res.end();
+    });
+});
+
 //update exam - currently used to add/delete participants
 app.put('/exam', function(req, res) {
     var exam = req.body;

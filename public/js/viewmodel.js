@@ -62,6 +62,20 @@ function AppViewModel() {
         });
     };
 
+    deleteParticipant = function(participant) {
+        console.log("deleting exam with id: ", participant.id);
+        $.ajax({
+            url: "participant/" + participant.id,
+            type: "DELETE",
+            success: function() {
+                self.loadAllExams();
+            },
+            error: function(jqXhr) {
+                console.log("the error is: " + jqXhr.responseText);
+            }
+        });
+    };
+
     selectExam = function(exam) {
         console.log("selected exam with id: ", exam.id());
         if (exam !== self.selectedExam()) {
