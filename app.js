@@ -1,31 +1,50 @@
-var express = require("express");
-var mysql = require('mysql');
+var express = require('express')
+//    , routes = require('./routes')
+    , http = require('http')
+    , path = require('path')
+    , mysql = require('mysql');
+
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.bodyParser());
+app.configure(function () {
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'ejs');
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, 'public')));
+});
+
 app.engine(".html", require('ejs').renderFile);
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    database: 'admin_exams',
-    user: 'admin_exams',
-    password: 'apppass',
-    insecureAuth: true
+    host:'localhost',
+    database:'admin_exams',
+    user:'admin_exams',
+    password:'apppass',
+    insecureAuth:true
 });
 
 connection.connect();
 
-app.get('/', function(req, res) {
-    res.render('index.html');
+app.get('/', function (req, res) {
+        res.render('exams.html');
+    }
+);
+
+app.get('/login', function (req, res) {
+    res.render('login.html');
 });
 
 //create exam
-app.post('/exam', function(req, res) {
+app.post('/exam', function (req, res) {
     var exam = req.body;
     console.log("creating an exam: ");
     console.dir(exam);
-    connection.query('INSERT INTO exams SET ?', exam, function(err, result) {
+    connection.query('INSERT INTO exams SET ?', exam, function (err, result) {
         if (err) throw err; //TODO report error here
         console.log('result is: ', result);
         res.json(201, exam);
@@ -33,12 +52,12 @@ app.post('/exam', function(req, res) {
 });
 
 //create participant for exam
-app.post('/exam/:id/participant', function(req, res) {
+app.post('/exam/:id/participant', function (req, res) {
     var part = req.body;
     part.exam_id = req.params.id;
     console.log("creating a participant for exam with id ", req.params.id);
     console.dir(part);
-    connection.query('INSERT INTO participants SET ?', part, function(err, result) {
+    connection.query('INSERT INTO participants SET ?', part, function (err, result) {
         if (err) throw err; //TODO report error here
         console.log('result is: ', result);
         res.json(201, part);
@@ -46,9 +65,9 @@ app.post('/exam/:id/participant', function(req, res) {
 });
 
 //get all exams
-app.get('/exam', function(req, res) {
+app.get('/exam', function (req, res) {
     console.log("loading all exams");
-    connection.query('SELECT * FROM exams', function(err, rows) {
+    connection.query('SELECT * FROM exams', function (err, rows) {
         if (err) throw err; //TODO report error here
         console.log('exams are: ', rows);
         res.json(200, rows);
@@ -56,9 +75,9 @@ app.get('/exam', function(req, res) {
 });
 
 //get all participants in an exam
-app.get('/exam/:id/participant', function(req, res) {
+app.get('/exam/:id/participant', function (req, res) {
     console.log("loading all participants in exam with id ", req.params.id);
-    connection.query('SELECT * FROM participants WHERE exam_id = ?', [req.params.id], function(err, rows) {
+    connection.query('SELECT * FROM participants WHERE exam_id = ?', [req.params.id], function (err, rows) {
         if (err) throw err; //TODO report error here
         console.log('participants are: ', rows);
         res.json(200, rows);
@@ -66,9 +85,9 @@ app.get('/exam/:id/participant', function(req, res) {
 });
 
 //delete exam with an id
-app.delete('/exam/:id', function(req, res) {
+app.delete('/exam/:id', function (req, res) {
     console.log("deleting an exam with id " + req.params.id);
-    connection.query('DELETE FROM exams WHERE id = ?', [req.params.id], function(err, result) {
+    connection.query('DELETE FROM exams WHERE id = ?', [req.params.id], function (err, result) {
         if (err) throw err; //TODO report error here
         console.log('result is: ', result);
         res.end();
@@ -76,9 +95,9 @@ app.delete('/exam/:id', function(req, res) {
 });
 
 //delete a participant with an id
-app.delete('/participant/:id', function(req, res) {
+app.delete('/participant/:id', function (req, res) {
     console.log("deleting a participant with id " + req.params.id);
-    connection.query('DELETE FROM participants WHERE id = ?', [req.params.id], function(err, result) {
+    connection.query('DELETE FROM participants WHERE id = ?', [req.params.id], function (err, result) {
         if (err) throw err; //TODO report error here
         console.log('result is: ', result);
         res.end();
@@ -86,17 +105,16 @@ app.delete('/participant/:id', function(req, res) {
 });
 
 //update exam - currently used to add/delete participants
-app.put('/exam', function(req, res) {
+app.put('/exam', function (req, res) {
     var exam = req.body;
     console.log("updating exam with id: ", exam.id);
-    exams = exams.map(function(item) {
+    exams = exams.map(function (item) {
         return item.id == exam.id ? exam : item;
     });
     res.json(exam);
 });
 
-PORT = process.argv[2];
-app.listen(PORT ? PORT : 3000).on('end', function() {
+app.listen(process.env.PORT || 4000).on('end', function () {
     console.log("goodbye");
     connection.end();
 });

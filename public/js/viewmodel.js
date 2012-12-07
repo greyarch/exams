@@ -1,3 +1,27 @@
+ko.extenders.liveEditor = function (target) {
+    target.editing = ko.observable(false);
+
+    target.edit = function () {
+        target.editing(true);
+    };
+
+    target.stopEditing = function () {
+        target.editing(false);
+    };
+    return target;
+};
+
+ko.bindingHandlers.liveEditor = {
+    init: function (element, valueAccessor) {
+        var observable = valueAccessor();
+        observable.extend({ liveEditor: this });
+    },
+    update: function (element, valueAccessor) {
+        var observable = valueAccessor();
+        ko.bindingHandlers.css.update(element, function () { return { editing: observable.editing }; });
+    }
+};
+
 function Exam(json) {
     var self = this;
     self.participants = ko.observableArray(json.participants);
@@ -41,6 +65,8 @@ function AppViewModel() {
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
+    self.partCompany = ko.observable();
+
     isSelectedExam = function(exam) {
         if (self.selectedExam()) {
             return exam.id() === self.selectedExam().id();
@@ -57,7 +83,7 @@ function AppViewModel() {
                 self.loadAllExams();
             },
             error: function(jqXhr) {
-                console.log("the error is: " + jqXhr.responseText);
+                console.log("error while trying to delete exam: " + jqXhr.responseText);
             }
         });
     };
@@ -71,7 +97,7 @@ function AppViewModel() {
                 self.loadAllExams();
             },
             error: function(jqXhr) {
-                console.log("the error is: " + jqXhr.responseText);
+                console.log("error while trying to delete participant: " + jqXhr.responseText);
             }
         });
     };

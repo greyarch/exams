@@ -1,0 +1,11 @@
+.edit {
+    display: none;
+}
+
+.editing .edit {
+    display: block;
+}
+
+.editing .view {
+    display: none;
+}​
