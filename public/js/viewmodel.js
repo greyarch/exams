@@ -120,7 +120,7 @@ function AppViewModel() {
     self.loadAllExams = function() {
         self.participants([]);
         $.getJSON('exam', function(data) {
-            console.log("getting all exams");
+            console.log("getting all exam");
             self.exams($.map(data, function(item) {
                 var newExam = new Exam(item);
                 if (isSelectedExam(newExam))
