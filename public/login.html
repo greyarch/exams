@@ -142,6 +142,10 @@
 			 */
 			formLogin.submit(function(event)
 			{
+				
+				// Remove previous messages
+					formLogin.clearMessages();
+				
 				// Values
 				var login = $.trim($('#login').val()),
 					pass = $.trim($('#pass').val());

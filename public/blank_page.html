@@ -37,12 +37,6 @@
 
 	<!-- Additional styles -->
 	<link rel="stylesheet" href="css/switches.css?v=1">
-    <link rel="stylesheet" href="css/events.css">
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="js/libs/glDatePicker/developr.css">
 
 	<!-- JavaScript at bottom except for Modernizr -->
 	<script src="js/libs/modernizr.custom.js"></script>
@@ -102,132 +96,9 @@
 		<!-- The padding wrapper may be omitted -->
 		<div class="with-padding">
 
-    	   	<div class="columns">
-            <div class="three-columns six-columns-tablet nine-columns-mobile">
-                <div class="block large-margin-bottom">
-                    <div class="block-title">
-                        <h3 style="display: inline">Exams</h3>
+			<!-- PLACE THE PAGE CONTENT HERE!-->
 
-                        <div class="button-group absolute-right">
-                            <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
-                        </div>
-                    </div>
-                    <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
-                        <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
-                            <a href="#" class="event-description" data-bind="click: selectExam">
-                                        <span class="event-date with-month">
-                                            <span data-bind="text: day"></span>
-                                            <span class="event-month">
-                                                <span data-bind="text: month"></span>
-                                                /
-                                                <span data-bind="text: year"></span>
-                                            </span>
-                                        </span>
-                                <h4 data-bind="text: title"></h4>
-
-                                <p data-bind="text: place"></p>
-                                        <span class="count inset show-on-parent-hover"
-                                              data-bind="click: deleteExam, clickBubble: false">✕</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="new-row-mobile nine-columns">
-                <div class="block large-margin-bottom" style="padding-bottom: 7px">
-                    <div class="block-title">
-                        <h3>Participants</h3>
-
-                        <div class="button-group absolute-right">
-                            <a class="button icon-star" onclick="openModal('#add-participant', 'Add new participant');">
-                                Add Participant
-                            </a>
-                        </div>
-                    </div>
-                    <table class="table responsive-table responsive-table-on">
-                        <thead>
-                        <th scope="col" class="header">First Name</th>
-                        <th scope="col" class="header">Last Name</th>
-                        <th scope="col" class="header">Company</th>
-                        <th scope="col" class="header">Actions</th>
-                        </thead>
-                        <tbody data-bind="foreach: participants">
-                        <tr>
-                            <td data-bind="text: first_name"></td>
-                            <td data-bind="text: last_name"></td>
-                            <td data-bind="text: company"></td>
-                            <td>
-                                <a href="#" data-bind="click: deleteParticipant, clickBubble: false">
-                                    delete
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        	<form id="add-exam" style="display: none; width: 500px;">
-            <fieldset class="fieldset fields-list">
-                <div class="field-block button-height">
-                    <label for="exam-title" class="label">Title</label>
-                    <input type="text" name="input" id="exam-title" class="input">
-                </div>
-                <div class="field-block button-height">
-                    <label for="exam-place" class="label">Place</label>
-                    <select class="select" id="exam-place"
-                            data-bind="options: availablePlaces"></select>
-                </div>
-                <div class="field-block button-height">
-                    <label for="exam-date" class="label">Date</label>
-                            <span class="input">
-                                <span class="icon-calendar"></span>
-                                <input id="exam-date" type="text" class="input-unstyled datepicker">
-                            </span>
-                </div>
-            </fieldset>
-            <div class="buttons align-center">
-                <button type="button" class="button icon-cross glossy red-gradient"
-                        onclick="$.modal.current.closeModal();">Cancel
-                </button>
-                <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
-                        data-bind="click: function() {$.modal.current.closeModal();
-                                newExam($('#exam-title').val(), $('#exam-place option:selected').val(), $('#exam-date').val());}">
-                    Save
-                </button>
-            </div>
-        </form>
-
-        	<form id="add-participant" style="display: none; width: 500px;">
-            <fieldset class="fieldset fields-list">
-                <div class="field-block button-height">
-                    <label for="part-first-name" class="label">First Name</label>
-                    <input type="text" name="input" id="part-first-name" class="input">
-                </div>
-                <div class="field-block button-height">
-                    <label for="part-last-name" class="label">Last Name</label>
-                    <input type="text" name="input" id="part-last-name" class="input">
-                </div>
-                <div class="field-block button-height">
-                    <label for="part-company" class="label">Company</label>
-                    <input type="text" name="input" id="part-company" class="input">
-                </div>
-            </fieldset>
-            <div class="buttons align-center">
-                <button type="button" class="button icon-cross glossy red-gradient"
-                        onclick="$.modal.current.closeModal();">
-                    Cancel
-                </button>
-                <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
-                        data-bind="click: function() {$.modal.current.closeModal();
-                                newParticipant($('#part-first-name').val(), $('#part-last-name').val(), $('#part-company').val());}">
-                    Save
-                </button>
-            </div>
-        </form>
-
- 		</div>		
+		</div>	
 		
 	</section>
 	
@@ -323,10 +194,6 @@
 	<!-- Scripts -->
 	<script src="js/libs/jquery-1.8.2.min.js"></script>
 	<script src="js/setup.js"></script>
-	<script src="js/libs/knockout-2.2.0.js"></script>
-
-
-
 
 	<!-- Template functions -->
 	<script src="js/developr.input.js"></script>
@@ -334,12 +201,7 @@
 	<script src="js/developr.notify.js"></script>
 	<script src="js/developr.scroll.js"></script>
 	<script src="js/developr.tooltip.js"></script>
-	<script src="js/developr.modal.js"></script>
-	<script src="js/libs/glDatePicker/glDatePicker.min.js"></script>
-	<script src="js/moment.min.js"></script>
-	<script src="js/modal.js"></script>
-	<script src="js/viewmodel.js"></script>
-	
+
 	<script>
 
 		// Call template init (optional, but faster if called manually)
