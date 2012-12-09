@@ -56,6 +56,33 @@ function Exam(json) {
     }
 }
 
+function Participant(json) {
+    var self = this;
+    self.id = ko.observable(json.id);
+    self.company = ko.observable(json.company);
+    self.firstName = ko.observable(json.first_name);
+    self.lastName = ko.observable(json.last_name);
+    self.email = ko.observable();
+    self.price = ko.observable();
+    self.fee = ko.observable();
+    self.result = ko.observable();
+    self.pass = ko.observable();
+
+    self.toJSON = function() {
+        return {
+            id: self.id(),
+            company: self.company(),
+            first_name: self.firstName(),
+            last_name: self.lastName(),
+            email: "",
+            price: "",
+            fee: "",
+            result: "",
+            pass: ""
+        }
+    }
+}
+
 function AppViewModel() {
     var self = this;
 
@@ -64,8 +91,6 @@ function AppViewModel() {
     self.selectedExam = ko.observable();
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
-
-    self.partCompany = ko.observable();
 
     isSelectedExam = function(exam) {
         if (self.selectedExam()) {
@@ -89,9 +114,9 @@ function AppViewModel() {
     };
 
     deleteParticipant = function(participant) {
-        console.log("deleting exam with id: ", participant.id);
+        console.log("deleting exam with id: ", participant.id());
         $.ajax({
-            url: "participant/" + participant.id,
+            url: "participant/" + participant.id(),
             type: "DELETE",
             success: function() {
                 self.loadAllExams();
@@ -113,7 +138,9 @@ function AppViewModel() {
     self.showParticipants = function(exam) {
         console.log("getting all participants for exam with id ", exam.id());
         $.getJSON('exam/' + exam.id() + '/participant', function(data) {
-            self.participants(data);
+            self.participants($.map(data, function(item) {
+                return new Participant(item);
+            }));
         });
     };
 

@@ -20,38 +20,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<!-- For all browsers -->
-	<link rel="stylesheet" href="/css/reset.css">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/colors.css">
-	<link rel="stylesheet" media="print" href="/css/print.css">
+	<link rel="stylesheet" href="css/reset.css?v=1">
+	<link rel="stylesheet" href="css/style.css?v=1">
+	<link rel="stylesheet" href="css/colors.css?v=1">
+	<link rel="stylesheet" media="print" href="css/print.css?v=1">
 	<!-- For progressively larger displays -->
-	<link rel="stylesheet" media="only all and (min-width: 480px)" href="/css/480.css">
-	<link rel="stylesheet" media="only all and (min-width: 768px)" href="/css/768.css">
-	<link rel="stylesheet" media="only all and (min-width: 992px)" href="/css/992.css">
-	<link rel="stylesheet" media="only all and (min-width: 1200px)" href="/css/1200.css">
+	<link rel="stylesheet" media="only all and (min-width: 480px)" href="css/480.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 768px)" href="css/768.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 992px)" href="css/992.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 1200px)" href="css/1200.css?v=1">
 	<!-- For Retina displays -->
-	<link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="/css/2x.css">
+	<link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="css/2x.css?v=1">
 
 	<!-- Additional styles -->
-	<link rel="stylesheet" href="/css/form.css">
+	<link rel="stylesheet" href="css/form.css?v=1">
 	<link rel="stylesheet" href="css/switches.css?v=1">
 
 	<!-- Login pages styles -->
-	<link rel="stylesheet" media="screen" href="/css/login.css">
+	<link rel="stylesheet" media="screen" href="css/login.css?v=1">
 
 	<!-- JavaScript at bottom except for Modernizr -->
-	<script src="/js/libs/modernizr.custom.js"></script>
+	<script src="js/libs/modernizr.custom.js"></script>
 
 	<!-- For Modern Browsers -->
-	<link rel="shortcut icon" href="/img/favicons/favicon.png">
+	<link rel="shortcut icon" href="img/favicons/favicon.png">
 	<!-- For everything else -->
-	<link rel="shortcut icon" href="/img/favicons/favicon.ico">
+	<link rel="shortcut icon" href="img/favicons/favicon.ico">
 	<!-- For retina screens -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/favicons/apple-touch-icon-retina.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicons/apple-touch-icon-retina.png">
 	<!-- For iPad 1-->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/favicons/apple-touch-icon-ipad.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicons/apple-touch-icon-ipad.png">
 	<!-- For iPhone 3G, iPod Touch and Android -->
-	<link rel="apple-touch-icon-precomposed" href="/img/favicons/apple-touch-icon.png">
+	<link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon.png">
 
 	<!-- iOS web-app metas -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,14 +95,14 @@
 	<!-- JavaScript at the bottom for fast page loading -->
 
 	<!-- Scripts -->
-	<script src="/js/libs/jquery-1.8.2.min.js"></script>
-	<script src="/js/setup.js"></script>
+	<script src="js/libs/jquery-1.8.2.min.js"></script>
+	<script src="js/setup.js"></script>
 
 	<!-- Template functions -->
-	<script src="/js/developr.input.js"></script>
-	<script src="/js/developr.message.js"></script>
-	<script src="/js/developr.notify.js"></script>
-	<script src="/js/developr.tooltip.js"></script>
+	<script src="js/developr.input.js"></script>
+	<script src="js/developr.message.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/developr.tooltip.js"></script>
 
 	<script>
 
@@ -142,6 +142,10 @@
 			 */
 			formLogin.submit(function(event)
 			{
+				
+				// Remove previous messages
+					formLogin.clearMessages();
+				
 				// Values
 				var login = $.trim($('#login').val()),
 					pass = $.trim($('#pass').val());
