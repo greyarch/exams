@@ -4,6 +4,7 @@
   "dependencies":{
       "express":"3.x",
       "mysql":"",
-      "express-hbs":""
+      "express-hbs":"",
+      "optimist":""
   }
 }

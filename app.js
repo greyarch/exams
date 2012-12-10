@@ -4,7 +4,8 @@ var express = require('express')
     ,http = require('http')
     , path = require('path')
     , mysql = require('mysql')
-    ,hbs = require('express-hbs');;
+    ,hbs = require('express-hbs')
+    ,argv = require('optimist').argv;
 
 var app = express();
 
@@ -51,7 +52,7 @@ app.delete('/participant/:id', exam.delete_participant);
 //update exam - currently used to add/delete participants
 app.put('/exam', exam.update);
 
-app.listen(process.env.PORT || 3000).on('end', function () {
+app.listen(argv.port || 3000).on('end', function () {
     console.log("goodbye");
     connection.end();
 });
