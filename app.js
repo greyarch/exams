@@ -3,13 +3,14 @@ var express = require('express')
     ,user = require('./routes/user')
     ,http = require('http')
     , path = require('path')
-    , mysql = require('mysql');
+    , mysql = require('mysql')
+    ,hbs = require('express-hbs');;
 
 var app = express();
 
 app.configure(function () {
     app.set('views', __dirname + '/views');
-    app.set('view engine', 'ejs');
+//    app.set('view engine', 'ejs');
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
@@ -18,7 +19,9 @@ app.configure(function () {
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.engine(".html", require('ejs').renderFile);
+app.engine('html', hbs.express3({defaultLayout: __dirname + '/views/layout.html',
+    extname: '.html', partialsDir: __dirname + '/views/partials'}));
+app.set('view engine', 'html');
 
 connection = mysql.createConnection({
     host:'localhost',

@@ -1,0 +1,35 @@
+<form id="add-participant" style="display: none; width: 500px;">
+    <fieldset class="fieldset fields-list">
+        <div class="field-block">
+            <label for="part-company" class="label">Company</label>
+            <input type="text" name="input" id="part-company" class="input">
+        </div>
+        <div class="field-block">
+            <label for="part-first-name" class="label">First Name</label>
+            <input type="text" name="input" id="part-first-name" class="input">
+        </div>
+        <div class="field-block">
+            <label for="part-last-name" class="label">Last Name</label>
+            <input type="text" name="input" id="part-last-name" class="input">
+        </div>
+        <div class="field-block">
+            <label for="part-email" class="label">Email</label>
+            <input type="text" name="input" id="part-email" class="input">
+        </div>
+        <div class="field-block">
+            <label for="part-price" class="label">Price</label>
+            <input type="text" name="input" id="part-price" class="input">
+        </div>
+    </fieldset>
+    <div class="buttons align-center">
+        <button type="button" class="button icon-cross glossy red-gradient"
+                onclick="$.modal.current.closeModal();">
+            Cancel
+        </button>
+        <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
+                data-bind="click: function() {$.modal.current.closeModal();
+                                newParticipant($('#part-first-name').val(), $('#part-last-name').val(), $('#part-company').val());}">
+            Save
+        </button>
+    </div>
+</form>
