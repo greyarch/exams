@@ -87,23 +87,23 @@
                         </thead>
                         <tbody data-bind="foreach: participants">
                         <tr>
-                            <td>
-                                <div data-bind="liveEditor: $root.partCompany">
-                                    <span class="view"><a href="#"
-                                                          data-bind="click: $root.partCompany.edit, text: $data.company"></a></span>
-                                    <input class="edit" data-bind="value: $root.partCompany,
-                                            enterKey: $root.partCompany.stopEditing,
-                                            selectAndFocus: $root.partCompany.editing,
-                                            event: { blur: $root.partCompany.stopEditing }"/>
-                                </div>
-                            </td>
-                            <!--<td data-bind="text: company"></td>-->
+                            <!--<td>-->
+                                <!--<div data-bind="liveEditor: $root.partCompany">-->
+                                    <!--<span class="view"><a href="#"-->
+                                                          <!--data-bind="click: $root.partCompany.edit, text: $data.company"></a></span>-->
+                                    <!--<input class="edit" data-bind="value: $root.partCompany,-->
+                                            <!--enterKey: $root.partCompany.stopEditing,-->
+                                            <!--selectAndFocus: $root.partCompany.editing,-->
+                                            <!--event: { blur: $root.partCompany.stopEditing }"/>-->
+                                <!--</div>-->
+                            <!--</td>-->
+                            <td data-bind="text: company"></td>
                             <td data-bind="text: first_name"></td>
                             <td data-bind="text: last_name"></td>
-                            <!--<td data-bind="text: email"></td>-->
-                            <!--<td data-bind="text: price"></td>-->
-                            <!--<td data-bind="text: result"></td>-->
-                            <!--<td data-bind="text: pass"></td>-->
+                            <td data-bind="text: email"></td>
+                            <td data-bind="text: price"></td>
+                            <td data-bind="text: result"></td>
+                            <td data-bind="text: pass"></td>
                             <td>
                                 <a href="#" data-bind="click: deleteParticipant, clickBubble: false">
                                     delete

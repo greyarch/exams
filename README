@@ -1,1 +1,16 @@
-This file was created by JetBrains WebStorm 5.0.4 for binding GitHub repository
+This project uses:
+
+node.js
+
+node modules:
+    express
+    express-hbs
+    mysql
+    optimist
+
+on the client side:
+
+    develpr theme
+    knockout.js
+    jquery
+    moment.js
