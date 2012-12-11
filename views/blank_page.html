@@ -1,0 +1,136 @@
+{{#contentFor "pageHTML"}}
+	<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+	<link rel="stylesheet" href="../public/css/switches.css">
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+	<!-- Active shortcut -->
+	<li class="current"><a href="../public" class="shortcut-dashboard" title="Page"Page></a></li>
+	<!-- Background shortcuts -->
+	<li><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
+	<!-- Disabled shortcuts -->
+	
+	<!-- For Future Modules use 
+		<li><span class="shortcut-messages" title="Messages">Messages</a></li>
+		<li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+		<li><span class="shortcut-medias" title="Medias">Medias</a></li>
+		<li><span class="shortcut-stats" title="Stats">Stats</a></li>
+		<li><span class="shortcut-settings" title="Settings">Settings</a></li>
+		<li><span class="shortcut-notes" title="Notes">Notes</span></li>
+	-->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageMenu"}}
+<section id="menu" role="complementary">
+
+	<!-- This wrapper is used by several responsive layouts -->
+	<div id="menu-content">
+
+		<header>
+			Administrator
+		</header>
+
+		<div id="profile">
+			<img src="../public/img/user.png" width="64" height="64" alt="User name" class="user-icon">
+			Hello
+			<span class="name">Mitko <b>Mitev</b></span>
+		</div>
+
+		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+		<ul id="access" class="children-tooltip">
+			<li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+			<li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
+			<li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+			<li class="disabled"><span class="icon-gear"></span></li>
+		</ul>
+
+		<!-- Navigation menu goes here -->
+		<section class="navigable">
+			<ul class="big-menu">
+				<li><a href="#" class="current navigable-current">Page</a></li>
+				
+				<li class="with-right-arrow">
+					
+					<a href="../public/ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
+				</li>
+			</ul>
+		</section>
+
+		<ul class="unstyled-list">
+			<li class="title-menu">Next Exam</li>
+			<li>
+				<ul class="calendar-menu">
+					<li>
+						<a href="#" title="See Exam">
+							<time datetime="2011-02-24"><b>24</b> Feb</time>
+							<small class="green">10:30</small>
+							Sofia, Bulgaria
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+	<!-- End content wrapper -->
+
+	<!-- This is optional -->
+	<footer id="menu-footer">
+		
+		<!-- Any content for the footer - PLACE HERE-->
+		<p class="button-height">
+			<input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+			<label for="auto-refresh">Auto-refresh</label>
+		</p>
+	</footer>
+
+</section>
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+	<!-- Scripts -->
+	<script src="../public/js/libs/jquery-1.8.2.min.js"></script>
+	<script src="../public/js/setup.js"></script>
+
+	<!-- Template functions -->
+	<script src="../public/js/developr.input.js"></script>
+	<script src="../public/js/developr.navigable.js"></script>
+	<script src="../public/js/developr.notify.js"></script>
+	<script src="../public/js/developr.scroll.js"></script>
+	<script src="../public/js/developr.tooltip.js"></script>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+	<script>
+
+		// Call template init (optional, but faster if called manually)
+		$.template.init();
+
+	</script>
+{{/contentFor}}
+
+<!-- Main content starts here -->
+<section role="main" id="main">
+
+	<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+
+	<hgroup id="main-title" class="thin">
+		<h1>Page</h1>
+	</hgroup>
+
+	<!-- The padding wrapper may be omitted -->
+	<div class="with-padding">
+
+		<!-- PLACE THE PAGE CONTENT HERE!-->
+
+	</div>	
+	
+</section>
+	
+
+

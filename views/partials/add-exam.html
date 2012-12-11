@@ -1,0 +1,30 @@
+<form id="add-exam" style="display: none; width: 500px;">
+    <fieldset class="fieldset fields-list">
+        <div class="field-block button-height">
+             <label for="exam-title" class="label">Title</label>
+             <input type="text" name="input" id="exam-title" class="input">
+        </div>
+        <div class="field-block button-height">
+             <label for="exam-place" class="label">Place</label>
+             <select class="select" id="exam-place"
+             data-bind="options: availablePlaces"></select>
+        </div>
+        <div class="field-block button-height">
+             <label for="exam-date" class="label">Date</label>
+             <span class="input">
+                <span class="icon-calendar"></span>
+                <input id="exam-date" type="text" class="input-unstyled datepicker">
+             </span>
+        </div>
+     </fieldset>
+     <div class="buttons align-center">
+        <button type="button" class="button icon-cross glossy red-gradient"
+           onclick="$.modal.current.closeModal();">Cancel
+        </button>
+        <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
+           data-bind="click: function() {$.modal.current.closeModal();
+           newExam($('#exam-title').val(), $('#exam-place option:selected').val(), $('#exam-date').val());}">
+           Save
+        </button>
+     </div>
+</form>

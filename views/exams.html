@@ -1,0 +1,228 @@
+{{#contentFor "pageHTML"}}
+	<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+	<link rel="stylesheet" href="css/switches.css?v=1">
+	<link rel="stylesheet" href="css/events.css">
+	<link rel="stylesheet" href="css/table.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/form.css">
+	<link rel="stylesheet" href="css/dashboard.css">
+	<link rel="stylesheet" href="js/libs/glDatePicker/developr.css">
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+	<!-- Active shortcut -->
+	<li class="current"><a href="./" class="shortcut-dashboard" title="Page"Page></a></li>
+	<!-- Background shortcuts -->
+	<li><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
+	<!-- Disabled shortcuts -->
+	
+	<!-- For Future Modules use 
+		<li><span class="shortcut-messages" title="Messages">Messages</a></li>
+		<li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+		<li><span class="shortcut-medias" title="Medias">Medias</a></li>
+		<li><span class="shortcut-stats" title="Stats">Stats</a></li>
+		<li><span class="shortcut-settings" title="Settings">Settings</a></li>
+		<li><span class="shortcut-notes" title="Notes">Notes</span></li>
+	-->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageMenu"}}
+	<section id="menu" role="complementary">
+
+		<!-- This wrapper is used by several responsive layouts -->
+		<div id="menu-content">
+
+			<header>
+				Administrator
+			</header>
+
+			<div id="profile">
+				<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
+				Hello
+				<span class="name">Mitko <b>Mitev</b></span>
+			</div>
+
+			<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+			<ul id="access" class="children-tooltip">
+				<li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+				<li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
+				<li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+				<li class="disabled"><span class="icon-gear"></span></li>
+			</ul>
+
+			<!-- Navigation menu goes here -->
+			<section class="navigable">
+				<ul class="big-menu">
+					<li><a href="#" class="current navigable-current">Exams</a></li>
+					
+					<li class="with-right-arrow">
+						
+						<a href="ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
+					</li>
+				</ul>
+			</section>
+
+			<ul class="unstyled-list">
+				<li class="title-menu">Next Exam</li>
+				<li>
+					<ul class="calendar-menu">
+						<li>
+							<a href="#" title="See Exam">
+								<time datetime="2011-02-24"><b>24</b> Feb</time>
+								<small class="green">10:30</small>
+								Sofia, Bulgaria
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+		</div>
+		<!-- End content wrapper -->
+
+		<!-- This is optional -->
+		<footer id="menu-footer">
+			
+			<!-- Any content for the footer - PLACE HERE-->
+			<p class="button-height">
+				<input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+				<label for="auto-refresh">Auto-refresh</label>
+			</p>
+		</footer>
+
+	</section>
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+	<!-- Scripts -->
+	<script src="js/libs/jquery-1.8.2.min.js"></script>
+	<script src="js/setup.js"></script>
+	<script src="js/libs/knockout-2.2.0.js"></script>
+
+	<!-- Template functions -->
+	<script src="js/developr.input.js"></script>
+	<script src="js/developr.navigable.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/developr.scroll.js"></script>
+	<script src="js/developr.tooltip.js"></script>
+	<script src="js/developr.modal.js"></script>
+	<script src="js/libs/glDatePicker/glDatePicker.min.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="js/modal.js"></script>
+	<script src="js/viewmodel.js"></script>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+	<script>
+
+		// Call template init (optional, but faster if called manually)
+		$.template.init();
+
+	</script>
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+	<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2>ExaMS</h2>
+	</header>
+
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
+
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+	<!-- Main content -->
+	
+	<section role="main" id="main">
+		
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+		
+		<hgroup id="main-title" class="thin">
+				<h1>Exams</h1>
+		</hgroup>
+		
+		<!-- The padding wrapper may be omitted -->
+		<div class="with-padding">
+		
+		   	<div class="columns">
+	        <div class="three-columns six-columns-tablet nine-columns-mobile">
+	            <div class="block large-margin-bottom">
+		                <div class="block-title">
+		                    <h3 style="display: inline">Exams</h3>
+		
+		                    <div class="button-group absolute-right">
+		                        <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
+		                    </div>
+		                </div>
+		                <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+		                    <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
+		                        <a href="#" class="event-description" data-bind="click: selectExam">
+		                                    <span class="event-date with-month">
+		                                        <span data-bind="text: day"></span>
+		                                        <span class="event-month">
+		                                            <span data-bind="text: month"></span>
+		                                            /
+		                                            <span data-bind="text: year"></span>
+		                                        </span>
+		                                    </span>
+		                            <h4 data-bind="text: title"></h4>
+		
+		                            <p data-bind="text: place"></p>
+		                                    <span class="count inset show-on-parent-hover"
+		                                          data-bind="click: deleteExam, clickBubble: false">✕</span>
+		                        </a>
+		                    </li>
+		                </ul>
+		            </div>
+	        </div>
+		        <div class="new-row-mobile nine-columns">
+		            <div class="block large-margin-bottom" style="padding-bottom: 7px">
+		                <div class="block-title">
+		                    <h3>Participants</h3>
+		
+		                    <div class="button-group absolute-right">
+		                        <a class="button icon-star" onclick="openModal('#add-participant', 'Add new participant');">
+		                            Add Participant
+		                        </a>
+		                    </div>
+		                </div>
+		                <table class="table responsive-table responsive-table-on">
+		                    <thead>
+		                    <th scope="col" class="header">First Name</th>
+		                    <th scope="col" class="header">Last Name</th>
+		                    <th scope="col" class="header">Company</th>
+		                    <th scope="col" class="header">Actions</th>
+		                    </thead>
+		                    <tbody data-bind="foreach: participants">
+		                    <tr>
+		                        <td data-bind="text: first_name"></td>
+		                        <td data-bind="text: last_name"></td>
+		                        <td data-bind="text: company"></td>
+		                        <td>
+		                            <a href="#" data-bind="click: deleteParticipant, clickBubble: false">
+		                                delete
+		                            </a>
+		                        </td>
+		                    </tr>
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+		
+	{{> add-exam}}
+	{{> add-participant}}
+	</div>
+	
+</section>
