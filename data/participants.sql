@@ -6,9 +6,9 @@ CREATE TABLE participants (
      first_name VARCHAR(255) NOT NULL,
      last_name VARCHAR(255) NOT NULL,
      email VARCHAR(255) NOT NULL,
-     price DECIMAL(5,2),
-     fee DECIMAL(5,2),
-     result DECIMAL(2, 2),
+     price DECIMAL(10,2),
+     fee DECIMAL(10,2),
+     result DECIMAL(5, 2),
      pass BOOLEAN,
      PRIMARY KEY (id)
 ) ENGINE=MyISAM;

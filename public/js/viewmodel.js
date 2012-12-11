@@ -38,11 +38,15 @@ function Participant(json) {
     self.company = ko.observable(json.company);
     self.firstName = ko.observable(json.first_name);
     self.lastName = ko.observable(json.last_name);
-    self.email = ko.observable();
-    self.price = ko.observable();
-    self.fee = ko.observable();
-    self.result = ko.observable();
-    self.pass = ko.observable();
+    self.email = ko.observable(json.email);
+    self.price = ko.observable(json.price);
+    self.fee = ko.observable(json.fee);
+    self.result = ko.observable(json.result);
+    self.pass = ko.observable(json.pass);
+
+    self.passStyle = ko.computed(function() {
+        return self.pass() ? 'icon-tick glossy green-gradient' : 'icon-cross glossy red-gradient';
+    });
 
     self.toJSON = function () {
         return {
@@ -50,11 +54,11 @@ function Participant(json) {
             company:self.company(),
             first_name:self.firstName(),
             last_name:self.lastName(),
-            email:"",
-            price:"",
-            fee:"",
-            result:"",
-            pass:""
+            email:self.email(),
+            price:self.price(),
+            fee:self.fee(),
+            result:self.result(),
+            pass:self.pass()
         }
     }
 }
