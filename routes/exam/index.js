@@ -2,6 +2,10 @@ exports.index = function (req, res) {
     res.render('exams.html');
 };
 
+exports.calendar = function (req, res) {
+    res.render('calendar.html');
+};
+
 exports.new = function (req, res) {
     var exam = req.body;
     console.log("creating an exam: ");

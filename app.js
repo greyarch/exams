@@ -42,6 +42,14 @@ app.post('/exam', exam.new);
 app.post('/exam/:id/participant', exam.create_participant);
 //get all exam
 app.get('/exam', exam.get_all);
+app.get('/calendar', exam.calendar);
+
+//create exam
+app.post('/exam', exam.new);
+//create participant for exam
+app.post('/exam/:id/participant', exam.create_participant);
+//get all exam
+app.get('/exam', exam.get_all);
 //get all participants in an exam
 app.get('/exam/:id/participant', exam.get_all_participants);
 //delete exam with an id
