@@ -2,8 +2,8 @@ var express = require('express')
     ,exam = require('./routes/exam')
     ,user = require('./routes/user')
     ,http = require('http')
-    , path = require('path')
-    , mysql = require('mysql')
+    ,path = require('path')
+    ,mysql = require('mysql')
     ,hbs = require('express-hbs')
     ,argv = require('optimist').argv;
 
@@ -11,7 +11,6 @@ var app = express();
 
 app.configure(function () {
     app.set('views', __dirname + '/views');
-//    app.set('view engine', 'ejs');
     app.use(express.favicon());
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
