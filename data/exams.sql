@@ -6,6 +6,7 @@ CREATE TABLE exams (
      date DATE NOT NULL,
      exam_type_id INT UNSIGNED NOT NULL,
      test_id INT UNSIGNED,
+     proctor VARCHAR(255),
      PRIMARY KEY (id)
 ) ENGINE=MyISAM;
 
