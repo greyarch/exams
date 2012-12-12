@@ -1,13 +1,13 @@
 ﻿﻿{{#contentFor "pageHTML"}}
-	<html class="no-js linen" lang="en">
+<html class="no-js linen" lang="en">
 {{/contentFor}}
 
 {{#contentFor "pageStyles"}}
-	<link rel="stylesheet" href="css/form.css?v=1">
-	<link rel="stylesheet" href="css/switches.css?v=1">
+<link rel="stylesheet" href="css/form.css?v=1">
+<link rel="stylesheet" href="css/switches.css?v=1">
 
-	<!-- Login pages styles -->
-	<link rel="stylesheet" media="screen" href="css/login.css?v=1">
+<!-- Login pages styles -->
+<link rel="stylesheet" media="screen" href="css/login.css?v=1">
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
@@ -17,270 +17,243 @@
 {{/contentFor}}
 
 {{#contentFor "pageScripts"}}
-	<!-- Scripts -->
-	<script src="js/libs/jquery-1.8.2.min.js"></script>
-	<script src="js/setup.js"></script>
+<!-- Scripts -->
+<script src="js/libs/jquery-1.8.2.min.js"></script>
+<script src="js/setup.js"></script>
 
-	<!-- Template functions -->
-	<script src="js/developr.input.js"></script>
-	<script src="js/developr.message.js"></script>
-	<script src="js/developr.notify.js"></script>
-	<script src="js/developr.tooltip.js"></script>
+<!-- Template functions -->
+<script src="js/developr.input.js"></script>
+<script src="js/developr.message.js"></script>
+<script src="js/developr.notify.js"></script>
+<script src="js/developr.tooltip.js"></script>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
-	<script>
+<script>
 
-		/*
-		 * How do I hook my login script to this?
-		 * --------------------------------------
-		 *
-		 * This script is meant to be non-obtrusive: if the user has disabled javascript or if an error occurs, the login form
-		 * works fine without ajax.
-		 *
-		 * The only part you need to edit is the login script between the EDIT SECTION tags, which does inputs validation
-		 * and send data to server. For instance, you may keep the validation and add an AJAX call to the server with the
-		 * credentials, then redirect to the dashboard or display an error depending on server return.
-		 *
-		 * Or if you don't trust AJAX calls, just remove the event.preventDefault() part and let the form be submitted.
-		 */
+/*
+ * How do I hook my login script to this?
+ * --------------------------------------
+ *
+ * This script is meant to be non-obtrusive: if the user has disabled javascript or if an error occurs, the login form
+ * works fine without ajax.
+ *
+ * The only part you need to edit is the login script between the EDIT SECTION tags, which does inputs validation
+ * and send data to server. For instance, you may keep the validation and add an AJAX call to the server with the
+ * credentials, then redirect to the dashboard or display an error depending on server return.
+ *
+ * Or if you don't trust AJAX calls, just remove the event.preventDefault() part and let the form be submitted.
+ */
 
-		$(document).ready(function()
-		{
-			/*
-			 * JS login effect
-			 * This script will enable effects for the login page
-			 */
-				// Elements
-			var doc = $('html').addClass('js-login'),
-				container = $('#container'),
-				formLogin = $('#form-login'),
+$(document).ready(function () {
+    /*
+     * JS login effect
+     * This script will enable effects for the login page
+     */
+    // Elements
+    var doc = $('html').addClass('js-login'),
+            container = $('#container'),
+            formLogin = $('#form-login'),
 
-				// If layout is centered
-				centered;
+    // If layout is centered
+            centered;
 
-			/******* EDIT THIS SECTION *******/
+    /******* EDIT THIS SECTION *******/
 
-			/*
-			 * AJAX login
-			 * This function will handle the login process through AJAX
-			 */
-			formLogin.submit(function(event)
-			{
-				
-				// Remove previous messages
-					formLogin.clearMessages();
-				
-				// Values
-				var login = $.trim($('#login').val()),
-					pass = $.trim($('#pass').val());
+    /*
+     * AJAX login
+     * This function will handle the login process through AJAX
+     */
+    formLogin.submit(function (event) {
 
-				// Check inputs
-				if (login.length === 0)
-				{
-					// Display message
-					displayError('Please fill in your login');
-					return false;
-				}
-				else if (pass.length === 0)
-				{
-					// Remove empty login message if displayed
-					formLogin.clearMessages('Please fill in your login');
+        // Remove previous messages
+        formLogin.clearMessages();
 
-					// Display message
-					displayError('Please fill in your password');
-					return false;
-				}
-				else
-				{
-					// Remove previous messages
-					formLogin.clearMessages();
+        // Values
+        var login = $.trim($('#login').val()),
+                pass = $.trim($('#pass').val());
 
-					// Show progress
-					displayLoading('Checking credentials...');
-					event.preventDefault();
+        // Check inputs
+        if (login.length === 0) {
+            // Display message
+            displayError('Please fill in your login');
+            return false;
+        }
+        else if (pass.length === 0) {
+            // Remove empty login message if displayed
+            formLogin.clearMessages('Please fill in your login');
 
-					// Stop normal behavior
-					event.preventDefault();
+            // Display message
+            displayError('Please fill in your password');
+            return false;
+        }
+        else {
+            // Remove previous messages
+            formLogin.clearMessages();
 
-					/*
-					 * This is where you may do your AJAX call, for instance:
-					 * $.ajax(url, {
-					 * 		data: {
-					 * 			login:	login,
-					 * 			pass:	pass
-					 * 		},
-					 * 		success: function(data)
-					 * 		{
-					 * 			if (data.logged)
-					 * 			{
-					 * 				document.location.href = 'index.html';
-					 * 			}
-					 * 			else
-					 * 			{
-					 * 				formLogin.clearMessages();
-					 * 				displayError('Invalid user/password, please try again');
-					 * 			}
-					 * 		},
-					 * 		error: function()
-					 * 		{
-					 * 			formLogin.clearMessages();
-					 * 			displayError('Error while contacting server, please try again');
-					 * 		}
-					 * });
-					 */
-					
-					// Simulate server-side check
-					setTimeout(function() {
-						document.location.href = './'
-					}, 2000);
-				}
-			});
+            // Show progress
+            displayLoading('Checking credentials...');
+            event.preventDefault();
 
-			/******* END OF EDIT SECTION *******/
+            // Stop normal behavior
+            event.preventDefault();
 
-			// Handle resizing (mostly for debugging)
-			function handleLoginResize()
-			{
-				// Detect mode
-				centered = (container.css('position') === 'absolute');
+            // This is where you may do your AJAX call, for instance:
+            $.post('/login', {
+                        login:login,
+                        pass:pass
+                    },
+                    function (data, textStatus, jqXHR) {
+                        console.log("data is ", data);
+                        console.log("textStatus is ", textStatus);
+                        console.log("jqXHR is ", jqXHR);
+                        if (data) {
+                            document.location.href = '/';
+                        }
+                        else {
+                            formLogin.clearMessages();
+                            displayError('Invalid user/password, please try again');
+                        }
+                    });
+        }
+    });
 
-				// Set min-height for mobile layout
-				if (!centered)
-				{
-					container.css('margin-top', '');
-				}
-				else
-				{
-					if (parseInt(container.css('margin-top'), 10) === 0)
-					{
-						centerForm(false);
-					}
-				}
-			};
+    /******* END OF EDIT SECTION *******/
 
-			// Register and first call
-			$(window).bind('normalized-resize', handleLoginResize);
-			handleLoginResize();
+        // Handle resizing (mostly for debugging)
+    function handleLoginResize() {
+        // Detect mode
+        centered = (container.css('position') === 'absolute');
 
-			/*
-			 * Center function
-			 * @param boolean animate whether or not to animate the position change
-			 * @param string|element|array any jQuery selector, DOM element or set of DOM elements which should be ignored
-			 * @return void
-			 */
-			function centerForm(animate, ignore)
-			{
-				// If layout is centered
-				if (centered)
-				{
-					var siblings = formLogin.siblings(),
-						finalSize = formLogin.outerHeight();
+        // Set min-height for mobile layout
+        if (!centered) {
+            container.css('margin-top', '');
+        }
+        else {
+            if (parseInt(container.css('margin-top'), 10) === 0) {
+                centerForm(false);
+            }
+        }
+    };
 
-					// Ignored elements
-					if (ignore)
-					{
-						siblings = siblings.not(ignore);
-					}
+    // Register and first call
+    $(window).bind('normalized-resize', handleLoginResize);
+    handleLoginResize();
 
-					// Get other elements height
-					siblings.each(function(i)
-					{
-						finalSize += $(this).outerHeight(true);
-					});
+    /*
+     * Center function
+     * @param boolean animate whether or not to animate the position change
+     * @param string|element|array any jQuery selector, DOM element or set of DOM elements which should be ignored
+     * @return void
+     */
+    function centerForm(animate, ignore) {
+        // If layout is centered
+        if (centered) {
+            var siblings = formLogin.siblings(),
+                    finalSize = formLogin.outerHeight();
 
-					// Setup
-					container[animate ? 'animate' : 'css']({ marginTop: -Math.round(finalSize/2)+'px' });
-				}
-			};
+            // Ignored elements
+            if (ignore) {
+                siblings = siblings.not(ignore);
+            }
 
-			// Initial vertical adjust
-			centerForm(false);
+            // Get other elements height
+            siblings.each(function (i) {
+                finalSize += $(this).outerHeight(true);
+            });
 
-			/**
-			 * Function to display error messages
-			 * @param string message the error to display
-			 */
-			function displayError(message)
-			{
-				// Show message
-				var message = formLogin.message(message, {
-					append: false,
-					arrow: 'bottom',
-					classes: ['red-gradient'],
-					animate: false					// We'll do animation later, we need to know the message height first
-				});
+            // Setup
+            container[animate ? 'animate' : 'css']({ marginTop:-Math.round(finalSize / 2) + 'px' });
+        }
+    };
 
-				// Vertical centering (where we need the message height)
-				centerForm(true, 'fast');
+    // Initial vertical adjust
+    centerForm(false);
 
-				// Watch for closing and show with effect
-				message.bind('endfade', function(event)
-				{
-					// This will be called once the message has faded away and is removed
-					centerForm(true, message.get(0));
+    /**
+     * Function to display error messages
+     * @param string message the error to display
+     */
+    function displayError(message) {
+        // Show message
+        var message = formLogin.message(message, {
+            append:false,
+            arrow:'bottom',
+            classes:['red-gradient'],
+            animate:false                    // We'll do animation later, we need to know the message height first
+        });
 
-				}).hide().slideDown('fast');
-			}
+        // Vertical centering (where we need the message height)
+        centerForm(true, 'fast');
 
-			/**
-			 * Function to display loading messages
-			 * @param string message the message to display
-			 */
-			function displayLoading(message)
-			{
-				// Show message
-				var message = formLogin.message('<strong>'+message+'</strong>', {
-					append: false,
-					arrow: 'bottom',
-					classes: ['blue-gradient', 'align-center'],
-					stripes: true,
-					darkStripes: false,
-					closable: false,
-					animate: false					// We'll do animation later, we need to know the message height first
-				});
+        // Watch for closing and show with effect
+        message.bind('endfade',function (event) {
+            // This will be called once the message has faded away and is removed
+            centerForm(true, message.get(0));
 
-				// Vertical centering (where we need the message height)
-				centerForm(true, 'fast');
+        }).hide().slideDown('fast');
+    }
 
-				// Watch for closing and show with effect
-				message.bind('endfade', function(event)
-				{
-					// This will be called once the message has faded away and is removed
-					centerForm(true, message.get(0));
+    /**
+     * Function to display loading messages
+     * @param string message the message to display
+     */
+    function displayLoading(message) {
+        // Show message
+        var message = formLogin.message('<strong>' + message + '</strong>', {
+            append:false,
+            arrow:'bottom',
+            classes:['blue-gradient', 'align-center'],
+            stripes:true,
+            darkStripes:false,
+            closable:false,
+            animate:false                    // We'll do animation later, we need to know the message height first
+        });
 
-				}).hide().slideDown('fast');
-			}
-		});
+        // Vertical centering (where we need the message height)
+        centerForm(true, 'fast');
 
-		// What about a notification?
-		notify('Just for Gantcho', 'Hey lek, enjoying my new login page?', {
-			autoClose: false,
-			delay: 2500,
-			icon: 'img/icon.png'
-		});
+        // Watch for closing and show with effect
+        message.bind('endfade',function (event) {
+            // This will be called once the message has faded away and is removed
+            centerForm(true, message.get(0));
 
-	</script>
+        }).hide().slideDown('fast');
+    }
+});
+
+// What about a notification?
+notify('Login works, but with hardcoded credentials for now', 'Try to log in with bob/secret', {
+    autoClose:false,
+    delay:2500,
+    icon:'img/icon.png'
+});
+
+</script>
 {{/contentFor}}
 
 <body>
 
-	<div id="container">
+<div id="container">
 
-		<hgroup id="login-title" class="large-margin-bottom">
-			<h1 class="login-title-image">ExaMS</h1>
-			<h5>&copy; SEETB</h5>
-		</hgroup>
+    <hgroup id="login-title" class="large-margin-bottom">
+        <h1 class="login-title-image">ExaMS</h1>
+        <h5>&copy; SEETB</h5>
+    </hgroup>
 
-		<form id="form-login">
-			<ul class="inputs black-input large">
-				<!-- The autocomplete="off" attributes is the only way to prevent webkit browsers from filling the inputs with yellow -->
-				<li><span class="icon-user mid-margin-right"></span><input type="text" name="login" id="login" value="" class="input-unstyled" placeholder="Login" autocomplete="off"></li>
-				<li><span class="icon-lock mid-margin-right"></span><input type="password" name="pass" id="pass" value="" class="input-unstyled" placeholder="Password" autocomplete="off"></li>
-			</ul>
+    <form id="form-login">
+        <ul class="inputs black-input large">
+            <!-- The autocomplete="off" attributes is the only way to prevent webkit browsers from filling the inputs with yellow -->
+            <li><span class="icon-user mid-margin-right"></span><input type="text" name="login" id="login" value=""
+                                                                       class="input-unstyled" placeholder="Login"
+                                                                       autocomplete="off"></li>
+            <li><span class="icon-lock mid-margin-right"></span><input type="password" name="pass" id="pass" value=""
+                                                                       class="input-unstyled" placeholder="Password"
+                                                                       autocomplete="off"></li>
+        </ul>
 
-			<button type="submit" class="button glossy full-width huge">Login</button>
-		</form>
+        <button type="submit" class="button glossy full-width huge">Login</button>
+    </form>
 
-	</div>
+</div>
 
