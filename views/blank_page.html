@@ -3,13 +3,13 @@
 {{/contentFor}}
 
 {{#contentFor "pageStyles"}}
-	<link rel="stylesheet" href="../public/css/switches.css">
+	<link rel="stylesheet" href="css/styles/switches.css">
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
 	<!-- Active shortcut -->
-	<li class="current"><a href="../public" class="shortcut-dashboard" title="Page"Page></a></li>
+	<li class="current"><a href="#" class="shortcut-dashboard" title="Page"Page></a></li>
 	<!-- Background shortcuts -->
 	<li><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
 	<!-- Disabled shortcuts -->
@@ -36,7 +36,7 @@
 		</header>
 
 		<div id="profile">
-			<img src="../public/img/user.png" width="64" height="64" alt="User name" class="user-icon">
+			<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
 			Hello
 			<span class="name">Mitko <b>Mitev</b></span>
 		</div>
@@ -56,7 +56,7 @@
 				
 				<li class="with-right-arrow">
 					
-					<a href="../public/ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
+					<a href="ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
 				</li>
 			</ul>
 		</section>
@@ -94,15 +94,15 @@
 
 {{#contentFor "pageScripts"}}
 	<!-- Scripts -->
-	<script src="../public/js/libs/jquery-1.8.2.min.js"></script>
-	<script src="../public/js/setup.js"></script>
+	<script src="js/libs/jquery-1.8.2.min.js"></script>
+	<script src="js/setup.js"></script>
 
 	<!-- Template functions -->
-	<script src="../public/js/developr.input.js"></script>
-	<script src="../public/js/developr.navigable.js"></script>
-	<script src="../public/js/developr.notify.js"></script>
-	<script src="../public/js/developr.scroll.js"></script>
-	<script src="../public/js/developr.tooltip.js"></script>
+	<script src="js/developr.input.js"></script>
+	<script src="js/developr.navigable.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/developr.scroll.js"></script>
+	<script src="js/developr.tooltip.js"></script>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
@@ -114,23 +114,37 @@
 	</script>
 {{/contentFor}}
 
-<!-- Main content starts here -->
-<section role="main" id="main">
 
-	<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+<body class="clearfix with-menu with-shortcuts">
 
-	<hgroup id="main-title" class="thin">
-		<h1>Page</h1>
-	</hgroup>
+	<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-	<!-- The padding wrapper may be omitted -->
-	<div class="with-padding">
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2>ExaMS</h2>
+	</header>
 
-		<!-- PLACE THE PAGE CONTENT HERE!-->
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
 
-	</div>	
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+	<!-- Main content starts here -->
+	<section role="main" id="main">
 	
-</section>
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
 	
-
-
+		<hgroup id="main-title" class="thin">
+			<h1>Page</h1>
+		</hgroup>
+	
+		<!-- The padding wrapper may be omitted -->
+		<div class="with-padding">
+	
+			<!-- PLACE THE PAGE CONTENT HERE!-->
+	
+		</div>	
+		
+	</section>
