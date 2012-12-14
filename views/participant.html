@@ -1,0 +1,249 @@
+{{#contentFor "pageHTML"}}
+	<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+	<!-- Additional styles -->
+	<link rel="stylesheet" href="css/styles/form.css?v=1">
+	<link rel="stylesheet" href="css/styles/switches.css?v=1">
+
+	<!-- jQuery Form Validation -->
+	<link rel="stylesheet" href="js/libs/formValidator/developr.validationEngine.css?v=1">
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+	<!-- Active shortcut -->
+	<li class="current"><a href="./" class="shortcut-dashboard" title="Page"Page></a></li>
+	<!-- Background shortcuts -->
+	<li><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
+	<!-- Disabled shortcuts -->
+	
+	<!-- For Future Modules use 
+		<li><span class="shortcut-messages" title="Messages">Messages</a></li>
+		<li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+		<li><span class="shortcut-medias" title="Medias">Medias</a></li>
+		<li><span class="shortcut-stats" title="Stats">Stats</a></li>
+		<li><span class="shortcut-settings" title="Settings">Settings</a></li>
+		<li><span class="shortcut-notes" title="Notes">Notes</span></li>
+	-->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageMenu"}}
+	<section id="menu" role="complementary">
+
+		<!-- This wrapper is used by several responsive layouts -->
+		<div id="menu-content">
+
+			<header>
+				Administrator
+			</header>
+
+			<div id="profile">
+				<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
+				Hello
+				<span class="name">Mitko <b>Mitev</b></span>
+			</div>
+
+			<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+			<ul id="access" class="children-tooltip">
+				<li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+				<li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
+				<li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+				<li class="disabled"><span class="icon-gear"></span></li>
+			</ul>
+
+			<!-- Navigation menu goes here -->
+			<section class="navigable">
+				<ul class="big-menu">
+					<li><a href="#" class="current navigable-current">Exams</a></li>
+					
+					<li class="with-right-arrow">
+						
+						<a href="ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
+					</li>
+				</ul>
+			</section>
+
+			<ul class="unstyled-list">
+				<li class="title-menu">Next Exam</li>
+				<li>
+					<ul class="calendar-menu">
+						<li>
+							<a href="#" title="See Exam">
+								<time datetime="2011-02-24"><b>24</b> Feb</time>
+								<small class="green">10:30</small>
+								Sofia, Bulgaria
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+		</div>
+		<!-- End content wrapper -->
+
+		<!-- This is optional -->
+		<footer id="menu-footer">
+			
+			<!-- Any content for the footer - PLACE HERE-->
+			<p class="button-height">
+				<input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+				<label for="auto-refresh">Auto-refresh</label>
+			</p>
+		</footer>
+
+	</section>
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+	<!-- Scripts -->
+	<script src="js/libs/jquery-1.8.2.min.js"></script>
+	<script src="js/setup.js"></script>
+
+	<!-- Template functions -->
+	<script src="js/developr.input.js"></script>
+	<script src="js/developr.navigable.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/developr.scroll.js"></script>
+	<script src="js/developr.tooltip.js"></script>
+
+	<!-- jQuery Form Validation -->
+	<script src="js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
+	<script src="js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+	<script>
+
+		// Call template init (optional, but faster if called manually)
+		$.template.init();
+
+		// Color
+		$('#anthracite-inputs').change(function()
+		{
+			$('#main')[this.checked ? 'addClass' : 'removeClass']('black-inputs');
+		});
+
+		// Switches mode
+		$('#switch-mode').change(function()
+		{
+			$('#switch-wrapper')[this.checked ? 'addClass' : 'removeClass']('reversed-switches');
+		});
+
+		// Disabled switches
+		$('#switch-enable').change(function()
+		{
+			$('#disabled-switches').children()[this.checked ? 'enableInput' : 'disableInput']();
+		});
+
+		// Tooltip menu
+		$('#select-tooltip').menuTooltip($('#select-context').hide(), {
+			classes: ['no-padding']
+		});
+		// Form validation
+		$('form').validationEngine();
+
+	</script>
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+	<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2>ExaMS</h2>
+	</header>
+
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
+
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+	<!-- Main content -->
+	
+	<section role="main" id="main">
+		
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+		
+		<hgroup id="main-title" class="thin">
+				<h1>Participant</h1>
+		</hgroup>
+		
+		<!-- The padding wrapper may be omitted -->
+		<div class="with-padding">
+
+			<div class="six-columns twelve-columns-tablet">
+
+				<form method="post" action="" class="columns" onSubmit="">
+					<fieldset class="fieldset fields-list">
+
+						<legend class="legend">Participant</legend>
+						
+						<!-- Standard Fields -->
+						<div class="field-block button-height">
+							<label for="part-company" class="label"><b>Company</b></label>
+							<input type="text" name="part-company" id="part-company" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+						</div>
+
+						<div class="field-block button-height">
+							<label for="part-firstname" class="label"><b>First Name</b></label>
+							<input type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+						</div>
+
+						<div class="field-block button-height">
+							<label for="part-lastname" class="label"><b>Last Name</b></label>
+							<input type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+						</div>
+
+						<div class="field-block button-height">
+							<label for="part-email" class="label"><b>Email</b></label>
+							<input type="text" name="part-email" id="part-email" class="input validate[custom[email]]" value="">
+						</div>
+
+						<div class="field-block button-height">
+							<label for="part-price" class="label"><b>Exam Price</b></label>
+							<input type="text" name="part-price" id="part-price" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+						</div>
+
+						<div class="field-block button-height">
+							<label for="part-fee" class="label"><b>Board Fee</b></label>
+							<input type="text" name="part-fee" id="part-fee" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+						</div>
+
+						<!-- Extra fields after taken exam -->
+						<div class="field-drop button-height black-inputs">
+							
+							<div>
+								<label for="result" class="label mid-margin-right"><b>Exam result</b></label>						
+								<input type="text" name="result" id="result" class="input mid-margin-bottom" value="">						
+							</div>
+							<div>
+								<label for="pass" class="label mid-margin-right"><b>Exam Passed?</b></label>
+								<input type="checkbox" name="pass" id="pass" class="switch medium" value="0" data-text-on="YES" data-text-off="NO">
+							</div>
+						</div>
+						
+						<div class="field-block button-height">
+							<button type="buttton" class="button glossy" onclick="history.back()">
+								<span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
+								Cancel
+							</button>						
+							<button type="submit" class="button glossy mid-margin-right">
+								<span class="button-icon"><span class="icon-tick"></span></span>
+								Save
+							</button>
+						</div>	
+						
+                  </fieldset>   
+				</form>				
+			</div>
+
+
+		</div>
+	
+	</section>

@@ -68,6 +68,8 @@ app.post('/exam/:id/participant', exam.create_participant);
 app.get('/exam', exam.get_all);
 app.get('/calendar', exam.calendar);
 
+app.get('/participant', exam.participant);
+
 //create exam
 app.post('/exam', exam.new);
 //create participant for exam

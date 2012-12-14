@@ -6,6 +6,10 @@ exports.calendar = function (req, res) {
     res.render('calendar.html');
 };
 
+exports.participant = function (req, res) {
+    res.render('participant.html');
+};
+
 exports.new = function (req, res) {
     var exam = req.body;
     console.log("creating an exam: ");
