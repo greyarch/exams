@@ -1,27 +1,64 @@
 <form id="add-participant" style="display: none; width: 500px;">
     <fieldset class="fieldset fields-list">
+
+        <legend class="legend">Participant</legend>
+
+        <!-- Standard Fields -->
         <div class="field-block button-height">
-            <label for="part-first-name" class="label">First Name</label>
-            <input type="text" name="input" id="part-first-name" class="input">
+            <label for="part-company" class="label"><b>Company</b></label>
+            <input type="text" name="part-company" id="part-company" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
         </div>
+
         <div class="field-block button-height">
-            <label for="part-last-name" class="label">Last Name</label>
-            <input type="text" name="input" id="part-last-name" class="input">
+            <label for="part-firstname" class="label"><b>First Name</b></label>
+            <input type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
         </div>
+
         <div class="field-block button-height">
-            <label for="part-company" class="label">Company</label>
-            <input type="text" name="input" id="part-company" class="input">
+            <label for="part-lastname" class="label"><b>Last Name</b></label>
+            <input type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
         </div>
+
+        <div class="field-block button-height">
+            <label for="part-email" class="label"><b>Email</b></label>
+            <input type="text" name="part-email" id="part-email" class="input validate[custom[email]]" value="">
+        </div>
+
+        <div class="field-block button-height">
+            <label for="part-price" class="label"><b>Exam Price</b></label>
+            <input type="text" name="part-price" id="part-price" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+        </div>
+
+        <div class="field-block button-height">
+            <label for="part-fee" class="label"><b>Board Fee</b></label>
+            <input type="text" name="part-fee" id="part-fee" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+        </div>
+
+        <!-- Extra fields after taken exam -->
+        <div class="field-drop button-height black-inputs">
+
+            <div>
+                <label for="part-result" class="label mid-margin-right"><b>Exam result</b></label>
+                <input type="text" name="part-result" id="part-result" class="input mid-margin-bottom" value="">
+            </div>
+            <div>
+                <label for="part-pass" class="label mid-margin-right"><b>Exam Passed?</b></label>
+                <input type="checkbox" name="pass" id="part-pass" class="switch medium" value="0" data-text-on="YES" data-text-off="NO">
+            </div>
+        </div>
+
+        <div class="field-block button-height">
+            <button type="buttton" class="button glossy" onclick="$.modal.current.closeModal();">
+                <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
+                Cancel
+            </button>
+            <button type="buttton" class="button glossy mid-margin-right" data-bind="click: function() {$.modal.current.closeModal();
+                   newParticipant($('#part-company').val(), $('#part-firstname').val(), $('#part-lastname').val(),
+                   $('#part-email').val(), $('#part-price').val(), $('#part-fee').val(), $('#part-result').val(), $('#part-pass').val());}">
+                <span class="button-icon"><span class="icon-tick"></span></span>
+                Save
+            </button>
+        </div>
+
     </fieldset>
-    <div class="buttons align-center">
-        <button type="button" class="button icon-cross glossy red-gradient"
-                onclick="$.modal.current.closeModal();">
-            Cancel
-        </button>
-        <button type="button" class="button icon-tick glossy green-gradient mid-margin-left"
-                data-bind="click: function() {$.modal.current.closeModal();
-                        newParticipant($('#part-first-name').val(), $('#part-last-name').val(), $('#part-company').val());}">
-            Save
-        </button>
-    </div>
 </form>

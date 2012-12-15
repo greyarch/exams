@@ -82,8 +82,6 @@ app.get('/exam/:id/participant', exam.get_all_participants);
 app.delete('/exam/:id', exam.delete);
 //delete a participant with an id
 app.delete('/participant/:id', exam.delete_participant);
-//update exam - currently used to add/delete participants
-//app.put('/exam', exam.update);
 
 app.listen(argv.port || 3000).on('end', function () {
     console.log("goodbye");

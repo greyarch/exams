@@ -3,6 +3,9 @@ function Exam(json) {
     self.participants = ko.observableArray(json.participants);
     self.place = ko.observable(json.place);
     self.title = ko.observable(json.title);
+    self.typeId = ko.observable(json.exam_type_id);
+    self.testId = ko.observable(json.test_id);
+    self.proctor = ko.observable(json.proctor);
     self.id = ko.observable(json.id);
 
     self.date = ko.computed(function () {
@@ -27,7 +30,9 @@ function Exam(json) {
             title:self.title(),
             place:self.place(),
             date:self.date().format("YYYY-MM-DD"),
-            participants:self.participants()
+            exam_type_id:self.typeId(),
+            test_id:self.testId(),
+            proctor:self.proctor()
         }
     }
 }
@@ -44,7 +49,7 @@ function Participant(json) {
     self.result = ko.observable(json.result);
     self.pass = ko.observable(json.pass);
 
-    self.passStyle = ko.computed(function() {
+    self.passStyle = ko.computed(function () {
         return self.pass() ? 'icon-tick glossy green-gradient' : 'icon-cross glossy red-gradient';
     });
 
@@ -139,21 +144,34 @@ function AppViewModel() {
 
     newExam = function (title, place, date) {
         console.log("adding an exam");
-        $.post('exam', {
+        var exam = {
             date:date,
             title:title,
-            place:place
-        }, function () {
+            place:place,
+            exam_type_id:0,
+            test_id:0,
+            proctor:"Mr. Proctor"
+        };
+        $.post('exam', exam, function () {
             console.log("created the exam");
             self.loadAllExams();
         }, "json");
     };
 
-    newParticipant = function (firstName, lastName, company) {
+    newParticipant = function (company, firstName, lastName, email, price, fee, result, pass) {
         console.log("adding a participant");
         var examId = self.selectedExam().id();
-        var newParticipant = {first_name:firstName, last_name:lastName, company:company};
-        $.post("exam/" + examId + "/participant", newParticipant, function () {
+        var participant = {
+            company:company,
+            first_name:firstName,
+            last_name:lastName,
+            email:email,
+            price:price,
+            fee:fee,
+            result:result,
+            pass:pass
+        };
+        $.post("exam/" + examId + "/participant", participant, function () {
             console.log("created the participant");
             self.loadAllExams();
         });
