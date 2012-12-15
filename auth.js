@@ -9,6 +9,7 @@ exports.ensure = function(req, res, next) {
 var users = [
     {id: 1, username: 'bob', password: 'secret', email: 'bob@example.com'}
     , {id: 2, username: 'joe', password: 'birthday', email: 'joe@example.com'}
+    , {id: 3, username: 'a', password: 'a', email: 'joe@example.com'}
 ];
 
 function findById(id, fn) {
