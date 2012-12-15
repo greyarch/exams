@@ -3,19 +3,19 @@
 {{/contentFor}}
 
 {{#contentFor "pageStyles"}}
-<link rel="stylesheet" href="css/switches.css?v=1">
+<link rel="stylesheet" href="css/styles/switches.css?v=1">
 <link rel="stylesheet" href="css/events.css">
-<link rel="stylesheet" href="css/table.css">
-<link rel="stylesheet" href="css/modal.css">
-<link rel="stylesheet" href="css/form.css">
-<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/styles/table.css">
+<link rel="stylesheet" href="css/styles/modal.css">
+<link rel="stylesheet" href="css/styles/form.css">
+<link rel="stylesheet" href="css/styles/dashboard.css">
 <link rel="stylesheet" href="js/libs/glDatePicker/developr.css">
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
     <!-- Active shortcut -->
-    <li class="current"><a href="./" class="shortcut-dashboard" title="Page" Page></a></li>
+    <li class="current"><a href="./" class="shortcut-dashboard" title="Page">Page</a></li>
     <!-- Background shortcuts -->
     <li><a href="calendar" class="shortcut-agenda" title="Exams">Exams</a></li>
     <!-- Disabled shortcuts -->
@@ -128,47 +128,46 @@
 
 <body class="clearfix with-menu with-shortcuts">
 
-<!-- Prompt IE 6 users to install Chrome Frame -->
-<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
-        href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
-        href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
-</p><![endif]-->
+	<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-<!-- Title bar -->
-<header role="banner" id="title-bar">
-    <h2>ExaMS</h2>
-</header>
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2>ExaMS</h2>
+	</header>
 
-<!-- Button to open/hide menu -->
-<a href="#" id="open-menu"><span>Menu</span></a>
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
 
-<!-- Button to open/hide shortcuts -->
-<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
 
-<!-- Main content -->
-
-<section role="main" id="main">
-
-    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work
-        as expected...
-    </noscript>
-
-    <!-- The padding wrapper may be omitted -->
-    <div class="with-padding">
-
-        <div class="columns">
-            <div class="three-columns six-columns-tablet nine-columns-mobile">
-                <div class="block large-margin-bottom">
-                    <div class="block-title">
-                        <h3 style="display: inline">Exams</h3>
-
-                        <div class="button-group absolute-right">
-                            <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
-                        </div>
-                    </div>
-                    <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
-                        <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
-                            <a href="#" class="event-description" data-bind="click: selectExam">
+	<!-- Main content -->
+	
+	<section role="main" id="main">
+		
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+		
+		<hgroup id="main-title" class="thin">
+				<h1>Exams</h1>
+		</hgroup>
+		
+		<!-- The padding wrapper may be omitted -->
+		<div class="with-padding">
+		
+		   	<div class="columns">
+	        <div class="three-columns six-columns-tablet nine-columns-mobile">
+	            <div class="block large-margin-bottom">
+		                <div class="block-title">
+		                    <h3 style="display: inline">Exams</h3>
+		
+		                    <div class="button-group absolute-right">
+		                        <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
+		                    </div>
+		                </div>
+		                <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+		                    <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
+		                        <a href="#" class="event-description" data-bind="click: selectExam">
 		                                    <span class="event-date with-month">
 		                                        <span data-bind="text: day"></span>
 		                                        <span class="event-month">
@@ -177,9 +176,9 @@
 		                                            <span data-bind="text: year"></span>
 		                                        </span>
 		                                    </span>
-                                <h4 data-bind="text: title"></h4>
-
-                                <p data-bind="text: place"></p>
+		                            <h4 data-bind="text: title"></h4>
+		
+		                            <p data-bind="text: place"></p>
 		                                    <span class="count inset show-on-parent-hover"
                                                   data-bind="click: deleteExam, clickBubble: false">✕</span>
                             </a>
