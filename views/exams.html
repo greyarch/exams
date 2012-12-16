@@ -131,26 +131,23 @@
     $.template.init();
 
     // Color
-    $('#anthracite-inputs').change(function()
-    {
+    $('#anthracite-inputs').change(function () {
         $('#main')[this.checked ? 'addClass' : 'removeClass']('black-inputs');
     });
 
     // Switches mode
-    $('#switch-mode').change(function()
-    {
+    $('#switch-mode').change(function () {
         $('#switch-wrapper')[this.checked ? 'addClass' : 'removeClass']('reversed-switches');
     });
 
     // Disabled switches
-    $('#switch-enable').change(function()
-    {
+    $('#switch-enable').change(function () {
         $('#disabled-switches').children()[this.checked ? 'enableInput' : 'disableInput']();
     });
 
     // Tooltip menu
     $('#select-tooltip').menuTooltip($('#select-context').hide(), {
-        classes: ['no-padding']
+        classes:['no-padding']
     });
     // Form validation
     $('form').validationEngine();
@@ -160,46 +157,51 @@
 
 <body class="clearfix with-menu with-shortcuts">
 
-	<!-- Prompt IE 6 users to install Chrome Frame -->
-	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<!-- Prompt IE 6 users to install Chrome Frame -->
+<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
+        href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
+        href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
 
-	<!-- Title bar -->
-	<header role="banner" id="title-bar">
-		<h2>ExaMS</h2>
-	</header>
+<!-- Title bar -->
+<header role="banner" id="title-bar">
+    <h2>ExaMS</h2>
+</header>
 
-	<!-- Button to open/hide menu -->
-	<a href="#" id="open-menu"><span>Menu</span></a>
+<!-- Button to open/hide menu -->
+<a href="#" id="open-menu"><span>Menu</span></a>
 
-	<!-- Button to open/hide shortcuts -->
-	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+<!-- Button to open/hide shortcuts -->
+<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
 
-	<!-- Main content -->
-	
-	<section role="main" id="main">
-		
-		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
-		
-		<hgroup id="main-title" class="thin">
-				<h1>Exams</h1>
-		</hgroup>
-		
-		<!-- The padding wrapper may be omitted -->
-		<div class="with-padding">
-		
-		   	<div class="columns">
-	        <div class="three-columns six-columns-tablet nine-columns-mobile">
-	            <div class="block large-margin-bottom">
-		                <div class="block-title">
-		                    <h3 style="display: inline">Exams</h3>
-		
-		                    <div class="button-group absolute-right">
-		                        <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
-		                    </div>
-		                </div>
-		                <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
-		                    <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
-		                        <a href="#" class="event-description" data-bind="click: selectExam">
+<!-- Main content -->
+
+<section role="main" id="main">
+
+    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work
+        as expected...
+    </noscript>
+
+    <hgroup id="main-title" class="thin">
+        <h1>Exams</h1>
+    </hgroup>
+
+    <!-- The padding wrapper may be omitted -->
+    <div class="with-padding">
+
+        <div class="columns">
+            <div class="three-columns six-columns-tablet nine-columns-mobile">
+                <div class="block large-margin-bottom">
+                    <div class="block-title">
+                        <h3 style="display: inline">Exams</h3>
+
+                        <div class="button-group absolute-right">
+                            <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
+                        </div>
+                    </div>
+                    <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+                        <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
+                            <a href="#" class="event-description" data-bind="click: selectExam">
 		                                    <span class="event-date with-month">
 		                                        <span data-bind="text: day"></span>
 		                                        <span class="event-month">
@@ -208,9 +210,9 @@
 		                                            <span data-bind="text: year"></span>
 		                                        </span>
 		                                    </span>
-		                            <h4 data-bind="text: title"></h4>
-		
-		                            <p data-bind="text: place"></p>
+                                <h4 data-bind="text: title"></h4>
+
+                                <p data-bind="text: place"></p>
 		                                    <span class="count inset show-on-parent-hover"
                                                   data-bind="click: deleteExam, clickBubble: false">✕</span>
                             </a>
@@ -251,13 +253,14 @@
                             <td data-bind="text: fee"></td>
                             <td data-bind="text: result"></td>
                             <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
-                             <td class="low-padding align-center">
+                            <td class="low-padding align-center">
 								<span class="button-group compact">
-									<a href="#" class="button icon-pencil with-tooltip" title= "Edit"></a>
-									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete" data-bind="click: deleteParticipant, clickBubble: false"></a>
+									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
+									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                                       data-bind="click: deleteParticipant, clickBubble: false"></a>
 								</span>
-							</td>
-                         </tr>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

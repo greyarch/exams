@@ -3,7 +3,12 @@ var LocalStrategy = require('passport-local').Strategy;
 
 exports.ensure = function(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login')
+    res.redirect('/login');
+}
+
+exports.rest = function(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.json(401, {error: "Authorization required."});
 }
 
 var users = [

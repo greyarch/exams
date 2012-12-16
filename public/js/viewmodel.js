@@ -169,7 +169,7 @@ function AppViewModel() {
             price:price,
             fee:fee,
             result:result,
-            pass:pass
+            pass:pass?1:0
         };
         $.post("exam/" + examId + "/participant", participant, function () {
             console.log("created the participant");

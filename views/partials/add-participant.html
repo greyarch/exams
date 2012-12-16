@@ -43,7 +43,7 @@
             </div>
             <div>
                 <label for="part-pass" class="label mid-margin-right"><b>Exam Passed?</b></label>
-                <input type="checkbox" name="pass" id="part-pass" class="switch medium" value="0" data-text-on="YES" data-text-off="NO">
+                <input type="checkbox" name="pass" id="part-pass" class="switch medium" data-text-on="YES" data-text-off="NO">
             </div>
         </div>
 
@@ -54,7 +54,7 @@
             </button>
             <button type="buttton" class="button glossy mid-margin-right" data-bind="click: function() {$.modal.current.closeModal();
                    newParticipant($('#part-company').val(), $('#part-firstname').val(), $('#part-lastname').val(),
-                   $('#part-email').val(), $('#part-price').val(), $('#part-fee').val(), $('#part-result').val(), $('#part-pass').val());}">
+                   $('#part-email').val(), $('#part-price').val(), $('#part-fee').val(), $('#part-result').val(), $('#part-pass').is(':checked'));}">
                 <span class="button-icon"><span class="icon-tick"></span></span>
                 Save
             </button>
