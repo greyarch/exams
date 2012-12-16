@@ -148,9 +148,9 @@ function AppViewModel() {
             date:date,
             title:title,
             place:place,
-            exam_type_id:0,
-            test_id:0,
-            proctor:"Mr. Proctor"
+            exam_type_id:type,
+            test_id:test,
+            proctor:proctor
         };
         $.post('exam', exam, function () {
             console.log("created the exam");
