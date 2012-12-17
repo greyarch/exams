@@ -1,0 +1,283 @@
+{{#contentFor "pageHTML"}}
+	<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+	<link rel="stylesheet" href="css/styles/form.css?v=1">
+	<link rel="stylesheet" href="css/styles/switches.css?v=1">
+	<link rel="stylesheet" href="css/styles/table.css?v=1">
+
+	<!-- DataTables -->
+	<link rel="stylesheet" href="js/libs/DataTables/jquery.dataTables.css?v=1">
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+    <!-- Active shortcut -->
+    <li class="current"><a href="./" class="shortcut-dashboard" title="Page">Page</a></li>
+    <!-- Background shortcuts -->
+    <li><a href="calendar" class="shortcut-agenda" title="Exams">Exams</a></li>
+    <!-- Disabled shortcuts -->
+
+    <!-- For Future Modules use
+        <li><span class="shortcut-messages" title="Messages">Messages</a></li>
+        <li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+        <li><span class="shortcut-medias" title="Medias">Medias</a></li>
+        <li><span class="shortcut-stats" title="Stats">Stats</a></li>
+        <li><span class="shortcut-settings" title="Settings">Settings</a></li>
+        <li><span class="shortcut-notes" title="Notes">Notes</span></li>
+    -->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageMenu"}}
+<section id="menu" role="complementary">
+
+	<!-- This wrapper is used by several responsive layouts -->
+	<div id="menu-content">
+
+		<header>
+			Administrator
+		</header>
+
+		<div id="profile">
+			<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
+			Hello
+			<span class="name">Mitko <b>Mitev</b></span>
+		</div>
+
+		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+		<ul id="access" class="children-tooltip">
+			<li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+			<li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
+			<li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+			<li class="disabled"><span class="icon-gear"></span></li>
+		</ul>
+
+		<!-- Navigation menu goes here -->
+		<section class="navigable">
+			<ul class="big-menu">
+				<li><a href="#" class="current navigable-current">Page</a></li>
+				
+				<li class="with-right-arrow">
+					
+					<a href="ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
+				</li>
+			</ul>
+		</section>
+
+		<ul class="unstyled-list">
+			<li class="title-menu">Next Exam</li>
+			<li>
+				<ul class="calendar-menu">
+					<li>
+						<a href="#" title="See Exam">
+							<time datetime="2011-02-24"><b>24</b> Feb</time>
+							<small class="green">10:30</small>
+							Sofia, Bulgaria
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+	<!-- End content wrapper -->
+
+	<!-- This is optional -->
+	<footer id="menu-footer">
+		
+		<!-- Any content for the footer - PLACE HERE-->
+		<p class="button-height">
+			<input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+			<label for="auto-refresh">Auto-refresh</label>
+		</p>
+	</footer>
+
+</section>
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+	<!-- Scripts -->
+	<script src="js/libs/jquery-1.8.2.min.js"></script>
+	<script src="js/setup.js"></script>
+	<script src="js/libs/knockout-2.2.0.js"></script>
+
+	<!-- Template functions -->
+	<script src="js/developr.input.js"></script>
+	<script src="js/developr.navigable.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/developr.scroll.js"></script>
+	<script src="js/developr.tooltip.js"></script>
+	<script src="js/developr.table.js"></script>
+	<script src="js/viewmodel.js"></script>
+
+	<!-- Plugins -->
+	<script src="js/libs/jquery.tablesorter.min.js"></script>
+	<script src="js/libs/DataTables/jquery.dataTables.min.js"></script>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+	<script>
+
+		// Call template init (optional, but faster if called manually)
+		$.template.init();
+
+		// Table sort - DataTables
+		var table = $('#sorting-advanced');
+		table.dataTable({
+			'aoColumnDefs': [
+				{ 'bSortable': false, 'aTargets': [ 0, 3 ] }
+			],
+			'sPaginationType': 'full_numbers',
+			'sDom': 't<"dataTables_footer"ip>',
+			'fnInitComplete': function( oSettings )
+			{
+				// Style length select
+				table.closest('.dataTables_wrapper').find('.dataTables_length select').addClass('select blue-gradient glossy').styleSelect();
+				tableStyled = true;
+			}
+		});
+
+		// Table sort - styled
+		var table1 = $('#sorting-example1');
+		
+		table1.tablesorter  ({
+			headers: {
+				0: { sorter: false },
+				5: { sorter: false }
+			}
+		}).on('click', 'tbody td', function(event)
+		{
+			// Do not process if something else has been clicked
+			if (event.target !== this)
+			{
+				return;
+			}
+
+			var tr = $(this).parent(),
+				row = tr.next('.row-drop'),
+				rows;
+
+			// If click on a special row
+			if (tr.hasClass('row-drop'))
+			{
+				return;
+			}
+
+			// If there is already a special row
+			if (row.length > 0)
+			{
+				// Un-style row
+				tr.children().removeClass('anthracite-gradient glossy');
+
+				// Remove row
+				row.remove();
+
+				return;
+			}
+
+			// Remove existing special rows
+			rows = tr.siblings('.row-drop');
+			if (rows.length > 0)
+			{
+				// Un-style previous rows
+				rows.prev().children().removeClass('anthracite-gradient glossy');
+
+				// Remove rows
+				rows.remove();
+			}
+
+			// Style row
+			tr.children().addClass('anthracite-gradient glossy');
+
+			// Add fake row
+			$('<tr class="row-drop">'+
+				'<td colspan="'+tr.children().length+'">'+
+					'<div class="float-right">'+
+						'<button type="submit" class="button glossy mid-margin-right">'+
+							'<span class="button-icon"><span class="icon-mail"></span></span>'+
+							'Send mail'+
+						'</button>'+
+						'<button type="submit" class="button glossy">'+
+							'<span class="button-icon red-gradient"><span class="icon-cross"></span></span>'+
+							'Remove'+
+						'</button>'+
+					'</div>'+
+					'<strong>Name:</strong><input type="text" name="name" id="name" size="9" class="input-unstyled" value="John Doe"><br>'+
+					'<strong>Account:</strong> admin<br>'+
+					'<strong>Last connect:</strong> 05-07-2011<br>'+
+					'<strong>Email:</strong> john@doe.com'+
+				'</td>'+
+			'</tr>').insertAfter(tr);
+
+		}).on('sortStart', function()
+		{
+			var rows = $(this).find('.row-drop');
+			if (rows.length > 0)
+			{
+				// Un-style previous rows
+				rows.prev().children().removeClass('anthracite-gradient glossy');
+
+				// Remove rows
+				rows.remove();
+			}
+		});
+
+	</script>
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+	<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2>ExaMS</h2>
+	</header>
+
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
+
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+	<section role="main" id="main">
+
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+
+		<hgroup id="main-title" class="thin">
+			<h1>Exam Types</h1>
+		</hgroup>
+
+		<div class="with-padding">
+			<div class="table-header button-height">
+				<div class="float-right ">
+					<a class="button icon-plus  blue-gradient glossy" onclick="">Add</a>
+				</div> &nbsp
+			</div>
+
+			<table class="table responsive-table" id="sorting-advanced">
+ 				<thead>
+					<tr>
+						<th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
+						<th scope="col">Exam Type</th>
+						<th scope="col" width="15%" class="align-center hide-on-mobile">Tag</th>
+						<th scope="col" width="60" class="align-center">Actions</th>
+					</tr>
+				</thead>
+
+  				<tbody data-bind="foreach: examtypes">
+	                    <tr>
+	                    	<th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-1" value="1"></th>
+					        <td data-bind="text: title"></td>
+	                        <td data-bind="text: tag"></td>
+                            <td class="low-padding align-center"><a href="#" class="button compact icon-gear">Edit</a></td>
+	                    </tr>
+		         </tbody>
+			</table>
+
+		</div>
+
+	</section>
