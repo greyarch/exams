@@ -68,11 +68,27 @@ function Participant(json) {
     }
 }
 
+function ExamType(json) {
+    var self = this;
+    self.id = ko.observable(json.id);
+    self.title = ko.observable(json.title);
+    self.tag = ko.observable(json.tag);
+
+    self.toJSON = function () {
+        return {
+            id:self.id(),
+            title:self.title(),
+            tag:self.tag()
+        }
+    }
+}
+
 function AppViewModel() {
     var self = this;
 
     self.exams = ko.observableArray([]);
     self.participants = ko.observableArray([]);
+    self.examtypes = ko.observableArray([]);
     self.selectedExam = ko.observable();
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
@@ -142,6 +158,15 @@ function AppViewModel() {
         });
     };
 
+   self.loadExamTypes = function () {
+        console.log("getting all exam types");
+        $.getJSON('examtype', function (data) {
+           		self.examtypes($.map(data, function (item) {
+                return new ExamType(item);
+            }));
+        });
+    };
+
     newExam = function (title, place, date, type, test, proctor) {
         console.log("adding an exam");
         var exam = {
@@ -176,6 +201,16 @@ function AppViewModel() {
             self.loadAllExams();
         });
     };
+    
+/*    newExamType = function (title, tag) {
+        console.log("adding an exam type");
+        var ExamType = {title:title, tag:tag};
+        $.post("examtype", ExamType, function(){
+        	console.log("created the exam type");
+        });
+        
+    };
+*/    
 }
 
 $(function () {
@@ -194,5 +229,6 @@ $(function () {
 
     appVM = new AppViewModel();
     ko.applyBindings(appVM);
+    appVM.loadExamTypes();
     appVM.loadAllExams();
 });

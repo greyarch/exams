@@ -6,6 +6,10 @@ module.exports = function (app, auth, connection) {
     app.get('/exams', auth.ensure, function (req, res) {
         res.render('exams.html');
     });
+    
+   	app.get('/examtypes', auth.ensure, function (req, res) {
+	res.render('examtypes.html');
+	});
 
     //create exam
     app.post('/exam', auth.rest, function (req, res) {
@@ -51,6 +55,16 @@ module.exports = function (app, auth, connection) {
             res.json(200, rows);
         });
     });
+
+    //get all exam types
+	app.get('/examtype', auth.rest, function (req, res) {
+    	console.log("loading all exam types");
+    	connection.query('SELECT * FROM exam_types', function (err, rows) {
+        	if (err) throw err; //TODO report error here
+        	console.log('Exam Types are: ', rows);
+        	res.json(200, rows);
+    	});
+	});
 
     //delete exam with an id
     app.delete('/exam/:id', auth.rest, function (req, res) {
