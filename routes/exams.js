@@ -34,10 +34,10 @@ module.exports = function (app, auth, connection) {
 
     //get all exam
     app.get('/exam', auth.rest, function (req, res) {
-        console.log("loading all exam");
+        console.log("loading all exams");
         connection.query('SELECT * FROM exams', function (err, rows) {
             if (err) throw err; //TODO report error here
-            console.log('exam are: ', rows);
+            console.log('exams are: ', rows);
             res.json(200, rows);
         });
     });
