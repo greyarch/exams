@@ -4,7 +4,8 @@ module.exports = function (app, auth, connection) {
     });
 
     app.get('/exams', auth.ensure, function (req, res) {
-        res.render('exams.html');
+        console.log("user is", req.user);
+        res.render('exams.html', {user: req.user[0]});
     });
     
    	app.get('/examtypes', auth.ensure, function (req, res) {
