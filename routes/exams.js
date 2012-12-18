@@ -5,7 +5,7 @@ module.exports = function (app, auth, connection) {
 
     app.get('/exams', auth.ensure, function (req, res) {
         console.log("user is", req.user);
-        res.render('exams.html', {user: req.user[0]});
+        res.render('exams.html', {user: req.user});
     });
     
    	app.get('/examtypes', auth.ensure, function (req, res) {

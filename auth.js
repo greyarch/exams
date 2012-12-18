@@ -19,7 +19,8 @@ exports.rest = function (req, res, next) {
 function findById(id, fn) {
     connection.query('SELECT * FROM users WHERE id = ?', [id], function (err, result) {
         if (err) return fn(err, null)
-        else return fn(null, result);
+        if (result.length != 0) return fn(null, result[0]);
+        return fn(null, null);
     });
 }
 
