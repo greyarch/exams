@@ -3,9 +3,17 @@ var express = require('express')
 , path = require('path')
 , mysql = require('mysql')
 , hbs = require('express-hbs')
-, auth = require('./auth')
-, passport = auth.passport
 , argv = require('optimist').argv;
+
+connection = mysql.createConnection({
+    host:'localhost',
+    database:'admin_exams',
+    user:'admin_exams',
+    password:'apppass',
+    insecureAuth:true
+});
+connection.connect();
+var auth = require('./auth');
 
 app = express();
 
@@ -17,8 +25,8 @@ app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.session({secret:'strogo sekretno'}));
-    app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(auth.passport.initialize());
+    app.use(auth.passport.session());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -26,15 +34,6 @@ app.configure(function () {
 app.engine('html', hbs.express3({defaultLayout:__dirname + '/views/layout.html',
     extname:'.html', partialsDir:__dirname + '/views/partials'}));
 app.set('view engine', 'html');
-
-var connection = mysql.createConnection({
-    host:'localhost',
-    database:'admin_exams',
-    user:'admin_exams',
-    password:'apppass',
-    insecureAuth:true
-});
-connection.connect();
 
 require('./routes')(app, auth, connection);
 
