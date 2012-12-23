@@ -37,13 +37,13 @@
 	<div id="menu-content">
 
 		<header>
-			Administrator
+			{{user.role}}
 		</header>
 
 		<div id="profile">
 			<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
 			Hello
-			<span class="name">Mitko <b>Mitev</b></span>
+			<span class="name"><b>{{user.full_name}}</b></span>
 		</div>
 
 		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->

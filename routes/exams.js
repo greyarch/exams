@@ -1,6 +1,6 @@
 module.exports = function (app, auth, connection) {
     app.get('/calendar', auth.ensure, function (req, res) {
-        res.render('calendar.html');
+        res.render('calendar.html', {user: req.user});
     });
 
     app.get('/exams', auth.ensure, function (req, res) {
@@ -9,7 +9,7 @@ module.exports = function (app, auth, connection) {
     });
     
    	app.get('/examtypes', auth.ensure, function (req, res) {
-		res.render('examtypes.html');
+		res.render('examtypes.html', {user: req.user});
 	});
 
     //create exam
