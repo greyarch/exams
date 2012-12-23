@@ -202,15 +202,29 @@ function AppViewModel() {
         });
     };
     
-/*    newExamType = function (title, tag) {
+    newExamType = function (title, tag) {
         console.log("adding an exam type");
         var ExamType = {title:title, tag:tag};
         $.post("examtype", ExamType, function(){
         	console.log("created the exam type");
+        	self.loadExamTypes();
         });
         
+    }; 
+
+    deleteExamType = function (ExamType) {
+        console.log("deleting Exam Type with id: ", ExamType.id());
+        $.ajax({
+            url:"examtype/" + ExamType.id(),
+            type:"DELETE",
+            success:function () {
+                self.loadExamTypes();
+            },
+            error:function (jqXhr) {
+                console.log("error while trying to delete Exam Type: " + jqXhr.responseText);
+            }
+        });
     };
-*/    
 }
 
 $(function () {

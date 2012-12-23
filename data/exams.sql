@@ -21,6 +21,7 @@ CREATE TABLE exam_types (
 DROP TABLE IF EXISTS tests;
 CREATE TABLE tests (
      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+     exam_type_id INT UNSIGNED NOT NULL,
      title VARCHAR(255) NOT NULL,
      tag VARCHAR(10) NOT NULL,
      PRIMARY KEY (id)
