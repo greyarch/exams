@@ -1,6 +1,6 @@
 module.exports = function (app, auth, connection) {
     app.get('/calendar', auth.ensure, function (req, res) {
-        res.render('calendar.html');
+        res.render('calendar.html', {user: req.user});
     });
 
     app.get('/exams', auth.ensure, function (req, res) {
@@ -9,7 +9,7 @@ module.exports = function (app, auth, connection) {
     });
     
    	app.get('/examtypes', auth.ensure, function (req, res) {
-	res.render('examtypes.html');
+		res.render('examtypes.html', {user: req.user});
 	});
 
     //create exam
@@ -34,6 +34,18 @@ module.exports = function (app, auth, connection) {
             if (err) throw err; //TODO report error here
             console.log('result is: ', result);
             res.json(201, part);
+        });
+    });
+
+    //create exam type
+    app.post('/examtype', auth.rest, function (req, res) {
+        var examtype = req.body;
+        console.log("creating an exam type: ");
+        console.dir(examtype);
+        connection.query('INSERT INTO exam_types SET ?', examtype, function (err, result) {
+            if (err) throw err; //TODO report error here
+            console.log('result is: ', result);
+            res.json(201, examtype);
         });
     });
 
@@ -86,4 +98,15 @@ module.exports = function (app, auth, connection) {
             res.end();
         });
     });
+    
+    //delete an Exam Type with an id
+    app.delete('/examtype/:id', auth.rest, function (req, res) {
+        console.log("deleting an Exam type with id " + req.params.id);
+        connection.query('DELETE FROM exam_types WHERE id = ?', [req.params.id], function (err, result) {
+            if (err) throw err; //TODO report error here
+            console.log('result is: ', result);
+            res.end();
+        });
+    });
+
 };

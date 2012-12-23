@@ -37,13 +37,13 @@
 	<div id="menu-content">
 
 		<header>
-			Administrator
+			{{user.role}}
 		</header>
 
 		<div id="profile">
 			<img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
 			Hello
-			<span class="name">Mitko <b>Mitev</b></span>
+			<span class="name"><b>{{user.full_name}}</b></span>
 		</div>
 
 		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
@@ -57,12 +57,9 @@
 		<!-- Navigation menu goes here -->
 		<section class="navigable">
 			<ul class="big-menu">
-				<li><a href="#" class="current navigable-current">Page</a></li>
-				
-				<li class="with-right-arrow">
-					
-					<a href="ajax/submenu.html" class="navigable-ajax" title="Menu title">Ajax sub-menu</a>
-				</li>
+				<li><a href="exams">Exams</a></li>
+				<li><a href="calendar">Calendar</a></li>
+				<li><a href="examtypes" class="current navigable-current">Exam Types</a></li>
 			</ul>
 		</section>
 
@@ -118,113 +115,50 @@
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
-	<script>
+<script>
 
-		// Call template init (optional, but faster if called manually)
-		$.template.init();
-
-		// Table sort - DataTables
-		var table = $('#sorting-advanced');
-		table.dataTable({
-			'aoColumnDefs': [
-				{ 'bSortable': false, 'aTargets': [ 0, 3 ] }
-			],
-			'sPaginationType': 'full_numbers',
-			'sDom': 't<"dataTables_footer"ip>',
-			'fnInitComplete': function( oSettings )
-			{
-				// Style length select
-				table.closest('.dataTables_wrapper').find('.dataTables_length select').addClass('select blue-gradient glossy').styleSelect();
-				tableStyled = true;
-			}
-		});
-
-		// Table sort - styled
-		var table1 = $('#sorting-example1');
+      // Call template init (optional, but faster if called manually)
+    $.template.init();
+      	
+	$('#exam-add').on('click',function () {
 		
-		table1.tablesorter  ({
-			headers: {
-				0: { sorter: false },
-				5: { sorter: false }
-			}
-		}).on('click', 'tbody td', function(event)
+		var tr = $('#examTypeTable > tbody > tr:first');
+		
+		if ($('#examTypeTable').find('.row-drop').length)
 		{
-			// Do not process if something else has been clicked
-			if (event.target !== this)
-			{
-				return;
-			}
+			return;
+		};
 
-			var tr = $(this).parent(),
-				row = tr.next('.row-drop'),
-				rows;
-
-			// If click on a special row
-			if (tr.hasClass('row-drop'))
-			{
-				return;
-			}
-
-			// If there is already a special row
-			if (row.length > 0)
-			{
-				// Un-style row
-				tr.children().removeClass('anthracite-gradient glossy');
-
-				// Remove row
-				row.remove();
-
-				return;
-			}
-
-			// Remove existing special rows
-			rows = tr.siblings('.row-drop');
-			if (rows.length > 0)
-			{
-				// Un-style previous rows
-				rows.prev().children().removeClass('anthracite-gradient glossy');
-
-				// Remove rows
-				rows.remove();
-			}
-
-			// Style row
-			tr.children().addClass('anthracite-gradient glossy');
-
-			// Add fake row
-			$('<tr class="row-drop">'+
-				'<td colspan="'+tr.children().length+'">'+
-					'<div class="float-right">'+
-						'<button type="submit" class="button glossy mid-margin-right">'+
-							'<span class="button-icon"><span class="icon-mail"></span></span>'+
-							'Send mail'+
-						'</button>'+
-						'<button type="submit" class="button glossy">'+
-							'<span class="button-icon red-gradient"><span class="icon-cross"></span></span>'+
-							'Remove'+
-						'</button>'+
-					'</div>'+
-					'<strong>Name:</strong><input type="text" name="name" id="name" size="9" class="input-unstyled" value="John Doe"><br>'+
-					'<strong>Account:</strong> admin<br>'+
-					'<strong>Last connect:</strong> 05-07-2011<br>'+
-					'<strong>Email:</strong> john@doe.com'+
-				'</td>'+
-			'</tr>').insertAfter(tr);
-
-		}).on('sortStart', function()
-		{
-			var rows = $(this).find('.row-drop');
-			if (rows.length > 0)
-			{
-				// Un-style previous rows
-				rows.prev().children().removeClass('anthracite-gradient glossy');
-
-				// Remove rows
-				rows.remove();
+		// Add fake row
+		$('<tr class="row-drop">'+
+			'<td colspan="'+ tr.children().length +'">'+
+				'<div class="float-right">'+
+                    '<span class="button-group compact">'+
+						'<a id="addSave" class="button blue-gradient icon-tick with-tooltip" title="Save"></a>'+
+						'<a id="addCancel" class="button red-gradient icon-cross with-tooltip confirm" title="Cancel"></a>'+
+					'</span>'+
+				'</div>'+
+		        
+				'<strong>Exam Type:</strong><input type="text" name="exam_title" id="exam_title" size="9" class="input-unstyled" value=""><br>'+
+				'<strong>Tag:</strong><input type="text" name="exam_tag" id="exam_tag" size="9" class="input-unstyled" value=""><br>'+
+			'</td>'+
+		'</tr>').insertBefore(tr);
+		
+		$('#addCancel').on('click',function () {
+		
+			$(this).closest("tr").remove(); 		
+		});
+		
+		$('#addSave').on('click',function () {
+			if ($('#exam_title').val() && $('#exam_tag').val()){
+				$(this).removeTooltip();
+				newExamType($('#exam_title').val(),$('#exam_tag').val()); 		
 			}
 		});
+	});
+	
+</script>
 
-	</script>
 {{/contentFor}}
 
 <body class="clearfix with-menu with-shortcuts">
@@ -252,32 +186,63 @@
 		</hgroup>
 
 		<div class="with-padding">
-			<div class="table-header button-height">
-				<div class="float-right ">
-					<a class="button icon-plus  blue-gradient glossy" onclick="">Add</a>
-				</div> &nbsp
-			</div>
 
-			<table class="table responsive-table" id="sorting-advanced">
- 				<thead>
+
+			<table class="table responsive-table" id="examTypeTable">
+				<div class="table-header button-height">
+					<div class="float-right ">
+						<a id="exam-add" class="button icon-plus  blue-gradient glossy">Add</a>
+					</div> &nbsp
+				</div>			
+
+				<thead>
 					<tr>
 						<th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
 						<th scope="col">Exam Type</th>
 						<th scope="col" width="15%" class="align-center hide-on-mobile">Tag</th>
-						<th scope="col" width="60" class="align-center">Actions</th>
+						<th scope="col" width="100" class="align-right">Actions</th>
 					</tr>
 				</thead>
-
-  				<tbody data-bind="foreach: examtypes">
+	
+				<tbody data-bind="foreach: examtypes">
 	                    <tr>
 	                    	<th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-1" value="1"></th>
 					        <td data-bind="text: title"></td>
 	                        <td data-bind="text: tag"></td>
-                            <td class="low-padding align-center"><a href="#" class="button compact icon-gear">Edit</a></td>
+	                        <td class="low-padding align-center">
+								<span class="button-group compact">
+									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
+									
+									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete" onclick="$(this).removeTooltip()"
+	                                   data-bind="click: deleteExamType, clickBubble: false"></a>
+								</span>
+	                        </td>
+	
 	                    </tr>
-		         </tbody>
+		     	 </tbody>
+
 			</table>
 
-		</div>
+			<form method="post" action="" class="table-footer button-height large-margin-bottom">
+				<div class="float-right">
+					<div class="button-group">
+						<a href="#" title="First page" class="button blue-gradient glossy"><span class="icon-previous"></span></a>
+						<a href="#" title="Previous page" class="button blue-gradient glossy"><span class="icon-backward"></span></a>
+					</div>
 
+					<div class="button-group">
+						<a href="#" title="Page 1" class="button blue-gradient glossy active">1</a>
+						<a href="#" title="Page 2" class="button blue-gradient glossy">2</a>
+					</div>
+
+					<div class="button-group">
+						<a href="#" title="Next page" class="button blue-gradient glossy"><span class="icon-forward"></span></a>
+						<a href="#" title="Last page" class="button blue-gradient glossy"><span class="icon-next"></span></a>
+					</div>
+				</div>
+				
+				There are <strong data-bind="text: examtypes().length"></strong> items 
+			</form>
+
+		</div>
 	</section>
