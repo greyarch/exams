@@ -139,8 +139,8 @@
 					'</span>'+
 				'</div>'+
 		        
-				'<strong>Exam Type:</strong><input type="text" name="exam_title" id="exam_title" size="9" class="input-unstyled" value=""><br>'+
-				'<strong>Tag:</strong><input type="text" name="exam_tag" id="exam_tag" size="9" class="input-unstyled" value=""><br>'+
+				'<strong>Exam Type:</strong><input type="text" name="examtype_title" id="examtype_title" size="9" class="input-unstyled" value=""><br>'+
+				'<strong>Tag:</strong><input type="text" name="examtype_tag" id="examtype_tag" size="9" class="input-unstyled" value=""><br>'+
 			'</td>'+
 		'</tr>').insertBefore(tr);
 		
@@ -150,9 +150,9 @@
 		});
 		
 		$('#addSave').on('click',function () {
-			if ($('#exam_title').val() && $('#exam_tag').val()){
+			if ($('#examtype_title').val() && $('#examtype_tag').val()){
 				$(this).removeTooltip();
-				newExamType($('#exam_title').val(),$('#exam_tag').val()); 		
+				newExamType($('#examtype_title').val(),$('#examtype_tag').val());
 			}
 		});
 	});
