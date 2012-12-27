@@ -21,7 +21,7 @@ module.exports = function (app, auth, db) {
     });
 
     //create participant for exam
-    app.post('/exam/:id/participant', auth.rest, function (req, res) {
+    app.post('/exam/id/:id/participant', auth.rest, function (req, res) {
         var part = req.body;
         part.exam_id = req.params.id;
         console.log("creating a participant for exam with id ", req.params.id);
@@ -56,7 +56,7 @@ module.exports = function (app, auth, db) {
     });
 
     //get all participants in an exam
-    app.get('/exam/:id/participant', auth.rest, function (req, res) {
+    app.get('/exam/id/:id/participant', auth.rest, function (req, res) {
         console.log("loading all participants in exam with id ", req.params.id);
         db.query('SELECT * FROM participants WHERE exam_id = ?', [req.params.id], function (err, rows) {
             if (err) throw err; //TODO report error here
@@ -76,7 +76,7 @@ module.exports = function (app, auth, db) {
 	});
 
     //delete exam with an id
-    app.delete('/exam/:id', auth.rest, function (req, res) {
+    app.delete('/exam/id/:id', auth.rest, function (req, res) {
         console.log("deleting an exam with id " + req.params.id);
         db.query('DELETE FROM exams WHERE id = ?', [req.params.id], function (err, result) {
             if (err) throw err; //TODO report error here
@@ -86,7 +86,7 @@ module.exports = function (app, auth, db) {
     });
 
     //delete a participant with an id
-    app.delete('/participant/:id', auth.rest, function (req, res) {
+    app.delete('/participant/id/:id', auth.rest, function (req, res) {
         console.log("deleting a participant with id " + req.params.id);
         db.query('DELETE FROM participants WHERE id = ?', [req.params.id], function (err, result) {
             if (err) throw err; //TODO report error here
@@ -96,7 +96,7 @@ module.exports = function (app, auth, db) {
     });
     
     //delete an Exam Type with an id
-    app.delete('/examtype/:id', auth.rest, function (req, res) {
+    app.delete('/examtype/id/:id', auth.rest, function (req, res) {
         console.log("deleting an Exam type with id " + req.params.id);
         db.query('DELETE FROM exam_types WHERE id = ?', [req.params.id], function (err, result) {
             if (err) throw err; //TODO report error here

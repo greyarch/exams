@@ -103,7 +103,7 @@ function AppViewModel() {
     deleteExam = function (exam) {
         console.log("deleting exam with id: ", exam.id());
         $.ajax({
-            url:"exam/" + exam.id(),
+            url:"exam/id/" + exam.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -117,7 +117,7 @@ function AppViewModel() {
     deleteParticipant = function (participant) {
         console.log("deleting exam with id: ", participant.id());
         $.ajax({
-            url:"participant/" + participant.id(),
+            url:"participant/id/" + participant.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -138,7 +138,7 @@ function AppViewModel() {
 
     self.showParticipants = function (exam) {
         console.log("getting all participants for exam with id ", exam.id());
-        $.getJSON('exam/' + exam.id() + '/participant', function (data) {
+        $.getJSON('exam/id/' + exam.id() + '/participant', function (data) {
             self.participants($.map(data, function (item) {
                 return new Participant(item);
             }));
@@ -196,7 +196,7 @@ function AppViewModel() {
             result:result,
             pass:pass?1:0
         };
-        $.post("exam/" + examId + "/participant", participant, function () {
+        $.post("exam/id/" + examId + "/participant", participant, function () {
             console.log("created the participant");
             self.loadAllExams();
         });
@@ -212,10 +212,10 @@ function AppViewModel() {
         
     }; 
 
-    deleteExamType = function (ExamType) {
-        console.log("deleting Exam Type with id: ", ExamType.id());
+    deleteExamType = function (examType) {
+        console.log("deleting Exam Type with id: ", examType.id());
         $.ajax({
-            url:"examtype/" + ExamType.id(),
+            url:"examtype/id/" + examType.id(),
             type:"DELETE",
             success:function () {
                 self.loadExamTypes();
