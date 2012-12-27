@@ -5,14 +5,15 @@ var express = require('express')
 , hbs = require('express-hbs')
 , argv = require('optimist').argv;
 
-connection = mysql.createConnection({
+db = mysql.createConnection({
     host:'localhost',
     database:'admin_exams',
     user:'admin_exams',
     password:'apppass',
     insecureAuth:true
 });
-connection.connect();
+db.connect();
+
 var auth = require('./auth');
 
 app = express();
@@ -35,7 +36,7 @@ app.engine('html', hbs.express3({defaultLayout:__dirname + '/views/layout.html',
     extname:'.html', partialsDir:__dirname + '/views/partials'}));
 app.set('view engine', 'html');
 
-require('./routes')(app, auth, connection);
+require('./routes')(app, auth, db);
 
 app.listen(argv.port || 3000).on('end', function () {
     console.log("goodbye");

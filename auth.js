@@ -1,4 +1,4 @@
-//module.exports = function (connection, passport) {
+//module.exports = function (db, passport) {
 var passport = exports.passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -17,7 +17,7 @@ exports.rest = function (req, res, next) {
 }
 
 function findById(id, fn) {
-    connection.query('SELECT * FROM users WHERE id = ?', [id], function (err, result) {
+    db.query('SELECT * FROM users WHERE id = ?', [id], function (err, result) {
         if (err) return fn(err, null)
         if (result.length != 0) return fn(null, result[0]);
         return fn(null, null);
@@ -25,7 +25,7 @@ function findById(id, fn) {
 }
 
 function findByUsername(username, fn) {
-    connection.query('SELECT * FROM users WHERE username = ?', [username], function (err, result) {
+    db.query('SELECT * FROM users WHERE username = ?', [username], function (err, result) {
         if (err) return fn(err, null);
         if (result.length != 0) return fn(null, result[0]);
         return fn(null, null);
