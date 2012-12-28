@@ -177,109 +177,24 @@
 
 				<!-- Dates -->
 				<tbody>
-                    {{#each dates.monthDays}}
+                    {{#each calendar}}
                     <tr>
                         {{#each this}}
-                            {{#if this}}
-                            <td><span class="cal-day" name={{../dates.year}}-{{../dates.month}}-{{this}}>{{this}}</span></td>
+                            {{#if date}}
+                            <td>
+                                <span class="cal-day">{{date}}</span>
+                                <ul class="cal-events">
+                                    {{#each events}}
+                                    <li><a href="exams?selectedExam={{id}}">{{title}}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </td>
                             {{else}}
                             <td></td>
                             {{/if}}
                         {{/each}}
                     </tr>
                     {{/each}}
-					<!--<tr>-->
-						<!--<td><span class="cal-day prev-month">26</span></td>-->
-
-						<!--<td>-->
-							<!--<span class="cal-day">1</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="to-next-day">ISTQB FL Exam</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td>-->
-							<!--<span class="cal-day">2</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="to-previous-day to-next-day">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td>-->
-							<!--<span class="cal-day">3</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="to-previous-day">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td><span class="cal-day">4</span></td>-->
-						<!--<td>-->
-							<!--<span class="cal-day">5</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="important">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td class="week-end"><span class="cal-day">6</span></td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td class="week-end"><span class="cal-day">7</span></td>-->
-						<!--<td><span class="cal-day">8</span></td>-->
-						<!--<td class="today">-->
-							<!--<span class="cal-day">9</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li>Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td>-->
-							<!--<span class="cal-day">10</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="important">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td><span class="cal-day">11</span></td>-->
-						<!--<td><span class="cal-day">12</span></td>-->
-						<!--<td class="week-end"><span class="cal-day">13</span></td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td class="week-end"><span class="cal-day">14</span></td>-->
-						<!--<td><span class="cal-day">15</span></td>-->
-						<!--<td><span class="cal-day">16</span></td>-->
-						<!--<td><span class="cal-day">17</span></td>-->
-						<!--<td><span class="cal-day">18</span></td>-->
-						<!--<td class="selected">-->
-							<!--<span class="cal-day">19</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li class="important">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td class="week-end"><span class="cal-day">20</span></td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td class="week-end">-->
-							<!--<span class="cal-day">21</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li>Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td><span class="cal-day">22</span></td>-->
-						<!--<td><span class="cal-day">23</span></td>-->
-						<!--<td>-->
-							<!--<span class="cal-day">24</span>-->
-							<!--<ul class="cal-events">-->
-								<!--<li>Event description</li>-->
-								<!--<li class="important">Event description</li>-->
-							<!--</ul>-->
-						<!--</td>-->
-						<!--<td><span class="cal-day">25</span></td>-->
-						<!--<td><span class="cal-day">26</span></td>-->
-						<!--<td class="week-end"><span class="cal-day">27</span></td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td class="week-end"><span class="cal-day">28</span></td>-->
-						<!--<td><span class="cal-day">29</span></td>-->
-						<!--<td><span class="cal-day">30</span></td>-->
-						<!--<td><span class="cal-day">31</span></td>-->
-						<!--<td class="next-month"><span class="cal-day">1</span></td>-->
-						<!--<td class="next-month"><span class="cal-day">2</span></td>-->
-						<!--<td class="week-end next-month"><span class="cal-day">3</span></td>-->
-					<!--</tr>-->
 				</tbody>
 				<!-- End dates -->
 

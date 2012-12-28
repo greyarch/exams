@@ -1,10 +1,10 @@
 module.exports = function (app, auth, db) {
     app.get('/exams', auth.ensure, function (req, res) {
-        console.log("user is", req.user);
+        //TODO use req.query.selectedExam to get the selected exam
         res.render('exams.html', {user: req.user});
     });
-    
-   	app.get('/examtypes', auth.ensure, function (req, res) {
+
+    app.get('/examtypes', auth.ensure, function (req, res) {
 		res.render('examtypes.html', {user: req.user});
 	});
 
@@ -104,5 +104,4 @@ module.exports = function (app, auth, db) {
             res.end();
         });
     });
-
 };
