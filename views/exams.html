@@ -19,6 +19,7 @@
 <!-- Scripts -->
 <script src="js/libs/jquery-1.8.2.min.js"></script>
 <script src="js/setup.js"></script>
+<script src="js/libs/lodash.min.js"></script>
 <script src="js/libs/knockout-2.2.0.js"></script>
 
 <!-- Template functions -->
@@ -95,10 +96,13 @@
             <li>
                 <ul class="calendar-menu">
                     <li>
-                        <a href="#" title="See Exam">
-                            <time datetime="2011-02-24"><b>24</b> Feb</time>
-                            <small class="green">10:30</small>
-                            Sofia, Bulgaria
+                        <a href="#" title="See Exam" data-bind="with: nextExam">
+                            <time data-bind="attr: {datetime: date}">
+                                <b data-bind="text: day"></b>
+                                <span data-bind="text: month"></span>
+                            </time>
+                            <span class="green" data-bind="text: title"></span><br>
+                            <span data-bind="text: place"></span>
                         </a>
                     </li>
                 </ul>

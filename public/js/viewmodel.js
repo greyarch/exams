@@ -17,7 +17,7 @@ function Exam(json) {
     });
 
     self.month = ko.computed(function () {
-        return self.date().month() + 1;
+        return self.date().format('MMM');
     });
 
     self.year = ko.computed(function () {
@@ -91,6 +91,14 @@ function AppViewModel() {
     self.examtypes = ko.observableArray([]);
     self.selectedExam = ko.observable();
 
+    self.nextExam = ko.computed(function() {
+        var today = moment(new Date());
+        var nextExams = _.filter(self.exams(), function(exam) {
+            return exam.date() > today;
+        })
+        return _.last(nextExams);
+    });
+
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
     isSelectedExam = function (exam) {
@@ -139,7 +147,7 @@ function AppViewModel() {
     self.showParticipants = function (exam) {
         console.log("getting all participants for exam with id ", exam.id());
         $.getJSON('exam/id/' + exam.id() + '/participant', function (data) {
-            self.participants($.map(data, function (item) {
+            self.participants(_.map(data, function (item) {
                 return new Participant(item);
             }));
         });
@@ -149,7 +157,7 @@ function AppViewModel() {
         self.participants([]);
         $.getJSON('exam', function (data) {
             console.log("getting all exam");
-            self.exams($.map(data, function (item) {
+            self.exams(_.map(data, function (item) {
                 var newExam = new Exam(item);
                 if (isSelectedExam(newExam))
                     self.showParticipants(newExam);
@@ -161,7 +169,7 @@ function AppViewModel() {
    self.loadExamTypes = function () {
         console.log("getting all exam types");
         $.getJSON('examtype', function (data) {
-           		self.examtypes($.map(data, function (item) {
+           		self.examtypes(_.map(data, function (item) {
                 return new ExamType(item);
             }));
         });
