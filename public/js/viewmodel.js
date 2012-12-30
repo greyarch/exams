@@ -111,7 +111,7 @@ function AppViewModel() {
     deleteExam = function (exam) {
         console.log("deleting exam with id: ", exam.id());
         $.ajax({
-            url:"exam/id/" + exam.id(),
+            url:"/exam/id/" + exam.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -125,7 +125,7 @@ function AppViewModel() {
     deleteParticipant = function (participant) {
         console.log("deleting exam with id: ", participant.id());
         $.ajax({
-            url:"participant/id/" + participant.id(),
+            url:"/participant/id/" + participant.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -146,7 +146,7 @@ function AppViewModel() {
 
     self.showParticipants = function (exam) {
         console.log("getting all participants for exam with id ", exam.id());
-        $.getJSON('exam/id/' + exam.id() + '/participant', function (data) {
+        $.getJSON('/exam/id/' + exam.id() + '/participant', function (data) {
             self.participants(_.map(data, function (item) {
                 return new Participant(item);
             }));
@@ -155,7 +155,7 @@ function AppViewModel() {
 
     self.loadAllExams = function () {
         self.participants([]);
-        $.getJSON('exam', function (data) {
+        $.getJSON('/exam', function (data) {
             console.log("getting all exam");
             self.exams(_.map(data, function (item) {
                 var newExam = new Exam(item);
@@ -168,7 +168,7 @@ function AppViewModel() {
 
    self.loadExamTypes = function () {
         console.log("getting all exam types");
-        $.getJSON('examtype', function (data) {
+        $.getJSON('/examtype', function (data) {
            		self.examtypes(_.map(data, function (item) {
                 return new ExamType(item);
             }));
@@ -204,7 +204,7 @@ function AppViewModel() {
             result:result,
             pass:pass?1:0
         };
-        $.post("exam/id/" + examId + "/participant", participant, function () {
+        $.post("/exam/id/" + examId + "/participant", participant, function () {
             console.log("created the participant");
             self.loadAllExams();
         });
@@ -213,7 +213,7 @@ function AppViewModel() {
     newExamType = function (title, tag) {
         console.log("adding an exam type");
         var ExamType = {title:title, tag:tag};
-        $.post("examtype", ExamType, function(){
+        $.post("/examtype", ExamType, function(){
         	console.log("created the exam type");
         	self.loadExamTypes();
         });
@@ -223,7 +223,7 @@ function AppViewModel() {
     deleteExamType = function (examType) {
         console.log("deleting Exam Type with id: ", examType.id());
         $.ajax({
-            url:"examtype/id/" + examType.id(),
+            url:"/examtype/id/" + examType.id(),
             type:"DELETE",
             success:function () {
                 self.loadExamTypes();
