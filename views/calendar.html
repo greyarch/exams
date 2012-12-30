@@ -102,9 +102,9 @@
 
             <!-- Month and scroll arrows -->
             <caption>
-                <span class="cal-prev">◄</span>
-                <a href="#" class="cal-next">►</a>
-                December 2012
+                <a href="/calendar?year={{calendar.prev.year}}&month={{calendar.prev.month}}" class="cal-prev">◄</a>
+                <a href="/calendar?year={{calendar.next.year}}&month={{calendar.next.month}}" class="cal-next">►</a>
+                {{calendar.current.month}} {{calendar.current.year}}
             </caption>
 
             <!-- Days names -->
@@ -122,9 +122,9 @@
 
             <!-- Dates -->
             <tbody>
-            {{#each calendar}}
+            {{#each calendar.weeks}}
             <tr>
-                {{#each this}}
+                {{#each dates}}
                 {{#if date}}
                 <td>
                     <span class="cal-day">{{date}}</span>

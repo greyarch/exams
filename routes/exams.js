@@ -4,11 +4,6 @@ module.exports = function (app, auth, db) {
         res.render('exams.html', {user: req.user});
     });
 
-    app.get('/exams/:id', auth.ensure, function (req, res) {
-        //TODO use req.query.selectedExam to get the selected exam
-        res.render('exams.html', {user: req.user});
-    });
-
     app.get('/examtypes', auth.ensure, function (req, res) {
 		res.render('examtypes.html', {user: req.user});
 	});

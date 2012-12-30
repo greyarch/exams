@@ -29,6 +29,7 @@
 <script src="/js/developr.scroll.js"></script>
 <script src="/js/developr.tooltip.js"></script>
 <script src="/js/developr.modal.js"></script>
+<script src="/js/developr.scroll.js"></script>
 <script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
 <script src="/js/moment.min.js"></script>
 <script src="/js/modal.js"></script>
@@ -133,9 +134,10 @@
                             <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
                         </div>
                     </div>
-                    <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
-                        <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
-                            <a href="#" class="event-description" data-bind="click: selectExam">
+                    <div class="scrollable">
+                        <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+                            <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
+                                <a href="#" class="event-description" data-bind="click: selectExam">
 		                                    <span class="event-date with-month">
 		                                        <span data-bind="text: day"></span>
 		                                        <span class="event-month">
@@ -144,14 +146,15 @@
 		                                            <span data-bind="text: year"></span>
 		                                        </span>
 		                                    </span>
-                                <h4 data-bind="text: title"></h4>
+                                    <h4 data-bind="text: title"></h4>
 
-                                <p data-bind="text: place"></p>
+                                    <p data-bind="text: place"></p>
 		                                    <span class="count inset show-on-parent-hover"
                                                   data-bind="click: deleteExam, clickBubble: false">✕</span>
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="new-row-mobile nine-columns">
@@ -165,38 +168,40 @@
                             </a>
                         </div>
                     </div>
-                    <table class="table responsive-table responsive-table-on">
-                        <thead>
-                        <th scope="col" class="header">Company</th>
-                        <th scope="col" class="header">First Name</th>
-                        <th scope="col" class="header">Last Name</th>
-                        <th scope="col" class="header">Email</th>
-                        <th scope="col" class="header">Price</th>
-                        <th scope="col" class="header">Board Fee</th>
-                        <th scope="col" class="header">Result, %</th>
-                        <th scope="col" class="header">Pass/Fail</th>
-                        <th scope="col" class="header">Actions</th>
-                        </thead>
-                        <tbody data-bind="foreach: participants">
-                        <tr>
-                            <td data-bind="text: company"></td>
-                            <td data-bind="text: firstName"></td>
-                            <td data-bind="text: lastName"></td>
-                            <td data-bind="text: email"></td>
-                            <td data-bind="text: price"></td>
-                            <td data-bind="text: fee"></td>
-                            <td data-bind="text: result"></td>
-                            <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
-                            <td class="low-padding align-center">
-								<span class="button-group compact">
-									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
-									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
-                                       data-bind="click: deleteParticipant, clickBubble: false"></a>
-								</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="scrollable">
+                        <table class="table responsive-table responsive-table-on">
+                            <thead>
+                            <th scope="col" class="header">Company</th>
+                            <th scope="col" class="header">First Name</th>
+                            <th scope="col" class="header">Last Name</th>
+                            <th scope="col" class="header">Email</th>
+                            <th scope="col" class="header">Price</th>
+                            <th scope="col" class="header">Board Fee</th>
+                            <th scope="col" class="header">Result, %</th>
+                            <th scope="col" class="header">Pass/Fail</th>
+                            <th scope="col" class="header">Actions</th>
+                            </thead>
+                            <tbody data-bind="foreach: participants">
+                            <tr>
+                                <td data-bind="text: company"></td>
+                                <td data-bind="text: firstName"></td>
+                                <td data-bind="text: lastName"></td>
+                                <td data-bind="text: email"></td>
+                                <td data-bind="text: price"></td>
+                                <td data-bind="text: fee"></td>
+                                <td data-bind="text: result"></td>
+                                <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
+                                <td class="low-padding align-center">
+                                    <span class="button-group compact">
+                                        <a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
+                                        <a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                                           data-bind="click: deleteParticipant, clickBubble: false"></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

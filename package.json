@@ -8,6 +8,7 @@
       "passport":"",
       "passport-local":"",
       "optimist":"",
-      "calendar":""
+      "calendar":"",
+      "moment":""
   }
 }
