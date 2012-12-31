@@ -91,15 +91,29 @@ function AppViewModel() {
     self.examtypes = ko.observableArray([]);
     self.selectedExam = ko.observable();
 
-    self.nextExam = ko.computed(function() {
+    self.nextExam = ko.computed(function () {
         var today = moment(new Date());
-        var nextExams = _.filter(self.exams(), function(exam) {
+        var nextExams = _.filter(self.exams(), function (exam) {
             return exam.date() > today;
         })
         return _.last(nextExams);
     });
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
+
+    self.setSelectedExam = function (examId) {
+        console.log("selecting exam with id", examId);
+        var queriedExam = /selectedExam=(\d+)/.exec(document.location.search);
+        var selectedExamId = examId ? examId : (queriedExam ? parseInt(queriedExam[1]) : 0);
+        var se = _.find(self.exams(), function (item) {
+            return item.id() == selectedExamId;
+        });
+        if (se) {
+            self.selectedExam(se);
+            self.showParticipants(self.selectedExam());
+//            document.location.search = "";
+        }
+    }
 
     isSelectedExam = function (exam) {
         if (self.selectedExam()) {
@@ -158,18 +172,16 @@ function AppViewModel() {
         $.getJSON('/exam', function (data) {
             console.log("getting all exam");
             self.exams(_.map(data, function (item) {
-                var newExam = new Exam(item);
-                if (isSelectedExam(newExam))
-                    self.showParticipants(newExam);
-                return newExam;
+                return  new Exam(item);
             }));
+            self.setSelectedExam(self.selectedExam() ? self.selectedExam().id() : 0);
         });
     };
 
-   self.loadExamTypes = function () {
+    self.loadExamTypes = function () {
         console.log("getting all exam types");
         $.getJSON('/examtype', function (data) {
-           		self.examtypes(_.map(data, function (item) {
+            self.examtypes(_.map(data, function (item) {
                 return new ExamType(item);
             }));
         });
@@ -202,23 +214,23 @@ function AppViewModel() {
             price:price,
             fee:fee,
             result:result,
-            pass:pass?1:0
+            pass:pass ? 1 : 0
         };
         $.post("/exam/id/" + examId + "/participant", participant, function () {
             console.log("created the participant");
             self.loadAllExams();
         });
     };
-    
+
     newExamType = function (title, tag) {
         console.log("adding an exam type");
         var ExamType = {title:title, tag:tag};
-        $.post("/examtype", ExamType, function(){
-        	console.log("created the exam type");
-        	self.loadExamTypes();
+        $.post("/examtype", ExamType, function () {
+            console.log("created the exam type");
+            self.loadExamTypes();
         });
-        
-    }; 
+
+    };
 
     deleteExamType = function (examType) {
         console.log("deleting Exam Type with id: ", examType.id());
