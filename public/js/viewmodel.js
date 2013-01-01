@@ -90,6 +90,7 @@ function AppViewModel() {
     self.participants = ko.observableArray([]);
     self.examtypes = ko.observableArray([]);
     self.selectedExam = ko.observable();
+    self.selectedExamType = ko.observable();
 
     self.nextExam = ko.computed(function () {
         var today = moment(new Date());
@@ -104,14 +105,20 @@ function AppViewModel() {
     self.setSelectedExam = function (examId) {
         console.log("selecting exam with id", examId);
         var queriedExam = /selectedExam=(\d+)/.exec(document.location.search);
-        var selectedExamId = examId ? examId : (queriedExam ? parseInt(queriedExam[1]) : 0);
-        var se = _.find(self.exams(), function (item) {
-            return item.id() == selectedExamId;
-        });
-        if (se) {
-            self.selectedExam(se);
-            self.showParticipants(self.selectedExam());
-//            document.location.search = "";
+        var selectedExamId = examId ? examId : (queriedExam ? parseInt(queriedExam[1]) : null);
+        if (selectedExamId) {
+            var q = document.location.pathname;
+            if (q != '/exams') {
+                document.location = "/exams?selectedExam=" + selectedExamId;
+            } else {
+                var se = _.find(self.exams(), function (item) {
+                    return item.id() == selectedExamId;
+                });
+                if (se) {
+                    self.selectedExam(se);
+                    self.showParticipants(self.selectedExam());
+                }
+            }
         }
     }
 
@@ -152,10 +159,11 @@ function AppViewModel() {
 
     selectExam = function (exam) {
         console.log("selected exam with id: ", exam.id());
-        if (exam !== self.selectedExam()) {
-            self.selectedExam(exam);
-            self.showParticipants(exam);
-        }
+        self.setSelectedExam(exam.id());
+//        if (exam !== self.selectedExam()) {
+//            self.selectedExam(exam);
+//            self.showParticipants(exam);
+//        }
     };
 
     self.showParticipants = function (exam) {
@@ -174,7 +182,7 @@ function AppViewModel() {
             self.exams(_.map(data, function (item) {
                 return  new Exam(item);
             }));
-            self.setSelectedExam(self.selectedExam() ? self.selectedExam().id() : 0);
+            self.setSelectedExam(self.selectedExam() ? self.selectedExam().id() : null);
         });
     };
 
@@ -184,6 +192,7 @@ function AppViewModel() {
             self.examtypes(_.map(data, function (item) {
                 return new ExamType(item);
             }));
+            console.log("examtypes are", self.examtypes());
         });
     };
 
