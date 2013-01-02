@@ -68,7 +68,7 @@ module.exports = function (app, auth, db) {
     //get all exam types
 	app.get('/examtype', auth.rest, function (req, res) {
     	console.log("loading all exam types");
-    	db.query('SELECT * FROM exam_types', function (err, rows) {
+        db.query('SELECT * FROM exam_types ORDER BY title ASC', function (err, rows) {
         	if (err) throw err; //TODO report error here
         	console.log('Exam Types are: ', rows);
         	res.json(200, rows);

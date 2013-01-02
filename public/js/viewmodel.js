@@ -90,7 +90,6 @@ function AppViewModel() {
     self.participants = ko.observableArray([]);
     self.examtypes = ko.observableArray([]);
     self.selectedExam = ko.observable();
-    self.selectedExamType = ko.observable();
 
     self.nextExam = ko.computed(function () {
         var today = moment(new Date());
