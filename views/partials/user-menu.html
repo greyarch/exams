@@ -31,10 +31,10 @@
         </section>
 
         <ul class="unstyled-list">
-            <li class="title-menu">Next Exam</li>
+            <li class="title-menu">Upcoming Exams</li>
             <li>
-                <ul class="calendar-menu">
-                    <li data-bind="with: nextExam">
+                <ul class="calendar-menu" data-bind="foreach: nextExams">
+                    <li>
                         <a href="" title="Select Exam" data-bind="click: function() {selectExam($data)}">
                             <time data-bind="attr: {datetime: date}">
                                 <b data-bind="text: day"></b>

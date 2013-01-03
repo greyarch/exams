@@ -89,14 +89,15 @@ function AppViewModel() {
     self.exams = ko.observableArray([]);
     self.participants = ko.observableArray([]);
     self.examtypes = ko.observableArray([]);
+    self.tests = ko.observableArray([]);
     self.selectedExam = ko.observable();
 
-    self.nextExam = ko.computed(function () {
+    self.nextExams = ko.computed(function () {
         var today = moment(new Date());
         var nextExams = _.filter(self.exams(), function (exam) {
             return exam.date() > today;
         })
-        return _.last(nextExams);
+        return nextExams;
     });
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
@@ -159,10 +160,6 @@ function AppViewModel() {
     selectExam = function (exam) {
         console.log("selected exam with id: ", exam.id());
         self.setSelectedExam(exam.id());
-//        if (exam !== self.selectedExam()) {
-//            self.selectedExam(exam);
-//            self.showParticipants(exam);
-//        }
     };
 
     self.showParticipants = function (exam) {
@@ -192,6 +189,14 @@ function AppViewModel() {
                 return new ExamType(item);
             }));
             console.log("examtypes are", self.examtypes());
+        });
+    };
+
+    self.loadTests = function () {
+        console.log("getting all exam types");
+        $.getJSON('/test', function (data) {
+            self.tests(data);
+            console.log("examtypes are", self.tests());
         });
     };
 
@@ -271,6 +276,7 @@ $(function () {
 
     appVM = new AppViewModel();
     ko.applyBindings(appVM);
+    appVM.loadTests();
     appVM.loadExamTypes();
     appVM.loadAllExams();
 });
