@@ -97,7 +97,7 @@ function AppViewModel() {
         var nextExams = _.filter(self.exams(), function (exam) {
             return exam.date() > today;
         })
-        return nextExams;
+        return _.last(nextExams, 3);
     });
 
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
