@@ -11,20 +11,20 @@
 
         <div class="field-block button-height">
             <label for="exam-place" class="label"><b>Place</b></label>
-            <select class="select" id="exam-place" 
-            data-bind="options: availablePlaces"></select>
+            <select class="select" id="exam-place" data-bind="options: availablePlaces"></select>
         </div>
         <div class="field-block button-height">
              <label for="exam-date" class="label">Date</label>
              <span class="input">
                 <span class="icon-calendar"></span>
-                <input id="exam-date" type="text" class="input-unstyled datepicker">
+                <input id="exam-date" type="text" class="input-unstyled datepicker"/>
              </span>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-type" class="label"><b>Exam Type</b></label>
-            <input type="text" name="exam-type" id="exam-type" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <select class="select" id="exam-type" data-bind="options: examtypes, optionsText: function(item) {
+                       return item.title() + ' (' + item.tag() + ')'}, optionsValue: 'id'"></select>
         </div>
 
         <div class="field-block button-height">
@@ -38,7 +38,7 @@
 
             <div>
                 <label for="exam-test" class="label mid-margin-right"><b>Test</b></label>
-                <input type="text" name="exam-test" id="exam-test" class="input mid-margin-bottom" value="">
+                <select class="select" id="exam-test" data-bind="options: tests, optionsText: 'tag', optionsValue: 'id'"></select>
             </div>
 	    </div>
 

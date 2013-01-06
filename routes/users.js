@@ -1,4 +1,4 @@
-module.exports = function (app, auth, connection) {
+module.exports = function (app, auth, db) {
     app.get('/login', function (req, res) {
         res.render('login.html');
     });

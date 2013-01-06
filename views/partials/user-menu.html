@@ -1,0 +1,64 @@
+<section id="menu" role="complementary">
+
+    <!-- This wrapper is used by several responsive layouts -->
+    <div id="menu-content">
+
+        <header>
+            {{user.role}}
+        </header>
+
+        <div id="profile">
+            <img src="/img/user.png" width="64" height="64" alt="User name" class="user-icon">
+            Hello
+            <span class="name"><b>{{user.full_name}}</b></span>
+        </div>
+
+        <!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+        <ul id="access" class="children-tooltip">
+            <li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+            <li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
+            <li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+            <li class="disabled"><span class="icon-gear"></span></li>
+        </ul>
+
+        <!-- Navigation menu goes here -->
+        <section class="navigable">
+            <ul class="big-menu">
+                <li><a href="exams" class="current navigable-current">Exams</a></li>
+                <li><a href="calendar">Calendar</a></li>
+                <li><a href="examtypes">Exam Types</a></li>
+            </ul>
+        </section>
+
+        <ul class="unstyled-list">
+            <li class="title-menu">Upcoming Exams</li>
+            <li>
+                <ul class="calendar-menu" data-bind="foreach: nextExams">
+                    <li>
+                        <a href="" title="Select Exam" data-bind="click: function() {selectExam($data)}">
+                            <time data-bind="attr: {datetime: date}">
+                                <b data-bind="text: day"></b>
+                                <span data-bind="text: month"></span>
+                            </time>
+                            <span class="green" data-bind="text: title"></span><br>
+                            <span data-bind="text: place"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+    <!-- End content wrapper -->
+
+    <!-- This is optional -->
+    <footer id="menu-footer">
+
+        <!-- Any content for the footer - PLACE HERE-->
+        <p class="button-height">
+            <input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
+            <label for="auto-refresh">Auto-refresh</label>
+        </p>
+    </footer>
+
+</section>

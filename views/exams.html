@@ -3,39 +3,41 @@
 {{/contentFor}}
 
 {{#contentFor "pageStyles"}}
-<link rel="stylesheet" href="css/styles/switches.css?v=1">
-<link rel="stylesheet" href="css/events.css">
-<link rel="stylesheet" href="css/styles/table.css">
-<link rel="stylesheet" href="css/styles/modal.css">
-<link rel="stylesheet" href="css/styles/form.css">
-<link rel="stylesheet" href="css/styles/dashboard.css">
-<link rel="stylesheet" href="js/libs/glDatePicker/developr.css">
+<link rel="stylesheet" href="/css/styles/switches.css?v=1">
+<link rel="stylesheet" href="/css/events.css">
+<link rel="stylesheet" href="/css/styles/table.css">
+<link rel="stylesheet" href="/css/styles/modal.css">
+<link rel="stylesheet" href="/css/styles/form.css">
+<link rel="stylesheet" href="/css/styles/dashboard.css">
+<link rel="stylesheet" href="/js/libs/glDatePicker/developr.css">
 
 <!-- jQuery Form Validation -->
-<link rel="stylesheet" href="js/libs/formValidator/developr.validationEngine.css?v=1">
+<link rel="stylesheet" href="/js/libs/formValidator/developr.validationEngine.css?v=1">
 {{/contentFor}}
 
 {{#contentFor "pageScripts"}}
 <!-- Scripts -->
-<script src="js/libs/jquery-1.8.2.min.js"></script>
-<script src="js/setup.js"></script>
-<script src="js/libs/knockout-2.2.0.js"></script>
+<script src="/js/libs/jquery-1.8.2.min.js"></script>
+<script src="/js/setup.js"></script>
+<script src="/js/libs/lodash.min.js"></script>
+<script src="/js/libs/knockout-2.2.0.js"></script>
 
 <!-- Template functions -->
-<script src="js/developr.input.js"></script>
-<script src="js/developr.navigable.js"></script>
-<script src="js/developr.notify.js"></script>
-<script src="js/developr.scroll.js"></script>
-<script src="js/developr.tooltip.js"></script>
-<script src="js/developr.modal.js"></script>
-<script src="js/libs/glDatePicker/glDatePicker.min.js"></script>
-<script src="js/moment.min.js"></script>
-<script src="js/modal.js"></script>
-<script src="js/viewmodel.js"></script>
+<script src="/js/developr.input.js"></script>
+<script src="/js/developr.navigable.js"></script>
+<script src="/js/developr.notify.js"></script>
+<script src="/js/developr.scroll.js"></script>
+<script src="/js/developr.tooltip.js"></script>
+<script src="/js/developr.modal.js"></script>
+<script src="/js/developr.scroll.js"></script>
+<script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/modal.js"></script>
+<script src="/js/viewmodel.js"></script>
 
 <!-- jQuery Form Validation -->
-<script src="js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
-<script src="js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
+<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
+<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
@@ -55,70 +57,6 @@
         <li><span class="shortcut-notes" title="Notes">Notes</span></li>
     -->
 </ul>
-{{/contentFor}}
-
-{{#contentFor "pageMenu"}}
-<section id="menu" role="complementary">
-
-    <!-- This wrapper is used by several responsive layouts -->
-    <div id="menu-content">
-
-        <header>
-            {{user.role}}
-        </header>
-
-        <div id="profile">
-            <img src="img/user.png" width="64" height="64" alt="User name" class="user-icon">
-            Hello
-            <span class="name"><b>{{user.full_name}}</b></span>
-        </div>
-
-        <!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
-        <ul id="access" class="children-tooltip">
-            <li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
-            <li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
-            <li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
-            <li class="disabled"><span class="icon-gear"></span></li>
-        </ul>
-
-        <!-- Navigation menu goes here -->
-        <section class="navigable">
-            <ul class="big-menu">
-				<li><a href="exams" class="current navigable-current">Exams</a></li>
-				<li><a href="calendar">Calendar</a></li>
-				<li><a href="examtypes">Exam Types</a></li>
-            </ul>
-        </section>
-
-        <ul class="unstyled-list">
-            <li class="title-menu">Next Exam</li>
-            <li>
-                <ul class="calendar-menu">
-                    <li>
-                        <a href="#" title="See Exam">
-                            <time datetime="2011-02-24"><b>24</b> Feb</time>
-                            <small class="green">10:30</small>
-                            Sofia, Bulgaria
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-    </div>
-    <!-- End content wrapper -->
-
-    <!-- This is optional -->
-    <footer id="menu-footer">
-
-        <!-- Any content for the footer - PLACE HERE-->
-        <p class="button-height">
-            <input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
-            <label for="auto-refresh">Auto-refresh</label>
-        </p>
-    </footer>
-
-</section>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
@@ -196,9 +134,10 @@
                             <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
                         </div>
                     </div>
-                    <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
-                        <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightyellow' : 'inherit'}">
-                            <a href="#" class="event-description" data-bind="click: selectExam">
+                    <div class="scrollable">
+                        <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+                            <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
+                                <a href="#" class="event-description" data-bind="click: selectExam">
 		                                    <span class="event-date with-month">
 		                                        <span data-bind="text: day"></span>
 		                                        <span class="event-month">
@@ -207,14 +146,15 @@
 		                                            <span data-bind="text: year"></span>
 		                                        </span>
 		                                    </span>
-                                <h4 data-bind="text: title"></h4>
+                                    <h4 data-bind="text: title"></h4>
 
-                                <p data-bind="text: place"></p>
+                                    <p data-bind="text: place"></p>
 		                                    <span class="count inset show-on-parent-hover"
                                                   data-bind="click: deleteExam, clickBubble: false">✕</span>
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="new-row-mobile nine-columns">
@@ -228,38 +168,40 @@
                             </a>
                         </div>
                     </div>
-                    <table class="table responsive-table responsive-table-on">
-                        <thead>
-                        <th scope="col" class="header">Company</th>
-                        <th scope="col" class="header">First Name</th>
-                        <th scope="col" class="header">Last Name</th>
-                        <th scope="col" class="header">Email</th>
-                        <th scope="col" class="header">Price</th>
-                        <th scope="col" class="header">Board Fee</th>
-                        <th scope="col" class="header">Result, %</th>
-                        <th scope="col" class="header">Pass/Fail</th>
-                        <th scope="col" class="header">Actions</th>
-                        </thead>
-                        <tbody data-bind="foreach: participants">
-                        <tr>
-                            <td data-bind="text: company"></td>
-                            <td data-bind="text: firstName"></td>
-                            <td data-bind="text: lastName"></td>
-                            <td data-bind="text: email"></td>
-                            <td data-bind="text: price"></td>
-                            <td data-bind="text: fee"></td>
-                            <td data-bind="text: result"></td>
-                            <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
-                            <td class="low-padding align-center">
-								<span class="button-group compact">
-									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
-									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
-                                       data-bind="click: deleteParticipant, clickBubble: false"></a>
-								</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="scrollable">
+                        <table class="table responsive-table responsive-table-on">
+                            <thead>
+                            <th scope="col" class="header">Company</th>
+                            <th scope="col" class="header">First Name</th>
+                            <th scope="col" class="header">Last Name</th>
+                            <th scope="col" class="header">Email</th>
+                            <th scope="col" class="header">Price</th>
+                            <th scope="col" class="header">Board Fee</th>
+                            <th scope="col" class="header">Result, %</th>
+                            <th scope="col" class="header">Pass/Fail</th>
+                            <th scope="col" class="header">Actions</th>
+                            </thead>
+                            <tbody data-bind="foreach: participants">
+                            <tr>
+                                <td data-bind="text: company"></td>
+                                <td data-bind="text: firstName"></td>
+                                <td data-bind="text: lastName"></td>
+                                <td data-bind="text: email"></td>
+                                <td data-bind="text: price"></td>
+                                <td data-bind="text: fee"></td>
+                                <td data-bind="text: result"></td>
+                                <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
+                                <td class="low-padding align-center">
+                                    <span class="button-group compact">
+                                        <a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
+                                        <a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                                           data-bind="click: deleteParticipant, clickBubble: false"></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

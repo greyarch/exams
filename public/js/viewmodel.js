@@ -17,7 +17,7 @@ function Exam(json) {
     });
 
     self.month = ko.computed(function () {
-        return self.date().month() + 1;
+        return self.date().format('MMM');
     });
 
     self.year = ko.computed(function () {
@@ -89,9 +89,38 @@ function AppViewModel() {
     self.exams = ko.observableArray([]);
     self.participants = ko.observableArray([]);
     self.examtypes = ko.observableArray([]);
+    self.tests = ko.observableArray([]);
     self.selectedExam = ko.observable();
 
+    self.nextExams = ko.computed(function () {
+        var today = moment(new Date());
+        var nextExams = _.filter(self.exams(), function (exam) {
+            return exam.date() > today;
+        })
+        return nextExams;
+    });
+
     self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
+
+    self.setSelectedExam = function (examId) {
+        console.log("selecting exam with id", examId);
+        var queriedExam = /selectedExam=(\d+)/.exec(document.location.search);
+        var selectedExamId = examId ? examId : (queriedExam ? parseInt(queriedExam[1]) : null);
+        if (selectedExamId) {
+            var q = document.location.pathname;
+            if (q != '/exams') {
+                document.location = "/exams?selectedExam=" + selectedExamId;
+            } else {
+                var se = _.find(self.exams(), function (item) {
+                    return item.id() == selectedExamId;
+                });
+                if (se) {
+                    self.selectedExam(se);
+                    self.showParticipants(self.selectedExam());
+                }
+            }
+        }
+    }
 
     isSelectedExam = function (exam) {
         if (self.selectedExam()) {
@@ -103,7 +132,7 @@ function AppViewModel() {
     deleteExam = function (exam) {
         console.log("deleting exam with id: ", exam.id());
         $.ajax({
-            url:"exam/" + exam.id(),
+            url:"/exam/id/" + exam.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -117,7 +146,7 @@ function AppViewModel() {
     deleteParticipant = function (participant) {
         console.log("deleting exam with id: ", participant.id());
         $.ajax({
-            url:"participant/" + participant.id(),
+            url:"/participant/id/" + participant.id(),
             type:"DELETE",
             success:function () {
                 self.loadAllExams();
@@ -130,16 +159,13 @@ function AppViewModel() {
 
     selectExam = function (exam) {
         console.log("selected exam with id: ", exam.id());
-        if (exam !== self.selectedExam()) {
-            self.selectedExam(exam);
-            self.showParticipants(exam);
-        }
+        self.setSelectedExam(exam.id());
     };
 
     self.showParticipants = function (exam) {
         console.log("getting all participants for exam with id ", exam.id());
-        $.getJSON('exam/' + exam.id() + '/participant', function (data) {
-            self.participants($.map(data, function (item) {
+        $.getJSON('/exam/id/' + exam.id() + '/participant', function (data) {
+            self.participants(_.map(data, function (item) {
                 return new Participant(item);
             }));
         });
@@ -147,23 +173,30 @@ function AppViewModel() {
 
     self.loadAllExams = function () {
         self.participants([]);
-        $.getJSON('exam', function (data) {
+        $.getJSON('/exam', function (data) {
             console.log("getting all exam");
-            self.exams($.map(data, function (item) {
-                var newExam = new Exam(item);
-                if (isSelectedExam(newExam))
-                    self.showParticipants(newExam);
-                return newExam;
+            self.exams(_.map(data, function (item) {
+                return  new Exam(item);
             }));
+            self.setSelectedExam(self.selectedExam() ? self.selectedExam().id() : null);
         });
     };
 
-   self.loadExamTypes = function () {
+    self.loadExamTypes = function () {
         console.log("getting all exam types");
-        $.getJSON('examtype', function (data) {
-           		self.examtypes($.map(data, function (item) {
+        $.getJSON('/examtype', function (data) {
+            self.examtypes(_.map(data, function (item) {
                 return new ExamType(item);
             }));
+            console.log("examtypes are", self.examtypes());
+        });
+    };
+
+    self.loadTests = function () {
+        console.log("getting all exam types");
+        $.getJSON('/test', function (data) {
+            self.tests(data);
+            console.log("examtypes are", self.tests());
         });
     };
 
@@ -194,28 +227,28 @@ function AppViewModel() {
             price:price,
             fee:fee,
             result:result,
-            pass:pass?1:0
+            pass:pass ? 1 : 0
         };
-        $.post("exam/" + examId + "/participant", participant, function () {
+        $.post("/exam/id/" + examId + "/participant", participant, function () {
             console.log("created the participant");
             self.loadAllExams();
         });
     };
-    
+
     newExamType = function (title, tag) {
         console.log("adding an exam type");
         var ExamType = {title:title, tag:tag};
-        $.post("examtype", ExamType, function(){
-        	console.log("created the exam type");
-        	self.loadExamTypes();
+        $.post("/examtype", ExamType, function () {
+            console.log("created the exam type");
+            self.loadExamTypes();
         });
-        
-    }; 
 
-    deleteExamType = function (ExamType) {
-        console.log("deleting Exam Type with id: ", ExamType.id());
+    };
+
+    deleteExamType = function (examType) {
+        console.log("deleting Exam Type with id: ", examType.id());
         $.ajax({
-            url:"examtype/" + ExamType.id(),
+            url:"/examtype/id/" + examType.id(),
             type:"DELETE",
             success:function () {
                 self.loadExamTypes();
@@ -243,6 +276,7 @@ $(function () {
 
     appVM = new AppViewModel();
     ko.applyBindings(appVM);
+    appVM.loadTests();
     appVM.loadExamTypes();
     appVM.loadAllExams();
 });
