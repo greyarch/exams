@@ -68,7 +68,7 @@ module.exports = function (app, auth, db) {
     //get all exam types
     app.get('/examtype', auth.rest, function (req, res) {
         console.log("loading all exam types");
-        db.query('SELECT * FROM exam_types ORDER BY title ASC', function (err, rows) {
+        db.query('SELECT * FROM exam_types ORDER BY tag ASC', function (err, rows) {
             if (err) throw err; //TODO report error here
             console.log('Exam Types are: ', rows);
             res.json(200, rows);
@@ -78,7 +78,7 @@ module.exports = function (app, auth, db) {
     //get all tests
     app.get('/test', auth.rest, function (req, res) {
         console.log("loading all tests");
-        db.query('SELECT * FROM tests ORDER BY title ASC', function (err, rows) {
+        db.query('SELECT * FROM tests ORDER BY tag ASC', function (err, rows) {
             if (err) throw err; //TODO report error here
             console.log('Tests are: ', rows);
             res.json(200, rows);
