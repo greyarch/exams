@@ -38,6 +38,8 @@ app.set('view engine', 'html');
 
 require('./routes')(app, auth, db);
 
+require('./views/helpers/globalHelpers')(hbs);
+
 app.listen(argv.port || 3000).on('end', function () {
     console.log("goodbye");
     connection.end();
