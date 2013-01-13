@@ -1,19 +1,9 @@
-require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/exam'], function (ko, _, ExamType, Exam) {
+require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'user-menu'], function (ko, _, ExamType, UserMenuVM) {
     function ExamTypesVM() {
         var self = this;
 
         self.examtypes = ko.observableArray([]);
         self.nextExams = ko.observableArray([]);
-
-        self.loadNextExams = function () {
-            Exam.getAll(function (data) {
-                console.log("loaded all exams", data);
-                var today = moment();
-                self.nextExams(_.last(_.filter(data, function (exam) {
-                    return moment(new Date(exam.date)) > today;
-                }), 3));
-            });
-        }
 
         self.loadExamTypes = function () {
             ExamType.getAll(function (data) {
@@ -38,11 +28,10 @@ require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype'
                 self.loadExamTypes();
             });
         };
+
+        self.loadExamTypes();
     }
 
-    var etVM = new ExamTypesVM();
-    etVM.loadExamTypes();
-//    etVM.loadNextExams();
+    etVM = new ExamTypesVM();
     ko.applyBindings(etVM, $('#main')[0]);
-//    ko.applyBindings(etVM, $('#menu')[0]);
 });

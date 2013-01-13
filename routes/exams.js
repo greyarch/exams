@@ -45,10 +45,21 @@ module.exports = function (app, auth, db) {
         });
     });
 
-    //get all exam
+    //get all exams
     app.get('/exam', auth.rest, function (req, res) {
         console.log("loading all exams");
         db.query('SELECT * FROM exams ORDER BY date DESC', function (err, rows) {
+            if (err) throw err; //TODO report error here
+            console.log('exams are: ', rows);
+            res.json(200, rows);
+        });
+    });
+
+    //update an exam
+    app.put('/exam/id/:id', auth.rest, function (req, res) {
+        var exam = req.body;
+        console.log("updating exam", exam);
+        db.query('UPDATE exams SET ? WHERE id = ?', [exam, req.params.id], function (err, rows) {
             if (err) throw err; //TODO report error here
             console.log('exams are: ', rows);
             res.json(200, rows);

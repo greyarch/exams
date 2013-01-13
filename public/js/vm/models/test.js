@@ -1,5 +1,5 @@
-define('models/examtype', ['js/libs/knockout-2.2.0.js'], function (ko) {
-    function ExamType(json) {
+define('models/test', ['js/libs/knockout-2.2.0.js'], function (ko) {
+    function Test(json) {
         var self = this;
         self.id = ko.observable(json.id);
         self.title = ko.observable(json.title);
@@ -14,22 +14,22 @@ define('models/examtype', ['js/libs/knockout-2.2.0.js'], function (ko) {
         }
 
         self.delete = function (onSuccess) {
-            console.log("deleting Exam Type with id: ", self.id());
+            console.log("deleting a test with id: ", self.id());
             $.ajax({
-                url:"/examtype/id/" + self.id(),
+                url:"/test/id/" + self.id(),
                 type:"DELETE",
                 success:onSuccess,
                 error:function (jqXhr) {
-                    console.log("error while trying to delete Exam Type: " + jqXhr.responseText);
+                    console.log("error while trying to delete Test: " + jqXhr.responseText);
                 }
             });
         }
     }
 
-    ExamType.getAll = function (onSuccess) {
-        console.log("getting all exam types");
-        $.getJSON('/examtype', onSuccess);
+    Test.getAll = function (onSuccess) {
+        console.log("getting all tests");
+        $.getJSON('/test', onSuccess);
     }
 
-    return ExamType;
+    return Test;
 });

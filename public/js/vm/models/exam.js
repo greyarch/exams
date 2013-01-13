@@ -9,25 +9,26 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'], fu
         self.testId = ko.observable(json.test_id);
         self.proctor = ko.observable(json.proctor);
         self.id = ko.observable(json.id);
+        self.date = ko.observable(moment(json.date).format("YYYY-MM-DD"));
 
-        self.date = ko.computed(function () {
-            if (json.date) {
-                return moment(json.date, "YYYY-MM-DD");
+        self.jsDate = ko.computed(function () {
+            if (self.date()) {
+                return moment(self.date(), "YYYY-MM-DD");
             } else {
-                return moment(new Date());
+                return moment();
             }
         });
 
         self.day = ko.computed(function () {
-            return self.date().date();
+            return self.jsDate().date();
         });
 
         self.month = ko.computed(function () {
-            return self.date().format('MMM');
+            return self.jsDate().format('MMM');
         });
 
         self.year = ko.computed(function () {
-            return self.date().year();
+            return self.jsDate().year();
         });
 
         self.toJSON = function () {
@@ -35,7 +36,7 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'], fu
                 id:self.id(),
                 title:self.title(),
                 place:self.place(),
-                date:self.date().format("YYYY-MM-DD"),
+                date:self.date(),
                 exam_type_id:self.typeId(),
                 test_id:self.testId(),
                 proctor:self.proctor()
@@ -45,6 +46,22 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'], fu
         self.loadParticipantsAsJSON = function(onSuccess) {
             console.log("getting all participants for exam with id ", self.id());
             $.getJSON('/exam/id/' + self.id() + '/participant', onSuccess);
+        }
+
+        self.save = function(onSuccess) {
+            var ex = self.toJSON();
+            if (ex.id) {
+                console.log("updating exam", ex);
+                $.ajax({
+                    type:'PUT',
+                    url:'/exam/id/' + ex.id,
+                    data:ex,
+                    success:onSuccess
+                }, "json");
+            } else {
+                console.log("adding new exam", ex);
+                $.post('/exam', ex, onSuccess, "json");
+            }
         }
     }
 

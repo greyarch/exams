@@ -1,22 +1,10 @@
-require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form'], function(ko, Exam, Participant, ExamFormVM) {
+require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'user-menu'], function(ko, Exam, Participant, ExamFormVM, UserMenuVM) {
     function AppViewModel() {
         var self = this;
 
         self.exams = ko.observableArray([]);
         self.participants = ko.observableArray([]);
-        self.examtypes = ko.observableArray([]);
-        self.tests = ko.observableArray([]);
         self.selectedExam = ko.observable();
-
-        self.formModel = ko.observable(new ExamFormVM(self.selectedExam));
-
-        self.nextExams = ko.computed(function () {
-            var today = moment();
-            var nextExams = _.filter(self.exams(), function (exam) {
-                return exam.date() > today;
-            })
-            return _.last(nextExams, 3);
-        });
 
         self.setSelectedExam = function (examId) {
             console.log("selecting exam with id", examId);
@@ -43,6 +31,18 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
         self.hasSelectedExam = ko.computed(function() {
             return self.selectedExam() ? true : false;
         });
+
+        addExam = function() {
+            console.log("add exam");
+            ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(), self.loadAllExams));
+            openModal('#add-exam', 'Add new exam');
+        }
+
+        editExam = function() {
+            console.log("edit exam");
+            ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(self.selectedExam().toJSON()), self.loadAllExams));
+            openModal('#add-exam', 'Edit exam');
+        }
 
         isSelectedExam = function (exam) {
             if (self.selectedExam()) {
@@ -102,10 +102,10 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
                 self.loadAllExams();
             });
         };
+
+        self.loadAllExams();
     }
 
     appVM = new AppViewModel();
-    appVM.loadAllExams();
     ko.applyBindings(appVM, $('#main')[0]);
-    ko.applyBindings(appVM, $('#menu')[0]);
 });

@@ -129,8 +129,8 @@
                         <h3 style="display: inline">Exams</h3>
 
                         <div class="button-group absolute-right">
-                            <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Add Exam</a>
-                            <a class="button icon-star" onclick="openModal('#add-exam', 'Add new exam');">Edit Exam</a>
+                            <a class="button icon-star" data-bind="click: addExam">Add Exam</a>
+                            <a class="button icon-star" data-bind="click: editExam">Edit Exam</a>
                         </div>
                     </div>
                     <div class="scrollable">
@@ -207,7 +207,7 @@
 
     </div>
 
-    {{> add-participant}}
-    {{> add-exam}}
 </section>
 
+{{> add-participant}}
+{{> add-exam}}

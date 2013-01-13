@@ -1,42 +1,38 @@
-define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype'], function (ko, _, ExamType) {
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
 
-    function ExamFormVM(exam) {
+    function ExamFormVM(exam, onSave) {
         var self = this;
 
         self.exam = exam;
+        self.onSave = onSave;
         self.examtypes = ko.observableArray([]);
         self.tests = ko.observableArray([]);
         self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
+//        self.selectedExamType = ko.computed(function() {
+//            return _.find(self.examtypes(), function(item) {
+//                item.id() === self.exam.typeId();
+//            });
+//        });
+
         self.loadExamTypes = function () {
-            console.log("getting all exam types");
-            $.getJSON('/examtype', function (data) {
-                self.examtypes(_.map(data, function (item) {
-                    return new ExamType(item);
-                }));
+            ExamType.getAll(function (data) {
+                self.examtypes(data);
                 console.log("examtypes are", self.examtypes());
             });
         };
 
         self.loadTests = function () {
-            console.log("getting all exam types");
-            $.getJSON('/test', function (data) {
+            Test.getAll(function (data) {
                 self.tests(data);
-                console.log("examtypes are", self.tests());
+                console.log("tests are", self.tests());
             });
         };
 
-        saveExam = function (date) { //ugly hack cause the date picker does not work with knockout
-            var ex = self.exam().toJSON();
-            ex.date = date; //ugly hack cause the date picker does not work with knockout
-            console.log("saving exam", ex);
-            $.post('/exam', ex, function (data) {
-                console.log("exam saved", data);
-//                appVM.loadAllExams(); //TODO remove tight coupling with main VM
-            }, "json");
+        saveExam = function (date) {
+            self.exam.date(date); //ugly hack cause the date picker does not work with knockout
+            self.exam.save(self.onSave);
         };
-
-        self.loadExamTypes();
 
         $(".datepicker").click(function () {
             $(".datepicker").glDatePicker({
@@ -50,6 +46,9 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype']
                 }
             });
         });
+
+        self.loadExamTypes();
+        self.loadTests();
     }
 
     return ExamFormVM;
