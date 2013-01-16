@@ -1,4 +1,4 @@
-require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'user-menu'], function(ko, Exam, Participant, ExamFormVM, UserMenuVM) {
+require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'user-menu'], function (ko, Exam, Participant, ExamFormVM, UserMenuVM) {
     function AppViewModel() {
         var self = this;
 
@@ -7,6 +7,7 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
         self.selectedExam = ko.observable();
 
         self.setSelectedExam = function (examId) {
+            self.selectedExam(null);
             console.log("selecting exam with id", examId);
             var queriedExam = /selectedExam=(\d+)/.exec(document.location.search);
             var selectedExamId = examId || (queriedExam ? parseInt(queriedExam[1]) : null);
@@ -28,17 +29,17 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
             }
         }
 
-        self.hasSelectedExam = ko.computed(function() {
+        self.hasSelectedExam = ko.computed(function () {
             return self.selectedExam() ? true : false;
         });
 
-        addExam = function() {
+        addExam = function () {
             console.log("add exam");
             ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(), self.loadAllExams));
             openModal('#add-exam', 'Add new exam');
         }
 
-        editExam = function() {
+        editExam = function () {
             console.log("edit exam");
             ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(self.selectedExam().toJSON()), self.loadAllExams));
             openModal('#add-exam', 'Edit exam');
@@ -58,7 +59,7 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
         };
 
         deleteParticipant = function (participant) {
-            Participant.remove(participant.id(), function() {
+            Participant.remove(participant.id(), function () {
                 self.loadAllExams();
             });
         };
@@ -104,6 +105,9 @@ require(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam
         };
 
         self.loadAllExams();
+
+        umVM = new UserMenuVM(self.exams);
+        ko.applyBindings(umVM, $('#menu')[0]);
     }
 
     appVM = new AppViewModel();

@@ -9,12 +9,6 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype',
         self.tests = ko.observableArray([]);
         self.availablePlaces = ko.observableArray(['Sofia, Bulgaria', 'Bucharest, Romania']);
 
-//        self.selectedExamType = ko.computed(function() {
-//            return _.find(self.examtypes(), function(item) {
-//                item.id() === self.exam.typeId();
-//            });
-//        });
-
         self.loadExamTypes = function () {
             ExamType.getAll(function (data) {
                 self.examtypes(data);

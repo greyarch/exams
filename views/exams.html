@@ -130,7 +130,7 @@
 
                         <div class="button-group absolute-right">
                             <a class="button icon-star" data-bind="click: addExam">Add Exam</a>
-                            <a class="button icon-star" data-bind="click: editExam">Edit Exam</a>
+                            <a class="button icon-star" data-bind="css: {disabled: !hasSelectedExam()}, click: editExam">Edit Exam</a>
                         </div>
                     </div>
                     <div class="scrollable">
@@ -161,8 +161,8 @@
                     <div class="block-title">
                         <h3>Participants</h3>
 
-                        <div data-bind="enable: hasSelectedExam" class="button-group absolute-right">
-                            <a class="button icon-star" onclick="openModal('#add-participant', 'Add new participant');">
+                        <div class="button-group absolute-right">
+                            <a data-bind="css: {disabled: !hasSelectedExam()}" class="button icon-star" onclick="openModal('#add-participant', 'Add new participant');">
                                 Add Participant
                             </a>
                         </div>
