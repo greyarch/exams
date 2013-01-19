@@ -21,7 +21,7 @@
 <script src="/js/libs/setup.js"></script>
 
 <!-- Template functions -->
-<script src="/js/libs/developr.input.js"></script>
+<!--<script src="/js/libs/developr.input.js"></script>-->
 <script src="/js/libs/developr.navigable.js"></script>
 <script src="/js/libs/developr.notify.js"></script>
 <script src="/js/libs/developr.scroll.js"></script>
@@ -31,7 +31,7 @@
 <script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
 <script src="/js/libs/moment.min.js"></script>
 <script src="/js/modal.js"></script>
-<script type="text/javascript" data-main="js/vm/exams.js" src="/js/require.js"></script>
+<script type="text/javascript" data-main="js/vm/exams-page-vm.js" src="/js/require.js"></script>
 
 <!-- jQuery Form Validation -->
 <script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
@@ -58,34 +58,34 @@
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
-<script>
+<!--<script>-->
 
-    // Call template init (optional, but faster if called manually)
-    $.template.init();
+<!--// Call template init (optional, but faster if called manually)-->
+<!--$.template.init();-->
 
-    // Color
-    $('#anthracite-inputs').change(function () {
-        $('#main')[this.checked ? 'addClass' : 'removeClass']('black-inputs');
-    });
+<!--// Color-->
+<!--$('#anthracite-inputs').change(function () {-->
+<!--$('#main')[this.checked ? 'addClass' : 'removeClass']('black-inputs');-->
+<!--});-->
 
-    // Switches mode
-    $('#switch-mode').change(function () {
-        $('#switch-wrapper')[this.checked ? 'addClass' : 'removeClass']('reversed-switches');
-    });
+<!--// Switches mode-->
+<!--$('#switch-mode').change(function () {-->
+<!--$('#switch-wrapper')[this.checked ? 'addClass' : 'removeClass']('reversed-switches');-->
+<!--});-->
 
-    // Disabled switches
-    $('#switch-enable').change(function () {
-        $('#disabled-switches').children()[this.checked ? 'enableInput' : 'disableInput']();
-    });
+<!--// Disabled switches-->
+<!--$('#switch-enable').change(function () {-->
+<!--$('#disabled-switches').children()[this.checked ? 'enableInput' : 'disableInput']();-->
+<!--});-->
 
-    // Tooltip menu
-    $('#select-tooltip').menuTooltip($('#select-context').hide(), {
-        classes:['no-padding']
-    });
-    // Form validation
-    $('form').validationEngine();
+<!--// Tooltip menu-->
+<!--$('#select-tooltip').menuTooltip($('#select-context').hide(), {-->
+<!--classes:['no-padding']-->
+<!--});-->
+<!--// Form validation-->
+<!--$('form').validationEngine();-->
 
-</script>
+<!--</script>-->
 {{/contentFor}}
 
 <body class="clearfix with-menu with-shortcuts">
@@ -130,27 +130,31 @@
 
                         <div class="button-group absolute-right">
                             <a class="button icon-star" data-bind="click: addExam">Add Exam</a>
-                            <a class="button icon-pencil" data-bind="css: {disabled: !hasSelectedExam()}, click: editExam">Edit Exam</a>
+                            <!--<a class="button icon-pencil" data-bind="css: {disabled: !hasSelectedExam()}, click: editExam">Edit Exam</a>-->
                         </div>
                     </div>
                     <div class="scrollable">
                         <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
                             <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
                                 <a href="#" class="event-description" data-bind="click: selectExam">
-		                                    <span class="event-date with-month">
-		                                        <span data-bind="text: day"></span>
-		                                        <span class="event-month">
-		                                            <span data-bind="text: month"></span>
-		                                            /
-		                                            <span data-bind="text: year"></span>
-		                                        </span>
-		                                    </span>
+                                    <span class="event-date with-month">
+                                        <span data-bind="text: day"></span>
+                                        <span class="event-month">
+                                            <span data-bind="text: month"></span>
+                                            /
+                                            <span data-bind="text: year"></span>
+                                        </span>
+                                    </span>
                                     <h4 data-bind="text: title"></h4>
 
                                     <p data-bind="text: place"></p>
-		                                    <span class="count inset show-on-parent-hover"
-                                                  data-bind="click: deleteExam, clickBubble: false">✕</span>
                                 </a>
+                                <span class="inset show-on-parent-hover button-group compact align-botqtom">
+                                    <a data-bind="click: editExam" class="button icon-pencil with-tooltip"
+                                       title="Edit"></a>
+                                    <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                       data-bind="click: deleteExam, clickBubble: false"></a>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -162,7 +166,8 @@
                         <h3>Participants</h3>
 
                         <div class="button-group absolute-right">
-                            <a data-bind="css: {disabled: !hasSelectedExam()}" class="button icon-star" onclick="openModal('#add-participant', 'Add new participant');">
+                            <a data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant"
+                               class="button icon-star">
                                 Add Participant
                             </a>
                         </div>
@@ -192,8 +197,9 @@
                                 <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
                                 <td class="low-padding align-center">
                                     <span class="button-group compact">
-                                        <a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
-                                        <a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                                        <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
+                                           title="Edit"></a>
+                                        <a class="button icon-trash with-tooltip confirm" title="Delete"
                                            data-bind="click: deleteParticipant, clickBubble: false"></a>
                                     </span>
                                 </td>

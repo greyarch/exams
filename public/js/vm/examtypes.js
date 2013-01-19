@@ -1,5 +1,5 @@
 require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'user-menu'], function (ko, _, ExamType, UserMenuVM) {
-    function ExamTypesVM() {
+//    function ExamTypesVM() {
         var self = this;
 
         self.examtypes = ko.observableArray([]);
@@ -30,8 +30,8 @@ require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype'
         };
 
         self.loadExamTypes();
-    }
+//    }
 
-    etVM = new ExamTypesVM();
-    ko.applyBindings(etVM, $('#main')[0]);
+//    etVM = new ExamTypesVM();
+    ko.applyBindings(self, $('#main')[0]);
 });
