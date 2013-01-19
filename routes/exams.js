@@ -1,7 +1,15 @@
 module.exports = function (app, auth, db) {
     app.get('/exams', auth.ensure, function (req, res) {
-        //TODO use req.query.selectedExam to get the selected exam
         res.render('exams.html', {user: req.user});
+    });
+
+    app.get('/reports', auth.ensure, function (req, res) {
+        db.query('SELECT * FROM participants p JOIN exams e ON p.exam_id = e.id JOIN exam_types et ON e.exam_type_id = et.id ORDER BY first_name ASC;',
+            function (err, rows) {
+                if (err) throw err; //TODO report error here
+                console.log("showing all participants", rows);
+                res.render('reports.html', {user: req.user, participants: rows});
+            });
     });
 
     app.get('/examtypes', auth.ensure, function (req, res) {
@@ -109,11 +117,15 @@ module.exports = function (app, auth, db) {
 
     //delete exam with an id
     app.delete('/exam/id/:id', auth.rest, function (req, res) {
-        console.log("deleting an exam with id " + req.params.id);
+        console.log("deleting an exam (and all its participants) with id " + req.params.id);
         db.query('DELETE FROM exams WHERE id = ?', [req.params.id], function (err, result) {
             if (err) throw err; //TODO report error here
-            console.log('result is: ', result);
-            res.end();
+            console.log('result from exam deletion is: ', result);
+            db.query('DELETE FROM participants WHERE exam_id = ?', [req.params.id], function (err, result) {
+                if (err) throw err; //TODO report error here
+                console.log('result deleting all participants is: ', result);
+                res.end();
+            });
         });
     });
 

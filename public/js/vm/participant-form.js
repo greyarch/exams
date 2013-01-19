@@ -12,9 +12,7 @@ define('participant-form', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'
         });
 
         saveParticipant = function (passed) {
-            var part = self.participant().toJSON(); //hack; the checked binding does not work
-//            part.pass = passed;
-            Participant.save(self.examId, part, self.onSave);
+            Participant.save(self.examId, self.participant().toJSON(), self.onSave);
         };
     }
 });

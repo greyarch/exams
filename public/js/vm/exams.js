@@ -91,15 +91,15 @@ define('exams', ['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant
 
             addParticipant = function() {
                 console.log("add participant");
-                partmodel = new ParticipantFormVM(self.selectedExam().id(), new Participant());
-                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel, self.showParticipants);
+                partmodel = new ParticipantFormVM(self.selectedExam().id(), new Participant(), self.loadAllExams);
+                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel);
                 openModal('#add-participant', 'Add new participant');
             }
 
             editParticipant = function(participant) {
                 console.log("edit participant", participant);
-                partmodel = new ParticipantFormVM(self.selectedExam().id(), participant);
-                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel, self.showParticipants);
+                partmodel = new ParticipantFormVM(self.selectedExam().id(), participant, self.loadAllExams);
+                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel);
                 openModal('#add-participant', 'Edit participant');
             }
 
