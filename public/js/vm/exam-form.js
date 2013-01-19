@@ -1,9 +1,9 @@
-define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
+define('exam-form', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
 
     function ExamFormVM(exam, onSave) {
         var self = this;
 
-        self.exam = exam;
+        self.exam = (typeof exam === "function") ? exam : ko.observable(exam);
         self.onSave = onSave;
         self.examtypes = ko.observableArray([]);
         self.tests = ko.observableArray([]);
@@ -24,8 +24,8 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype',
         };
 
         saveExam = function (date) {
-            self.exam.date(date); //ugly hack cause the date picker does not work with knockout
-            self.exam.save(self.onSave);
+            self.exam().date(date); //ugly hack cause the date picker does not work with knockout
+            self.exam().save(self.onSave);
         };
 
         $(".datepicker").click(function () {
@@ -43,6 +43,9 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype',
 
         self.loadExamTypes();
         self.loadTests();
+
+        $('#exam-type').val(self.exam().typeId());
+        $('#test-type').val(self.exam().testId());
     }
 
     return ExamFormVM;
