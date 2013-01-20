@@ -9,6 +9,7 @@
       "passport-local":"",
       "optimist":"",
       "calendar":"",
-      "moment":""
+      "moment":"",
+      "lodash":"1.0.x"
   }
 }

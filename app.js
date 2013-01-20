@@ -30,6 +30,7 @@ app.configure(function () {
     app.use(auth.passport.session());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.compress());
 });
 
 app.engine('html', hbs.express3({defaultLayout:__dirname + '/views/layout.html',
