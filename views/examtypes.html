@@ -1,14 +1,14 @@
 {{#contentFor "pageHTML"}}
-	<html class="no-js" lang="en">
+<html class="no-js" lang="en">
 {{/contentFor}}
 
 {{#contentFor "pageStyles"}}
-	<link rel="stylesheet" href="/css/styles/form.css?v=1">
-	<link rel="stylesheet" href="/css/styles/switches.css?v=1">
-	<link rel="stylesheet" href="/css/styles/table.css?v=1">
+<link rel="stylesheet" href="/css/styles/form.css?v=1">
+<link rel="stylesheet" href="/css/styles/switches.css?v=1">
+<link rel="stylesheet" href="/css/styles/table.css?v=1">
 
-	<!-- DataTables -->
-	<link rel="stylesheet" href="/js/libs/DataTables/jquery.dataTables.css?v=1">
+<!-- DataTables -->
+<link rel="stylesheet" href="/js/libs/DataTables/jquery.dataTables.css?v=1">
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
@@ -31,156 +31,169 @@
 {{/contentFor}}
 
 {{#contentFor "pageScripts"}}
-	<!-- Scripts -->
-	<script src="/js/libs/jquery-1.8.2.min.js"></script>
-	<script src="/js/setup.js"></script>
-    <script src="/js/libs/lodash.min.js"></script>
-	<script src="/js/libs/knockout-2.2.0.js"></script>
+<!-- Scripts -->
+<script src="/js/libs/jquery-1.8.2.min.js"></script>
+<script src="/js/libs/setup.js"></script>
+<!--<script src="/js/libs/lodash.min.js"></script>-->
+<!--<script src="/js/libs/knockout-2.2.0.js"></script>-->
+<script type="text/javascript" data-main="js/vm/examtypes.js" src="js/require.js"></script>
 
-	<!-- Template functions -->
-	<script src="/js/developr.input.js"></script>
-	<script src="/js/developr.navigable.js"></script>
-	<script src="/js/developr.notify.js"></script>
-	<script src="/js/developr.scroll.js"></script>
-	<script src="/js/developr.tooltip.js"></script>
-	<script src="/js/developr.table.js"></script>
-    <script src="/js/moment.min.js"></script>
-	<script src="/js/viewmodel.js"></script>
+<!-- Template functions -->
+<script src="/js/libs/developr.input.js"></script>
+<script src="/js/libs/developr.navigable.js"></script>
+<script src="/js/libs/developr.notify.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/developr.tooltip.js"></script>
+<script src="/js/libs/developr.table.js"></script>
+<script src="/js/libs/moment.min.js"></script>
 
-	<!-- Plugins -->
-	<script src="/js/libs/jquery.tablesorter.min.js"></script>
-	<script src="/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<!--<script src="/js/vm/examtypes.js"></script>-->
+
+<!-- Plugins -->
+<script src="/js/libs/jquery.tablesorter.min.js"></script>
+<script src="/js/libs/DataTables/jquery.dataTables.min.js"></script>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
 <script>
 
-      // Call template init (optional, but faster if called manually)
+    // Call template init (optional, but faster if called manually)
     $.template.init();
-      	
-	$('#exam-add').on('click',function () {
-		
-		var tr = $('#examTypeTable > tbody > tr:first');
-		
-		if ($('#examTypeTable').find('.row-drop').length)
-		{
-			return;
-		};
 
-		// Add fake row
-		$('<tr class="row-drop">'+
-			'<td colspan="'+ tr.children().length +'">'+
-				'<div class="float-right">'+
-                    '<span class="button-group compact">'+
-						'<a id="addSave" class="button blue-gradient icon-tick with-tooltip" title="Save"></a>'+
-						'<a id="addCancel" class="button red-gradient icon-cross with-tooltip confirm" title="Cancel"></a>'+
-					'</span>'+
-				'</div>'+
-		        
-				'<strong>Exam Type:</strong><input type="text" name="examtype_title" id="examtype_title" size="9" class="input-unstyled" value=""><br>'+
-				'<strong>Tag:</strong><input type="text" name="examtype_tag" id="examtype_tag" size="9" class="input-unstyled" value=""><br>'+
-			'</td>'+
-		'</tr>').insertBefore(tr);
-		
-		$('#addCancel').on('click',function () {
-		
-			$(this).closest("tr").remove(); 		
-		});
-		
-		$('#addSave').on('click',function () {
-			if ($('#examtype_title').val() && $('#examtype_tag').val()){
-				$(this).removeTooltip();
-				newExamType($('#examtype_title').val(),$('#examtype_tag').val());
-			}
-		});
-	});
-	
+    $('#examtype-add').on('click', function () {
+
+        var tr = $('#examTypeTable > tbody > tr:first');
+
+        if ($('#examTypeTable').find('.row-drop').length) {
+            return;
+        }
+        ;
+
+        // Add fake row
+        $('<tr class="row-drop">' +
+                '<td colspan="' + tr.children().length + '">' +
+                '<div class="float-right">' +
+                '<span class="button-group compact">' +
+                '<a id="addSave" class="button blue-gradient icon-tick with-tooltip" title="Save"></a>' +
+                '<a id="addCancel" class="button red-gradient icon-cross with-tooltip confirm" title="Cancel"></a>' +
+                '</span>' +
+                '</div>' +
+
+                '<strong>Exam Type:</strong><input type="text" name="examtype_title" id="examtype_title" size="9" class="input-unstyled" value=""><br>' +
+                '<strong>Tag:</strong><input type="text" name="examtype_tag" id="examtype_tag" size="9" class="input-unstyled" value=""><br>' +
+                '</td>' +
+                '</tr>').insertBefore(tr);
+
+        $('#addCancel').on('click', function () {
+
+            $(this).closest("tr").remove();
+        });
+
+        $('#addSave').on('click', function () {
+            if ($('#examtype_title').val() && $('#examtype_tag').val()) {
+                $(this).removeTooltip();
+                newExamType($('#examtype_title').val(), $('#examtype_tag').val());
+            }
+        });
+    });
+
 </script>
 
 {{/contentFor}}
 
 <body class="clearfix with-menu with-shortcuts">
 
-	<!-- Prompt IE 6 users to install Chrome Frame -->
-	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<!-- Prompt IE 6 users to install Chrome Frame -->
+<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
+        href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
+        href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
 
-	<!-- Title bar -->
-	<header role="banner" id="title-bar">
-		<h2>ExaMS</h2>
-	</header>
+<!-- Title bar -->
+<header role="banner" id="title-bar">
+    <h2>ExaMS</h2>
+</header>
 
-	<!-- Button to open/hide menu -->
-	<a href="#" id="open-menu"><span>Menu</span></a>
+<!-- Button to open/hide menu -->
+<a href="#" id="open-menu"><span>Menu</span></a>
 
-	<!-- Button to open/hide shortcuts -->
-	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+<!-- Button to open/hide shortcuts -->
+<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
 
-	<section role="main" id="main">
+<section role="main" id="main">
 
-		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work
+        as expected...
+    </noscript>
 
-		<hgroup id="main-title" class="thin">
-			<h1>Exam Types</h1>
-		</hgroup>
+    <hgroup id="main-title" class="thin">
+        <h1>Exam Types</h1>
+    </hgroup>
 
-		<div class="with-padding">
+    <div class="with-padding">
 
 
-			<table class="table responsive-table" id="examTypeTable">
-				<div class="table-header button-height">
-					<div class="float-right ">
-						<a id="exam-add" class="button icon-plus  blue-gradient glossy">Add</a>
-					</div> &nbsp
-				</div>			
+        <table class="table responsive-table" id="examTypeTable">
+            <div class="table-header button-height">
+                <div class="float-right ">
+                    <a id="examtype-add" class="button icon-plus  blue-gradient glossy">Add</a>
+                </div>
+                &nbsp
+            </div>
 
-				<thead>
-					<tr>
-						<th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
-						<th scope="col">Exam Type</th>
-						<th scope="col" width="15%" class="align-center hide-on-mobile">Tag</th>
-						<th scope="col" width="100" class="align-right">Actions</th>
-					</tr>
-				</thead>
-	
-				<tbody data-bind="foreach: examtypes">
-	                    <tr>
-	                    	<th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-1" value="1"></th>
-					        <td data-bind="text: title"></td>
-	                        <td data-bind="text: tag"></td>
-	                        <td class="low-padding align-center">
+            <thead>
+            <tr>
+                <th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
+                <th scope="col">Exam Type</th>
+                <th scope="col" width="15%" class="align-center hide-on-mobile">Tag</th>
+                <th scope="col" width="100" class="align-right">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody data-bind="foreach: examtypes">
+            <tr>
+                <th scope="row" class="checkbox-cell"><input type="checkbox" name="checked[]" id="check-1" value="1">
+                </th>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: tag"></td>
+                <td class="low-padding align-center">
 								<span class="button-group compact">
 									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
 									
-									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete" onclick="$(this).removeTooltip()"
-	                                   data-bind="click: deleteExamType, clickBubble: false"></a>
+									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                                       onclick="$(this).removeTooltip()"
+                                       data-bind="click: deleteExamType, clickBubble: false"></a>
 								</span>
-	                        </td>
-	
-	                    </tr>
-		     	 </tbody>
+                </td>
 
-			</table>
+            </tr>
+            </tbody>
 
-			<form method="post" action="" class="table-footer button-height large-margin-bottom">
-				<div class="float-right">
-					<div class="button-group">
-						<a href="#" title="First page" class="button blue-gradient glossy"><span class="icon-previous"></span></a>
-						<a href="#" title="Previous page" class="button blue-gradient glossy"><span class="icon-backward"></span></a>
-					</div>
+        </table>
 
-					<div class="button-group">
-						<a href="#" title="Page 1" class="button blue-gradient glossy active">1</a>
-						<a href="#" title="Page 2" class="button blue-gradient glossy">2</a>
-					</div>
+        <form method="post" action="" class="table-footer button-height large-margin-bottom">
+            <div class="float-right">
+                <div class="button-group">
+                    <a href="#" title="First page" class="button blue-gradient glossy"><span
+                            class="icon-previous"></span></a>
+                    <a href="#" title="Previous page" class="button blue-gradient glossy"><span
+                            class="icon-backward"></span></a>
+                </div>
 
-					<div class="button-group">
-						<a href="#" title="Next page" class="button blue-gradient glossy"><span class="icon-forward"></span></a>
-						<a href="#" title="Last page" class="button blue-gradient glossy"><span class="icon-next"></span></a>
-					</div>
-				</div>
-				
-				There are <strong data-bind="text: examtypes().length"></strong> items 
-			</form>
+                <div class="button-group">
+                    <a href="#" title="Page 1" class="button blue-gradient glossy active">1</a>
+                    <a href="#" title="Page 2" class="button blue-gradient glossy">2</a>
+                </div>
 
-		</div>
-	</section>
+                <div class="button-group">
+                    <a href="#" title="Next page" class="button blue-gradient glossy"><span class="icon-forward"></span></a>
+                    <a href="#" title="Last page" class="button blue-gradient glossy"><span
+                            class="icon-next"></span></a>
+                </div>
+            </div>
+
+            There are <strong data-bind="text: examtypes().length"></strong> items
+        </form>
+
+    </div>
+</section>

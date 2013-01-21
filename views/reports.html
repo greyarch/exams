@@ -1,0 +1,135 @@
+{{#contentFor "pageHTML"}}
+<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+<link rel="stylesheet" href="/css/styles/switches.css?v=1">
+<link rel="stylesheet" href="/css/events.css">
+<link rel="stylesheet" href="/css/styles/table.css">
+<link rel="stylesheet" href="/css/styles/modal.css">
+<link rel="stylesheet" href="/css/styles/form.css">
+<link rel="stylesheet" href="/css/styles/dashboard.css">
+<link rel="stylesheet" href="/js/libs/glDatePicker/developr.css">
+
+<!-- jQuery Form Validation -->
+<link rel="stylesheet" href="/js/libs/formValidator/developr.validationEngine.css?v=1">
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+<!-- Scripts -->
+<script src="/js/libs/jquery-1.8.2.min.js"></script>
+<script src="/js/libs/setup.js"></script>
+
+<!-- Template functions -->
+<!--<script src="/js/libs/developr.input.js"></script>-->
+<script src="/js/libs/developr.navigable.js"></script>
+<script src="/js/libs/developr.notify.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/developr.tooltip.js"></script>
+<script src="/js/libs/developr.modal.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
+<script src="/js/libs/moment.min.js"></script>
+<script src="/js/modal.js"></script>
+<script type="text/javascript" data-main="js/vm/exams-page-vm.js" src="/js/require.js"></script>
+
+<!-- jQuery Form Validation -->
+<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
+<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+    <!-- Active shortcut -->
+    <li><a href="./" class="shortcut-dashboard" title="Page">Exams</a></li>
+    <!-- Background shortcuts -->
+    <li><a href="calendar" class="shortcut-agenda" title="Exams">Calendar</a></li>
+
+    <li class="current"><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
+    <!-- Disabled shortcuts -->
+
+    <!-- For Future Modules use
+        <li><span class="shortcut-messages" title="Messages">Messages</a></li>
+        <li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+        <li><span class="shortcut-medias" title="Medias">Medias</a></li>
+        <li><span class="shortcut-stats" title="Stats">Stats</a></li>
+        <li><span class="shortcut-settings" title="Settings">Settings</a></li>
+    -->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+<!-- Prompt IE 6 users to install Chrome Frame -->
+<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
+        href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
+        href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
+
+<!-- Title bar -->
+<header role="banner" id="title-bar">
+    <h2>ExaMS</h2>
+</header>
+
+<!-- Button to open/hide menu -->
+<a href="#" id="open-menu"><span>Menu</span></a>
+
+<!-- Button to open/hide shortcuts -->
+<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+<!-- Main content -->
+
+<section role="main" id="main">
+
+    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work
+        as expected...
+    </noscript>
+
+    <hgroup id="main-title" class="thin">
+        <h1>Reports</h1>
+    </hgroup>
+
+    <div class="with-padding">
+        <div class="table-header with-padding">
+            All registered exam participants
+            <a class="button float-right" href="/reports/participants.csv">Download as CSV</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <th scope="col" class="header">Company</th>
+            <th scope="col" class="header">First Name</th>
+            <th scope="col" class="header">Last Name</th>
+            <th scope="col" class="header">Email</th>
+            <th scope="col" class="header">Price</th>
+            <th scope="col" class="header">Board Fee</th>
+            <th scope="col" class="header">Result, %</th>
+            <th scope="col" class="header">Pass/Fail</th>
+            <th scope="col" class="header">Exam Type</th>
+            </thead>
+            <tbody>
+            {{#each participants}}
+            <tr>
+                <td>{{company}}</td>
+                <td>{{first_name}}</td>
+                <td>{{last_name}}</td>
+                <td>{{email}}</td>
+                <td>{{price}}</td>
+                <td>{{fee}}</td>
+                <td>{{result}}</td>
+                <td>{{pass}}</td>
+                <td>{{tag}}</td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+
+        <div class="table-footer">
+            <a class="button" href="/reports/participants.csv">Download as CSV</a>
+        </div>
+    </div>
+</section>

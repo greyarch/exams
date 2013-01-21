@@ -1,4 +1,4 @@
-<form id="add-exam" style="display: none; width: 500px;">
+<div id="add-exam" style="display: none; width: 500px;" data-bind="with: exam">
     <fieldset class="fieldset fields-list">
 
         <legend class="legend">Exam</legend>
@@ -6,30 +6,32 @@
         <!-- Standard Fields -->
         <div class="field-block button-height">
             <label for="exam-title" class="label"><b>Title</b></label>
-            <input type="text" name="exam-title" id="exam-title" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: title" type="text" name="exam-title" id="exam-title" class="input validate[required]" data-tooltip-options='{"position":"right"}'>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-place" class="label"><b>Place</b></label>
-            <select class="select" id="exam-place" data-bind="options: availablePlaces"></select>
+            <select class="select" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
         </div>
+
         <div class="field-block button-height">
-             <label for="exam-date" class="label">Date</label>
+            <label for="exam-date" class="label">Date</label>
              <span class="input">
                 <span class="icon-calendar"></span>
-                <input id="exam-date" type="text" class="input-unstyled datepicker"/>
+                <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: date"/>
              </span>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-type" class="label"><b>Exam Type</b></label>
-            <select class="select" id="exam-type" data-bind="options: examtypes, optionsText: function(item) {
-                       return item.title() + ' (' + item.tag() + ')'}, optionsValue: 'id'"></select>
+            <select class="select" id="exam-type"
+                    data-bind="options: $parent.examtypes, optionsText: 'tag', optionsValue: 'id', value: typeId"></select>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-proctor" class="label"><b>Proctor</b></label>
-            <input type="text" name="exam-proctor" id="exam-proctor" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: proctor" type="text" name="exam-proctor" id="exam-proctor"
+                   class="input validate[required]" data-tooltip-options='{"position":"right"}'/>
         </div>
 
 
@@ -38,22 +40,22 @@
 
             <div>
                 <label for="exam-test" class="label mid-margin-right"><b>Test</b></label>
-                <select class="select" id="exam-test" data-bind="options: tests, optionsText: 'tag', optionsValue: 'id'"></select>
+                <select class="select" id="exam-test"
+                        data-bind="options: $parent.tests, optionsText: 'tag', optionsValue: 'id', value: testId"></select>
             </div>
-	    </div>
+        </div>
 
         <div class="field-block button-height">
             <button type="buttton" class="button glossy" onclick="$.modal.current.closeModal();">
                 <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
                 Cancel
             </button>
-            <button type="buttton" class="button glossy mid-margin-right" 
-      	   	data-bind="click: function() {$.modal.current.closeModal();
-           	newExam($('#exam-title').val(), $('#exam-place option:selected').val(), $('#exam-date').val(),$('#exam-type').val(),$('#exam-test').val(),$('#exam-proctor').val());}">
-                     <span class="button-icon"><span class="icon-tick"></span></span>
+            <button type="buttton" class="button glossy mid-margin-right"
+                    data-bind="click: function() {$.modal.current.closeModal(); saveExam($('#exam-date').val());}">
+                <span class="button-icon"><span class="icon-tick"></span></span>
                 Save
             </button>
         </div>
 
     </fieldset>
-</form>
+</div>

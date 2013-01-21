@@ -11,8 +11,10 @@
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
 
-    <li><a href="./" class="shortcut-dashboard" title="Page" Page></a></li>
+    <li><a href="/exams" class="shortcut-dashboard" title="Page" Page></a></li>
     <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
+    <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
+
     <!-- Disabled shortcuts -->
 
     <!-- For Future Modules use
@@ -29,19 +31,19 @@
 {{#contentFor "pageScripts"}}
 <!-- Scripts -->
 <script src="/js/libs/jquery-1.8.2.min.js"></script>
-<script src="/js/setup.js"></script>
-<script src="/js/libs/lodash.min.js"></script>
-<script src="/js/libs/knockout-2.2.0.js"></script>
+<script src="/js/libs/setup.js"></script>
+<!--<script src="/js/libs/lodash.min.js"></script>-->
+<!--<script src="/js/libs/knockout-2.2.0.js"></script>-->
 
 <!-- Template functions -->
-<script src="/js/developr.input.js"></script>
-<script src="/js/developr.navigable.js"></script>
-<script src="/js/developr.notify.js"></script>
-<script src="/js/developr.scroll.js"></script>
-<script src="/js/developr.tooltip.js"></script>
-<script src="/js/developr.calendar.js"></script>
-<script src="/js/moment.min.js"></script>
-<script src="/js/viewmodel.js"></script>
+<script src="/js/libs/developr.input.js"></script>
+<script src="/js/libs/developr.navigable.js"></script>
+<script src="/js/libs/developr.notify.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/developr.tooltip.js"></script>
+<script src="/js/libs/developr.calendar.js"></script>
+<script src="/js/libs/moment.min.js"></script>
+<script type="text/javascript" data-main="js/vm/exams-page-vm.js" src="/js/require.js"></script>
 
 <!-- glDatePicker -->
 <script src="/js/libs/glDatePicker/glDatePicker.min.js?v=1"></script>
