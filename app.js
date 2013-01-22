@@ -31,6 +31,7 @@ app.configure(function () {
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.compress());
+    app.use(require('./404'));
 });
 
 app.engine('html', hbs.express3({defaultLayout:__dirname + '/views/layout.html',
