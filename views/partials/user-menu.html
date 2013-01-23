@@ -23,14 +23,10 @@
 
         <!-- Navigation menu goes here -->
         <section class="navigable">
-            <ul class="big-menu">
-                <li><a href="exams" class="current navigable-current">Exams</a></li>
-                <li><a href="calendar">Calendar</a></li>
-				{{#isAdminUser}}
-                <li><a href="examtypes">Exam Types</a></li>
-                {{/isAdminUser}}            
-            </ul>
-        </section>
+        	{{#if menu}}
+        		{{{showMenu}}}
+        	{{/if}}        	
+       </section>
 
         <ul class="unstyled-list">
             <li class="title-menu">Upcoming Exams</li>

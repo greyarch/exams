@@ -1,10 +1,14 @@
+var examsmodule = require('./context/exams');
+var reportsmodule = require('./context/reports');
+
+
 var _ = require('lodash');
 
 module.exports = function (app, auth, db) {
     app.get('/exams', auth.ensure, function (req, res) {
-        res.render('exams.html', {user:req.user});
-    });
-
+        res.render('exams.html', {user:req.user,menu:examsmodule.context.menu, link:"exams"});
+	});
+	
     app.get('/reports/participants.csv', auth.ensure, function (req, res) {
         getParticipantsForReport(db, function (rows) {
             console.log("exporting all participants", rows);
@@ -25,12 +29,12 @@ module.exports = function (app, auth, db) {
     app.get('/reports', auth.ensure, function (req, res) {
         getParticipantsForReport(db, function (rows) {
             console.log("showing all participants", rows);
-            res.render('reports.html', {user:req.user, participants:rows});
+            res.render('reports.html', {user:req.user, participants:rows, menu:reportsmodule.context.menu, link:"reports"});
         });
     });
 
     app.get('/examtypes', auth.ensure, function (req, res) {
-        res.render('examtypes.html', {user:req.user});
+        res.render('examtypes.html', {user:req.user, menu:examsmodule.context.menu, link:'examtypes'});
     });
 };
 

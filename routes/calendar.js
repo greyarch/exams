@@ -1,3 +1,5 @@
+var examsmodule = require('./context/exams');
+
 module.exports = function (app, auth, db) {
     var moment = require('moment');
     var calendar = require('calendar');
@@ -34,7 +36,7 @@ module.exports = function (app, auth, db) {
                 }
                 calendar.weeks.push(week);
             }
-            res.render('calendar.html', {user:req.user, calendar:calendar});
+            res.render('calendar.html', {user:req.user, calendar:calendar, menu:examsmodule.context.menu, link:"calendar"});
         });
     });
 };
