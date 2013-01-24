@@ -46,7 +46,6 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
                             classes: ['red-gradient'],
                             autoClose: 5000
                         });
-//                        notify('Oops, something went wrong!', err.responseText, {hPos: 'center', classes: ['red-gradient']});
                     }
                 }, "json");
             } else {
@@ -69,7 +68,6 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
                     classes: ['red-gradient'],
                     autoClose: 3000
                 });
-//                notify('Oops, something went wrong!', err.responseText, {hPos: 'center', classes: ['red-gradient']});
             }
         });
     }

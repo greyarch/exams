@@ -17,20 +17,23 @@
         <ul id="access" class="children-tooltip">
             <li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
             <li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
-            <li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+            <li><a href="/logout" title="Profile"><span class="icon-user"></span></a></li>
             <li class="disabled"><span class="icon-gear"></span></li>
         </ul>
 
         <!-- Navigation menu goes here -->
         <section class="navigable">
-            <ul class="big-menu">
-                <li><a href="exams" class="current navigable-current">Exams</a></li>
-                <li><a href="calendar">Calendar</a></li>
-				{{#isAdminUser}}
-                <li><a href="examtypes">Exam Types</a></li>
-                {{/isAdminUser}}            
-            </ul>
-        </section>
+
+                <ul class="big-menu">
+                    {{#each menu}}
+                        {{#ifContains roles ../user.role}}
+                        <li>
+                            <a href="{{url}}" {{#ifEquals ../name ../../current}} class="current navigable-current" {{/ifEquals}}>{{title}}</a>
+                        </li>
+                        {{/ifContains}}
+                    {{/each}}
+                </ul>
+       </section>
 
         <ul class="unstyled-list">
             <li class="title-menu">Upcoming Exams</li>
