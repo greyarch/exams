@@ -40,7 +40,14 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
                     type:'PUT',
                     url:'/participant/id/' + json.id,
                     data:json,
-                    success:onSuccess
+                    success:onSuccess,
+                    error:function (err) {
+                        $('#main-title').message('<span class="icon-gear"><b>What are you doing, Dave? Server says:   </b></span>' + err.responseText, {
+                            classes: ['red-gradient'],
+                            autoClose: 5000
+                        });
+//                        notify('Oops, something went wrong!', err.responseText, {hPos: 'center', classes: ['red-gradient']});
+                    }
                 }, "json");
             } else {
                 $.post("/exam/id/" + examId + "/participant", json, onSuccess);
@@ -56,8 +63,13 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
             url:"/participant/id/" + partId,
             type:"DELETE",
             success:onSuccess,
-            error:function (jqXhr) {
-                console.log("error while trying to delete participant: " + jqXhr.responseText);
+            error:function (err) {
+                console.log("error while trying to delete participant: " + err.responseText);
+                $('#main').message('<b>Oops, something went wrong!</b></br>' + err.responseText, {
+                    classes: ['red-gradient'],
+                    autoClose: 3000
+                });
+//                notify('Oops, something went wrong!', err.responseText, {hPos: 'center', classes: ['red-gradient']});
             }
         });
     }
