@@ -1,53 +1,51 @@
-var examsmodule = require('./context/exams');
-var reportsmodule = require('./context/reports');
-
-
-var _ = require('lodash');
+var context = require('./context');
+var moment = require('moment');
+var calendar = require('calendar');
+var c = new calendar.Calendar(1); //week starts on Monday
 
 module.exports = function (app, auth, db) {
-    app.get('/exams', auth.ensure, function (req, res) {
-        res.render('exams.html', {user:req.user,menu:examsmodule.context.menu, link:"exams"});
-	});
-	
-    app.get('/reports/participants.csv', auth.ensure, function (req, res) {
-        getParticipantsForReport(db, function (rows) {
-            console.log("exporting all participants", rows);
+    app.get('/calendar', auth.ensure, function (req, res) {
+        var today = new Date();
+        var year = req.query.year ? parseInt(req.query.year) : 1900 + today.getYear();
+        var month = req.query.month ? parseInt(req.query.month) : today.getMonth();
 
-            var keys = _.keys(rows[0]);
-            var csv = keys.join(",");
-            _(rows).each(function (row) {
-                var values = _.values(row);
-                csv += "\n";
-                csv += _(values).map(function (v) {
-                    return sanitize(v);
-                }).join(",");
-            });
-            res.type("text/csv").send(200, csv);
+        var current = moment(new Date(year, month, 1));
+        var prev = moment(new Date(year, month, 1)).subtract("M", 1);
+        var next = moment(new Date(year, month, 1)).add("M", 1);
+        var monthDays = c.monthDays(year, month);
+
+        var ym = year + '-' + (month + 1); //months start at 0 in JS Date
+        var start = ym + '-1';
+        var end = ym + '-31';
+        db.query('SELECT * FROM exams WHERE date BETWEEN "' + start + '" AND "' + end + '" ORDER BY date ASC', function (err, rows) {
+            if (err) throw err; //TODO report error here
+            console.log("rows are ", rows);
+            var calendar = {weeks:[],
+                current:{year: year, month: current.format("MMMM")},
+                prev:{year:prev.year(), month:prev.month()},
+                next:{year:next.year(), month:next.month()}};
+            for (var i in monthDays) {
+                var week = {dates:[]};
+                for (var j in monthDays[i]) {
+                    var date = {date:monthDays[i][j], events:[]};
+                    while (rows[0] && (rows[0].date.getDate() === monthDays[i][j])) {
+                        date.events.push(rows.shift());
+                    }
+                    week.dates.push(date);
+                }
+                calendar.weeks.push(week);
+            }
+
+            res.render('calendar.html', {user:req.user, calendar:calendar, menu:context.exams.menu, current:"calendar"});
         });
     });
 
-    app.get('/reports', auth.ensure, function (req, res) {
-        getParticipantsForReport(db, function (rows) {
-            console.log("showing all participants", rows);
-            res.render('reports.html', {user:req.user, participants:rows, menu:reportsmodule.context.menu, link:"reports"});
-        });
+    app.get('/exams', auth.ensure, function (req, res) {
+        console.log("menu is", context.exams.menu);
+        res.render('exams.html', {user:req.user, menu:context.exams.menu, current:"exams"});
     });
 
     app.get('/examtypes', auth.ensure, function (req, res) {
-        res.render('examtypes.html', {user:req.user, menu:examsmodule.context.menu, link:'examtypes'});
+        res.render('examtypes.html', {user:req.user, menu:context.exams.menu, current:'examtypes'});
     });
 };
-
-function sanitize(item) {
-    return '"' + (typeof item === "string" ? item.replace('"', '""') : item) + '"';
-}
-
-function getParticipantsForReport(db, onSuccess) {
-    db.query('SELECT p.company, p.first_name, p.last_name, p.email, p.price, p.fee, p.result, p.pass, et.tag ' +
-            'FROM participants p JOIN exams e ON p.exam_id = e.id JOIN exam_types et ' +
-            'ON e.exam_type_id = et.id ORDER BY first_name ASC;',
-        function (err, rows) {
-            if (err) throw err; //TODO report error here
-            onSuccess(rows);
-        });
-}

@@ -15,17 +15,24 @@
 
         <!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
         <ul id="access" class="children-tooltip">
-            <li><a href="#" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
-            <li><a href="#" title="Exams"><span class="icon-calendar"></span></a></li>
-            <li><a href="#" title="Profile"><span class="icon-user"></span></a></li>
+            <li class="disabled"><span class="icon-inbox"></span></li>
+            <li class="disabled"><span class="icon-user"></span></li>
             <li class="disabled"><span class="icon-gear"></span></li>
+            <li><a href="/logout" title="Logout"><span class="icon-extract"></span></a></li>
         </ul>
 
         <!-- Navigation menu goes here -->
         <section class="navigable">
-        	{{#if menu}}
-        		{{{showMenu}}}
-        	{{/if}}        	
+
+                <ul class="big-menu">
+                    {{#each menu}}
+                        {{#ifContains roles ../user.role}}
+                        <li>
+                            <a href="{{url}}" {{#ifEquals ../name ../../current}} class="current navigable-current" {{/ifEquals}}>{{title}}</a>
+                        </li>
+                        {{/ifContains}}
+                    {{/each}}
+                </ul>
        </section>
 
         <ul class="unstyled-list">
@@ -53,10 +60,6 @@
     <footer id="menu-footer">
 
         <!-- Any content for the footer - PLACE HERE-->
-        <p class="button-height">
-            <input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right">
-            <label for="auto-refresh">Auto-refresh</label>
-        </p>
     </footer>
 
 </section>
