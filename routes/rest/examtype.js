@@ -4,8 +4,7 @@ module.exports = function (app, auth, db) {
         var examtype = req.body;
         console.log("creating an exam type: ");
         console.dir(examtype);
-        db.query('INSERT INTO exam_types SET ?', examtype, function (err, result) {
-            if (err) throw err; //TODO report error here
+        db.safeQuery('INSERT INTO exam_types SET ?', examtype, res, function (result) {
             console.log('result is: ', result);
             res.json(201, examtype);
         });
@@ -14,8 +13,7 @@ module.exports = function (app, auth, db) {
     //get all exam types
     app.get('/examtype', auth.rest, function (req, res) {
         console.log("loading all exam types");
-        db.query('SELECT * FROM exam_types ORDER BY tag ASC', function (err, rows) {
-            if (err) throw err; //TODO report error here
+        db.safeQuery('SELECT * FROM exam_types ORDER BY tag ASC', null, res, function (rows) {
             console.log('Exam Types are: ', rows);
             res.json(200, rows);
         });
@@ -24,8 +22,7 @@ module.exports = function (app, auth, db) {
     //delete an Exam Type with an id
     app.delete('/examtype/id/:id', auth.rest, function (req, res) {
         console.log("deleting an Exam type with id " + req.params.id);
-        db.query('DELETE FROM exam_types WHERE id = ?', [req.params.id], function (err, result) {
-            if (err) throw err; //TODO report error here
+        db.safeQuery('DELETE FROM exam_types WHERE id = ?', [req.params.id], res, function (result) {
             console.log('result is: ', result);
             res.end();
         });

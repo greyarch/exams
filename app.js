@@ -14,6 +14,17 @@ db = mysql.createConnection({
 });
 db.connect();
 
+Object.getPrototypeOf(db).safeQuery = function(query, params, response, onSuccess) {
+    db.query(query, params, function (err, result) {
+        if (err) {
+            response.json(400, err);
+        } else {
+            onSuccess(result);
+        }
+    });
+}
+
+
 var auth = require('./auth');
 
 app = express();
