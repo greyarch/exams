@@ -85,7 +85,7 @@ define('exams', ['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant
 
             editExam = function (exam) {
                 console.log("edit exam");
-                ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(exam, self.loadAllExams));
+                ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(ko.toJS(exam)), self.loadAllExams));
                 openModal('#add-exam', 'Edit exam');
             }
 
@@ -98,7 +98,7 @@ define('exams', ['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant
 
             editParticipant = function(participant) {
                 console.log("edit participant", participant);
-                partmodel = new ParticipantFormVM(self.selectedExam().id(), participant, self.loadAllExams);
+                partmodel = new ParticipantFormVM(self.selectedExam().id(), new Participant(ko.toJS(participant)), self.loadAllExams);
                 ko.applyBindingsToNode($("#add-participant")[0], null, partmodel);
                 openModal('#add-participant', 'Edit participant');
             }

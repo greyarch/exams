@@ -1,4 +1,4 @@
-define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
+define('models/participant', ['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
     function Participant(json) {
         var self = this;
         json = json || {};
@@ -26,7 +26,7 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
                 price:self.price(),
                 fee:self.fee(),
                 result:self.result(),
-                pass:self.pass()?1:0
+                pass:self.pass() ? 1 : 0
             }
         }
     }
@@ -36,21 +36,10 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
         if (examId) {
             if (json.id) {
                 console.log("updating participant", json);
-                $.ajax({
-                    type:'PUT',
-                    url:'/participant/id/' + json.id,
-                    data:json,
-                    success:onSuccess,
-                    error:onErr
-                }, "json");
+                ajax.put('/participant/id/' + json.id, json, onSuccess);
             } else {
-                $.ajax({
-                    type:'POST',
-                    url:"/exam/id/" + examId + "/participant",
-                    data:json,
-                    success:onSuccess,
-                    error:onErr
-                }, "json");
+                console.log("creating new participant", json);
+                ajax.post('/exam/id/' + examId + '/participant', json, onSuccess);
             }
         } else {
             console.error('currently, it is not possible create participants without an exam!');
@@ -59,19 +48,7 @@ define('models/participant', ['js/libs/knockout-2.2.0.js'], function (ko) {
 
     Participant.remove = function (partId, onSuccess) {
         console.log("deleting exam with id: ", partId);
-        $.ajax({
-            url:"/participant/id/" + partId,
-            type:"DELETE",
-            success:onSuccess,
-            error:onErr
-        });
-    }
-
-    function onErr(err) {
-        $('#main-title').message('<span class="icon-warning"><b>What are you doing, Dave? Server says:   </b></span>' + err.responseText, {
-            classes: ['red-gradient'],
-            autoClose: 5000
-        });
+        ajax.del('/participant/id/' + partId, onSuccess);
     }
 
     return Participant;

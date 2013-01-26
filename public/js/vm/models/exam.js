@@ -1,4 +1,4 @@
-define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'], function (ko, _) {
+define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'js/ajax.js'], function (ko, _, ajax) {
     function Exam(json) {
         var self = this;
         json = json || {};
@@ -45,53 +45,29 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js'], fu
 
         self.loadParticipantsAsJSON = function (onSuccess, onError) {
             console.log("getting all participants for exam with id ", self.id());
-            $.ajax({
-                url:"/exam/id/" + self.id() + "/participant",
-                type:"GET",
-                success:onSuccess,
-                error:onError
-            }, "json");
+            ajax.get('/exam/id/' + self.id() + '/participant', onSuccess);
         }
 
         self.save = function (onSuccess, onError) {
             var ex = self.toJSON();
-            var method = "POST";
-            var url = "/exam"
             if (ex.id) {
                 console.log("updating exam", ex);
-                var method = "PUT";
-                var url = "/exam/id/" + ex.id;
+                ajax.put('/exam/id/' + ex.id, ex, onSuccess);
             } else {
                 console.log("adding new exam", ex);
+                ajax.post('/exam', ex, onSuccess);
             }
-            $.ajax({
-                type:method,
-                url:url,
-                data:ex,
-                success:onSuccess,
-                error:onError
-            }, "json");
         }
     }
 
     Exam.getAll = function (onSuccess, onError) {
         console.log("getting all exams");
-        $.ajax({
-            url:"/exam",
-            type:"GET",
-            success:onSuccess,
-            error:onError
-        }, "json");
+        ajax.get('/exam', onSuccess, onError);
     }
 
     Exam.remove = function (examId, onSuccess, onError) {
         console.log("deleting exam with id: ", examId);
-        $.ajax({
-            url:"/exam/id/" + examId,
-            type:"DELETE",
-            success:onSuccess,
-            error:onError
-        }, "json");
+        ajax.del('/exam/id/' + examId, onSuccess, onError);
     }
 
     return Exam;

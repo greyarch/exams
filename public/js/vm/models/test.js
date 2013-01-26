@@ -1,4 +1,4 @@
-define('models/test', ['js/libs/knockout-2.2.0.js'], function (ko) {
+define('models/test', ['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
     function Test(json) {
         var self = this;
         self.id = ko.observable(json.id);
@@ -15,20 +15,22 @@ define('models/test', ['js/libs/knockout-2.2.0.js'], function (ko) {
 
         self.delete = function (onSuccess) {
             console.log("deleting a test with id: ", self.id());
-            $.ajax({
-                url:"/test/id/" + self.id(),
-                type:"DELETE",
-                success:onSuccess,
-                error:function (jqXhr) {
-                    console.log("error while trying to delete Test: " + jqXhr.responseText);
-                }
-            });
+            ajax.del('/test/id/' + self.id(), onSuccess);
+//            $.ajax({
+//                url:"/test/id/" + self.id(),
+//                type:"DELETE",
+//                success:onSuccess,
+//                error:function (jqXhr) {
+//                    console.log("error while trying to delete Test: " + jqXhr.responseText);
+//                }
+//            });
         }
     }
 
     Test.getAll = function (onSuccess) {
         console.log("getting all tests");
-        $.getJSON('/test', onSuccess);
+        ajax.get('/test', onSuccess);
+//        $.getJSON('/test', onSuccess);
     }
 
     return Test;
