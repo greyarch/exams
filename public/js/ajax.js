@@ -9,13 +9,12 @@ define(function () {
 
     return {
         call:function (method, url, data, onSuccess, onError) {
-            $.ajax({
+            $.ajax(url, {
                 type:method,
-                url:url,
                 data:data || {},
                 success:onSuccess,
                 error:onError || onErr
-            }, "json");
+            }, 'json');
         },
 
         get:function (url, onSuccess, onError) {

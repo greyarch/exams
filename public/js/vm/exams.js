@@ -1,4 +1,4 @@
-define('exams', ['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'participant-form'],
+define(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'participant-form'],
     function (ko, Exam, Participant, ExamFormVM, ParticipantFormVM) {
         return function AppViewModel() {
             var self = this;
@@ -70,36 +70,41 @@ define('exams', ['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant
             self.loadAllExams = function () {
                 self.participants([]);
                 Exam.getAll(function (data) {
-                    self.exams(_.map(data, function (item) {
-                        return  new Exam(item);
-                    }));
+                    self.exams(data);
                     self.setSelectedExam(self.selectedExam() ? self.selectedExam().id() : null);
                 });
             };
 
+            self.efvm = new ExamFormVM(new Exam(), self.loadAllExams);
+            ko.applyBindings(self.efvm, $("#add-exam")[0]);
+            self.efvm.loadExamTypes();
+            self.efvm.loadTests();
+
             addExam = function () {
                 console.log("add exam");
-                ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(), self.loadAllExams));
+                self.efvm.exam(new Exam());
                 openModal('#add-exam', 'Add new exam');
             }
 
             editExam = function (exam) {
-                console.log("edit exam");
-                ko.applyBindingsToNode($("#add-exam")[0], null, new ExamFormVM(new Exam(ko.toJS(exam)), self.loadAllExams));
+                self.efvm.exam(new Exam(exam.toJSON()));
                 openModal('#add-exam', 'Edit exam');
             }
 
-            addParticipant = function() {
+            self.pfvm = new ParticipantFormVM(new Participant(), self.loadAllExams);
+            ko.applyBindings(self.pfvm, $("#add-participant")[0]);
+
+            addParticipant = function () {
                 console.log("add participant");
-                partmodel = new ParticipantFormVM(self.selectedExam().id(), new Participant(), self.loadAllExams);
-                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel);
+                self.pfvm.participant(new Participant());
+                self.pfvm.examId = self.selectedExam().id();
                 openModal('#add-participant', 'Add new participant');
             }
 
-            editParticipant = function(participant) {
+            editParticipant = function (participant) {
                 console.log("edit participant", participant);
-                partmodel = new ParticipantFormVM(self.selectedExam().id(), new Participant(ko.toJS(participant)), self.loadAllExams);
-                ko.applyBindingsToNode($("#add-participant")[0], null, partmodel);
+                self.pfvm.participant(new Participant(participant.toJSON()));
+                self.pfvm.examId = self.selectedExam().id();
                 openModal('#add-participant', 'Edit participant');
             }
 

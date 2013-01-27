@@ -1,5 +1,4 @@
-define('exam-form', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
-
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
     function ExamFormVM(exam, onSave) {
         var self = this;
 
@@ -40,12 +39,6 @@ define('exam-form', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'mode
                 }
             });
         });
-
-        self.loadExamTypes();
-        self.loadTests();
-
-        $('#exam-type').val(self.exam().typeId());
-        $('#test-type').val(self.exam().testId());
     }
 
     return ExamFormVM;

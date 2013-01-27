@@ -1,8 +1,13 @@
-define('user-menu', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/exam'], function (ko, _, Exam) {
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/exam'], function (ko, _, Exam) {
     return function UserMenuVM(exams) {
         var self = this;
 
-        self.exams = exams || ko.observableArray([]);
+        self.exams = ko.observableArray([]);
+        if (exams) {
+            self.exams = exams;
+        } else {
+            Exam.getAll(self.exams);
+        }
 
         self.nextExams = ko.computed(function () {
             var today = moment();
@@ -11,5 +16,11 @@ define('user-menu', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'mode
             })
             return _.last(nextExams, 3);
         });
+
+        if (typeof window.selectExam === 'undefined') {
+            window.selectExam = function(exam) {
+                document.location = "/exams?selectedExam=" + exam.id();
+            }
+        }
     }
 });

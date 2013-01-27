@@ -48,7 +48,7 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'js
             ajax.get('/exam/id/' + self.id() + '/participant', onSuccess);
         }
 
-        self.save = function (onSuccess, onError) {
+        self.save = function (onSuccess) {
             var ex = self.toJSON();
             if (ex.id) {
                 console.log("updating exam", ex);
@@ -60,14 +60,24 @@ define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'js
         }
     }
 
-    Exam.getAll = function (onSuccess, onError) {
+    Exam.getAllAsJson = function(onSuccess) {
         console.log("getting all exams");
-        ajax.get('/exam', onSuccess, onError);
+        ajax.get('/exam', onSuccess);
     }
 
-    Exam.remove = function (examId, onSuccess, onError) {
+    Exam.getAll = function (onSuccess) {
+        Exam.getAllAsJson(function(data) {
+            var ex = [];
+            _.map(data, function (item) {
+                ex.push(new Exam(item));
+            });
+            onSuccess(ex);
+        });
+    }
+
+    Exam.remove = function (examId, onSuccess) {
         console.log("deleting exam with id: ", examId);
-        ajax.del('/exam/id/' + examId, onSuccess, onError);
+        ajax.del('/exam/id/' + examId, onSuccess);
     }
 
     return Exam;
