@@ -13,11 +13,9 @@
 
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
-
-<!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
+    <!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
     <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
     <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
-    
     <!-- Disabled shortcuts -->
 
     <!-- For Future Modules use
@@ -45,11 +43,11 @@
 <script src="/js/libs/developr.table.js"></script>
 <script src="/js/libs/moment.min.js"></script>
 
-<script type="text/javascript" data-main="js/vm/exams/examtypes.js" src="js/require.js"></script>
-
 <!-- Plugins -->
 <script src="/js/libs/jquery.tablesorter.min.js"></script>
 <script src="/js/libs/DataTables/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" data-main="js/vm/exams/examtypes.js" src="/js/require.js"></script>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
