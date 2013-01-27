@@ -3,7 +3,6 @@ require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/examt
         var self = this;
 
         self.examtypes = ko.observableArray([]);
-        self.nextExams = ko.observableArray([]);
 
         self.loadExamTypes = function () {
             ExamType.getAll(function (data) {
@@ -13,8 +12,8 @@ require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/examt
 
         newExamType = function (title, tag) {
             console.log("adding an exam type");
-            var ExamType = {title:title, tag:tag};
-            $.post("/examtype", ExamType, function () {
+            var et = {title:title, tag:tag};
+            $.post("/examtype", et, function () {
                 console.log("created the exam type");
                 self.loadExamTypes();
             });
