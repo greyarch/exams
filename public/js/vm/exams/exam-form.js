@@ -1,4 +1,4 @@
-define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'models/test'], function (ko, _, ExamType, Test) {
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/examtype.js', '/js/models/test.js'], function (ko, _, ExamType, Test) {
     function ExamFormVM(exam, onSave) {
         var self = this;
 
@@ -26,19 +26,6 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype',
             self.exam().date(date); //ugly hack cause the date picker does not work with knockout
             self.exam().save(self.onSave);
         };
-
-        $(".datepicker").click(function () {
-            $(".datepicker").glDatePicker({
-                zIndex:100,
-                onChange:function (target, newDate) {
-                    target.val(
-                        newDate.getFullYear() + "-" +
-                            (newDate.getMonth() + 1) + "-" +
-                            newDate.getDate()
-                    );
-                }
-            });
-        });
     }
 
     return ExamFormVM;

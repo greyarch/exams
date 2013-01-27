@@ -1,4 +1,4 @@
-define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/exam'], function (ko, _, Exam) {
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/exam.js'], function (ko, _, Exam) {
     return function UserMenuVM(exams) {
         var self = this;
 

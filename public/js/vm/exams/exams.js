@@ -1,4 +1,4 @@
-define(['js/libs/knockout-2.2.0.js', 'models/exam', 'models/participant', 'exam-form', 'participant-form'],
+define(['js/libs/knockout-2.2.0.js', '/js/models/exam.js', '/js/models/participant.js', 'exam-form', 'participant-form'],
     function (ko, Exam, Participant, ExamFormVM, ParticipantFormVM) {
         return function AppViewModel() {
             var self = this;

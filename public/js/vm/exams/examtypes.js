@@ -1,4 +1,4 @@
-require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'models/examtype', 'user-menu'], function (ko, _, ExamType, UserMenuVM) {
+require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', './examtype', '../admin/user-menu'], function (ko, _, ExamType, UserMenuVM) {
     function ExamTypesVM() {
         var self = this;
 
