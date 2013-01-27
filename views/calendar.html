@@ -11,10 +11,10 @@
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
 
-    <li><a href="/exams" class="shortcut-dashboard" title="Page" Page></a></li>
+<!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
     <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
     <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
-
+    
     <!-- Disabled shortcuts -->
 
     <!-- For Future Modules use
@@ -43,28 +43,13 @@
 <script src="/js/libs/developr.tooltip.js"></script>
 <script src="/js/libs/developr.calendar.js"></script>
 <script src="/js/libs/moment.min.js"></script>
-<script type="text/javascript" data-main="js/vm/exams-page-vm.js" src="/js/require.js"></script>
+<script type="text/javascript" data-main="js/vm/exams/calendar.js" src="/js/require.js"></script>
 
 <!-- glDatePicker -->
 <script src="/js/libs/glDatePicker/glDatePicker.min.js?v=1"></script>
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
-<script>
-
-    // Call template init (optional, but faster if called manually)
-    $.template.init();
-
-    // Date picker
-    $('.datepicker').glDatePicker({ zIndex:100 });
-
-    // Inline date picker
-    $('#inline-datepicker').glDatePicker({
-        showAlways:true,
-        position:'inherit'
-    });
-
-</script>
 {{/contentFor}}
 
 <body class="clearfix with-menu with-shortcuts">

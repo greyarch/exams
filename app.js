@@ -17,6 +17,7 @@ db.connect();
 Object.getPrototypeOf(db).safeQuery = function(query, params, response, onSuccess) {
     db.query(query, params, function (err, result) {
         if (err) {
+            console.log("Error occurred", err);
             response.json(400, err);
         } else {
             onSuccess(result);

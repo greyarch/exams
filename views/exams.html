@@ -32,7 +32,7 @@
 <script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
 <script src="/js/libs/moment.min.js"></script>
 <script src="/js/modal.js"></script>
-<script type="text/javascript" data-main="js/vm/exams-page-vm.js" src="/js/require.js"></script>
+<script type="text/javascript" data-main="js/vm/exams/exams-page-vm.js" src="/js/require.js"></script>
 
 <!-- jQuery Form Validation -->
 <script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
@@ -41,11 +41,11 @@
 
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
-    <!-- Active shortcut -->
-    <li class="current"><a href="#" class="shortcut-dashboard" title="Page">Page</a></li>
-    <!-- Background shortcuts -->
-    <li><a href="/calendar" class="shortcut-agenda" title="Exams">Exams</a></li>
+
+<!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
+    <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
     <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
+    
     <!-- Disabled shortcuts -->
 
     <!-- For Future Modules use
@@ -60,34 +60,6 @@
 {{/contentFor}}
 
 {{#contentFor "pageScript"}}
-<!--<script>-->
-
-<!--// Call template init (optional, but faster if called manually)-->
-<!--$.template.init();-->
-
-<!--// Color-->
-<!--$('#anthracite-inputs').change(function () {-->
-<!--$('#main')[this.checked ? 'addClass' : 'removeClass']('black-inputs');-->
-<!--});-->
-
-<!--// Switches mode-->
-<!--$('#switch-mode').change(function () {-->
-<!--$('#switch-wrapper')[this.checked ? 'addClass' : 'removeClass']('reversed-switches');-->
-<!--});-->
-
-<!--// Disabled switches-->
-<!--$('#switch-enable').change(function () {-->
-<!--$('#disabled-switches').children()[this.checked ? 'enableInput' : 'disableInput']();-->
-<!--});-->
-
-<!--// Tooltip menu-->
-<!--$('#select-tooltip').menuTooltip($('#select-context').hide(), {-->
-<!--classes:['no-padding']-->
-<!--});-->
-<!--// Form validation-->
-<!--$('form').validationEngine();-->
-
-<!--</script>-->
 {{/contentFor}}
 
 <body class="clearfix with-menu with-shortcuts">
