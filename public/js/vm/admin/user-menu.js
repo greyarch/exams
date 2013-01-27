@@ -14,7 +14,7 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/exam.j
             var nextExams = _.filter(self.exams(), function (exam) {
                 return exam.jsDate() > today;
             })
-            return _.last(nextExams, 3);
+            return _.last(nextExams, 3).reverse();
         });
 
         if (typeof window.selectExam === 'undefined') {
