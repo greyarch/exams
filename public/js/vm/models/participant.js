@@ -1,4 +1,4 @@
-define('models/participant', ['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
+define(['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
     function Participant(json) {
         var self = this;
         json = json || {};

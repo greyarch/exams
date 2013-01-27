@@ -1,4 +1,4 @@
-define('models/test', ['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
+define(['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
     function Test(json) {
         var self = this;
         self.id = ko.observable(json.id);

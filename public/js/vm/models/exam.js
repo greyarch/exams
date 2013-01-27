@@ -1,4 +1,4 @@
-define('models/exam', ['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'js/ajax.js'], function (ko, _, ajax) {
+define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', 'js/ajax.js'], function (ko, _, ajax) {
     function Exam(json) {
         var self = this;
         json = json || {};
