@@ -1,4 +1,4 @@
-<div id="add-participant" style="display: none; width: 500px;" data-bind="with: participant">
+<form  data-bind="submit: saveParticipant, with: participant" id="add-participant" style="display: none; width: 500px;">
     <fieldset class="fieldset fields-list">
 
         <legend class="legend">Participant</legend>
@@ -6,32 +6,32 @@
         <!-- Standard Fields -->
         <div class="field-block button-height">
             <label for="part-company" class="label"><b>Company</b></label>
-            <input data-bind="value: company" type="text" name="part-company" id="part-company" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: company" type="text" name="part-company" id="part-company" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-firstname" class="label"><b>First Name</b></label>
-            <input data-bind="value: firstName" type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: firstName" type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-lastname" class="label"><b>Last Name</b></label>
-            <input data-bind="value: lastName" type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: lastName" type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-email" class="label"><b>Email</b></label>
-            <input data-bind="value: email" type="text" name="part-email" id="part-email" class="input validate[custom[email]]" value="">
+            <input type="email" data-bind="value: email" name="part-email" id="part-email" class="input validate[custom[email]]" value="" required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-price" class="label"><b>Exam Price</b></label>
-            <input data-bind="value: price" type="text" name="part-price" id="part-price" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: price" type="number" name="part-price" id="part-price" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-fee" class="label"><b>Board Fee</b></label>
-            <input data-bind="value: fee" type="text" name="part-fee" id="part-fee" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: fee" type="number" name="part-fee" id="part-fee" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <!-- Extra fields after taken exam -->
@@ -39,7 +39,7 @@
 
             <div>
                 <label for="part-result" class="label mid-margin-right"><b>Exam result</b></label>
-                <input data-bind="value: result" type="text" name="part-result" id="part-result" class="input mid-margin-bottom" value="">
+                <input data-bind="value: result" type="number" name="part-result" id="part-result" class="input mid-margin-bottom" value="">
             </div>
             <div>
                 <label for="part-pass" class="label mid-margin-right"><b>Exam Passed?</b></label>
@@ -48,16 +48,15 @@
         </div>
 
         <div class="field-block button-height">
-            <button type="buttton" class="button glossy" onclick="$.modal.current.closeModal();">
+            <button type="button" class="button glossy" onclick="$.modal.current.closeModal();">
                 <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
                 Cancel
             </button>
-            <button type="buttton" class="button glossy mid-margin-right" data-bind="click: function() {$.modal.current.closeModal();
-                   saveParticipant($('#part-pass').is(':checked'));}, clickBubble: false">
+            <button type="submit" class="button glossy mid-margin-right">
                 <span class="button-icon"><span class="icon-tick"></span></span>
                 Save
             </button>
         </div>
 
     </fieldset>
-</div>
+</form>
