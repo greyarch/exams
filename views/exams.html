@@ -35,17 +35,17 @@
 <script type="text/javascript" data-main="js/vm/exams/exams-page-vm.js" src="/js/require.js"></script>
 
 <!-- jQuery Form Validation -->
-<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
-<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
+<!--<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>-->
+<!--<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>-->
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
 <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
 
-<!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
+    <!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
     <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
     <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
-    
+
     <!-- Disabled shortcuts -->
 
     <!-- For Future Modules use
@@ -104,11 +104,10 @@
 
                         <div class="button-group absolute-right">
                             <a class="button icon-star" data-bind="click: addExam">Add Exam</a>
-                            <!--<a class="button icon-pencil" data-bind="css: {disabled: !hasSelectedExam()}, click: editExam">Edit Exam</a>-->
                         </div>
                     </div>
                     <div class="scrollable">
-                        <ul class="events" data-bind="foreach: exams" style="padding-bottom: 7px">
+                        <ul class="events small-margin-bottom" data-bind="foreach: exams">
                             <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
                                 <a href="#" class="event-description" data-bind="click: selectExam">
                                     <span class="event-date with-month">
@@ -123,10 +122,11 @@
 
                                     <p data-bind="text: place"></p>
                                 </a>
-                                <span class="inset show-on-parent-hover button-group compact align-botqtom">
+
+                                <span class="show-on-parent-hover button-group compact absolute-right small-margin-right">
                                     <a data-bind="click: editExam" class="button icon-pencil with-tooltip"
                                        title="Edit"></a>
-                                    <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                    <a id="delete-exam" class="button icon-trash with-tooltip" title="Delete"
                                        data-bind="click: deleteExam, clickBubble: false"></a>
                                 </span>
                             </li>

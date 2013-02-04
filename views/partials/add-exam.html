@@ -1,4 +1,4 @@
-<div id="add-exam" style="display: none; width: 500px;" data-bind="with: exam">
+<form data-bind="submit: saveExam, with: exam" id="add-exam" style="display: none; width: 500px;">
     <fieldset class="fieldset fields-list">
 
         <legend class="legend">Exam</legend>
@@ -6,19 +6,19 @@
         <!-- Standard Fields -->
         <div class="field-block button-height">
             <label for="exam-title" class="label"><b>Title</b></label>
-            <input data-bind="value: title" type="text" name="exam-title" id="exam-title" class="input validate[required]" data-tooltip-options='{"position":"right"}'>
+            <input data-bind="value: title" type="text" name="exam-title" id="exam-title" class="input validate[required]" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-place" class="label"><b>Place</b></label>
-            <select class="select" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
+            <select class="select" style="border-style: solid; border-width: 2px; border-color: black" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-date" class="label">Date</label>
              <span class="input">
                 <span class="icon-calendar"></span>
-                <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: date"/>
+                <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: date" required/>
              </span>
         </div>
 
@@ -46,16 +46,15 @@
         </div>
 
         <div class="field-block button-height">
-            <button type="buttton" class="button glossy" onclick="$.modal.current.closeModal();">
+            <button type="button" class="button glossy" onclick="$.modal.current.closeModal();">
                 <span class="button-icon red-gradient"><span class="icon-cross-round"></span></span>
                 Cancel
             </button>
-            <button type="buttton" class="button glossy mid-margin-right"
-                    data-bind="click: function() {$.modal.current.closeModal(); saveExam($('#exam-date').val());}">
+            <button type="submit" class="button glossy mid-margin-right">
                 <span class="button-icon"><span class="icon-tick"></span></span>
                 Save
             </button>
         </div>
 
     </fieldset>
-</div>
+</form>

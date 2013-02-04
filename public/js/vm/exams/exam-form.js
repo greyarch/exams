@@ -22,9 +22,10 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/examty
             });
         };
 
-        saveExam = function (date) {
-            self.exam().date(date); //ugly hack cause the date picker does not work with knockout
+        saveExam = function () {
+            self.exam().date($('#exam-date').val()); //ugly hack cause the date picker does not work with knockout
             self.exam().save(self.onSave);
+            $.modal.current.closeModal();
         };
     }
 

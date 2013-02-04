@@ -9,6 +9,7 @@ define(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/partic
 
         saveParticipant = function () {
             Participant.save(self.examId, self.participant().toJSON(), self.onSave);
+            $.modal.current.closeModal();
         };
     }
 });
