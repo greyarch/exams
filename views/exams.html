@@ -35,8 +35,8 @@
 <script type="text/javascript" data-main="js/vm/exams/exams-page-vm.js" src="/js/require.js"></script>
 
 <!-- jQuery Form Validation -->
-<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>
-<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>
+<!--<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>-->
+<!--<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>-->
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
@@ -126,7 +126,7 @@
                                 <span class="show-on-parent-hover button-group compact absolute-right small-margin-right">
                                     <a data-bind="click: editExam" class="button icon-pencil with-tooltip"
                                        title="Edit"></a>
-                                    <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                    <a id="delete-exam" class="button icon-trash with-tooltip" title="Delete"
                                        data-bind="click: deleteExam, clickBubble: false"></a>
                                 </span>
                             </li>

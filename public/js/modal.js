@@ -1,7 +1,7 @@
 function openModal(selector, title) {
     $(selector).modal({
         title:title,
-        buttons: {},
+        buttons:{},
         buttonsAlign:'center',
         resizable:false
     });
@@ -16,4 +16,9 @@ function openModal(selector, title) {
             );
         }
     });
+};
+
+
+function confirm(title, onConfirm) {
+    $.modal.confirm(title, onConfirm, function () {});
 };

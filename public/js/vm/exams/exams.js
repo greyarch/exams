@@ -42,14 +42,18 @@ define(['js/libs/knockout-2.2.0.js', '/js/models/exam.js', '/js/models/participa
             };
 
             deleteExam = function (exam) {
-                Exam.remove(exam.id(), function () {
-                    self.loadAllExams();
+                confirm('Are you sure you want to delete this exam?', function () {
+                    Exam.remove(exam.id(), function () {
+                        self.loadAllExams();
+                    });
                 });
             };
 
             deleteParticipant = function (participant) {
-                Participant.remove(participant.id(), function () {
-                    self.loadAllExams();
+                confirm('Are you sure you want to delete this participant?', function () {
+                    Participant.remove(participant.id(), function () {
+                        self.loadAllExams();
+                    });
                 });
             };
 
