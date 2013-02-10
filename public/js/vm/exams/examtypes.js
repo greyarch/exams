@@ -22,7 +22,7 @@ require(['js/libs/knockout-2.2.0.js', 'js/libs/lodash.min.js', '/js/models/examt
 
         deleteExamType = function (examType) {
             confirm('Are you sure you want to delete this exam type?', function () {
-                examType.delete(function () {
+                examType.remove(function () {
                     self.loadExamTypes();
                 });
             });

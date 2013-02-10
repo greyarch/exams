@@ -13,7 +13,7 @@ define(['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
             }
         }
 
-        self.delete = function (onSuccess) {
+        self.remove = function (onSuccess) {
             console.log("deleting Exam Type with id: ", self.id());
             ajax.del('/examtype/id/' + self.id(), onSuccess);
         }
