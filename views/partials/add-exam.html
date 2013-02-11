@@ -11,11 +11,11 @@
 
         <div class="field-block button-height">
             <label for="exam-place" class="label"><b>Place</b></label>
-            <select class="select" style="border-style: solid; border-width: 2px; border-color: black" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
+            <select class="exams-select" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
         </div>
 
         <div class="field-block button-height">
-            <label for="exam-date" class="label">Date</label>
+            <label for="exam-date" class="label" style="color:black">Date</label>
              <span class="input">
                 <span class="icon-calendar"></span>
                 <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: date" required/>
@@ -24,7 +24,7 @@
 
         <div class="field-block button-height">
             <label for="exam-type" class="label"><b>Exam Type</b></label>
-            <select class="select" id="exam-type"
+            <select class="exams-select" id="exam-type"
                     data-bind="options: $parent.examtypes, optionsText: 'tag', optionsValue: 'id', value: typeId"></select>
         </div>
 
@@ -40,7 +40,7 @@
 
             <div>
                 <label for="exam-test" class="label mid-margin-right"><b>Test</b></label>
-                <select class="select" id="exam-test"
+                <select class="exams-select" id="exam-test"
                         data-bind="options: $parent.tests, optionsText: 'tag', optionsValue: 'id', value: testId"></select>
             </div>
         </div>
