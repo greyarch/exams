@@ -1,0 +1,198 @@
+{{#contentFor "pageHTML"}}
+<html class="no-js" lang="en">
+{{/contentFor}}
+
+{{#contentFor "pageStyles"}}
+<link rel="stylesheet" href="/css/styles/switches.css?v=1">
+<link rel="stylesheet" href="/css/events.css">
+<link rel="stylesheet" href="/css/styles/table.css?v=1">
+<link rel="stylesheet" href="/css/styles/modal.css">
+<link rel="stylesheet" href="/css/styles/form.css">
+<link rel="stylesheet" href="/css/styles/dashboard.css">
+<!--<link rel="stylesheet" href="/css/exams.css">-->
+<link rel="stylesheet" href="/js/libs/glDatePicker/developr.css">
+
+<!-- jQuery Form Validation -->
+<link rel="stylesheet" href="/js/libs/formValidator/developr.validationEngine.css?v=1">
+{{/contentFor}}
+
+{{#contentFor "pageScripts"}}
+<!-- Scripts -->
+<script src="/js/libs/jquery-1.8.2.min.js"></script>
+<script src="/js/libs/setup.js"></script>
+
+<!-- Template functions -->
+<script src="/js/libs/developr.input.js"></script>
+<script src="/js/libs/developr.navigable.js"></script>
+<script src="/js/libs/developr.notify.js"></script>
+<script src="/js/libs/developr.message.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/developr.tooltip.js"></script>
+<script src="/js/libs/developr.modal.js"></script>
+<script src="/js/libs/developr.table.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
+<script src="/js/libs/moment.min.js"></script>
+<script src="/js/modal.js"></script>
+<script type="text/javascript" data-main="js/vm/exams/exams-page-vm.js" src="/js/require.js"></script>
+
+<!-- jQuery Form Validation -->
+<!--<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>-->
+<!--<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>-->
+{{/contentFor}}
+
+{{#contentFor "pageShortcuts"}}
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+
+    <!--    <li><a href="./" class="shortcut-dashboard" title="Dashboard">Dashboard</a></li>-->
+    <li class="current"><a href="#" class="shortcut-agenda" title="Exams">Exams</a></li>
+    <li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
+
+    <!-- Disabled shortcuts -->
+
+    <!-- For Future Modules use
+        <li><span class="shortcut-messages" title="Messages">Messages</a></li>
+        <li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+        <li><span class="shortcut-medias" title="Medias">Medias</a></li>
+        <li><span class="shortcut-stats" title="Stats">Stats</a></li>
+        <li><span class="shortcut-settings" title="Settings">Settings</a></li>
+        <li><span class="shortcut-notes" title="Notes">Notes</span></li>
+    -->
+</ul>
+{{/contentFor}}
+
+{{#contentFor "pageScript"}}
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+<!-- Prompt IE 6 users to install Chrome Frame -->
+<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
+        href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
+        href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
+
+<!-- Title bar -->
+<header role="banner" id="title-bar">
+    <h2>ExaMS</h2>
+</header>
+
+<!-- Button to open/hide menu -->
+<a href="#" id="open-menu"><span>Menu</span></a>
+
+<!-- Button to open/hide shortcuts -->
+<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+<!-- Main content -->
+
+<section role="main" id="main">
+
+    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work
+        as expected...
+    </noscript>
+
+    <hgroup id="main-title" class="thin">
+        <h1>Exams</h1>
+    </hgroup>
+
+    <!-- The padding wrapper may be omitted -->
+    <div class="with-padding">
+
+        <div class="columns">
+            <div class="three-columns twelve-columns-tablet">
+                <div class="block large-margin-bottom">
+                    <div class="block-title">
+                        <h3 style="display: inline">Exams</h3>
+
+                        <div class="float-right">
+                            <a class="button icon-plus blue-gradient glossy" data-bind="click: addExam">Add</a>
+                        </div>
+                    </div>
+                    <div class="scrollable">
+                        <ul class="events small-margin-bottom" data-bind="foreach: exams">
+                            <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
+                                <a href="#" class="event-description" data-bind="click: selectExam">
+                                    <span class="event-date with-month">
+                                        <span data-bind="text: day"></span>
+                                        <span class="event-month">
+                                            <span data-bind="text: month"></span>
+                                            /
+                                            <span data-bind="text: year"></span>
+                                        </span>
+                                    </span>
+                                    <h4 data-bind="text: title"></h4>
+
+                                    <p data-bind="text: place"></p>
+                                </a>
+
+                                <span class="show-on-parent-hover button-group compact absolute-right small-margin-right">
+                                    <a data-bind="click: editExam" class="button icon-pencil with-tooltip"
+                                       title="Edit"></a>
+                                    <a id="delete-exam" class="button icon-trash with-tooltip" title="Delete"
+                                       data-bind="click: deleteExam, clickBubble: false"></a>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="new-row-mobile nine-columns twelve-columns-tablet">
+<!--                    <div class="scrollable">-->
+                        <table class="table responsive-table">
+				            <div class="table-header silver-gradient button-height">
+				                <h3 style="display: inline">Participants</h3>
+				                
+				                <div class="float-right">
+				                    <a data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant"
+                               			class="button icon-plus blue-gradient glossy">Add</a>
+                                </div>
+				            </div>
+
+                            <thead>
+	                        <tr>   
+	                            <th scope="col" width="15%" class="hide-on-tablet-portrait">Company</th>
+	                            <th scope="col">First Name</th>
+	                            <th scope="col">Last Name</th>
+	                            <th scope="col" width="15%" class="hide-on-tablet-portrait">Email</th>
+	                            <th scope="col" width="10%" class="hide-on-tablet">Price</th>
+	                            <th scope="col" width="10%" class="hide-on-tablet">Board Fee</th>
+	                            <th scope="col" width="10%" class="hide-on-mobile-portrait">Result, %</th>
+	                            <th scope="col" width="10%" class="hide-on-mobile-portrait">Pass/Fail</th>
+	                            <th scope="col" width="80">Actions</th>
+	                        </tr>    
+                            </thead>
+
+                            <tbody data-bind="foreach: participants">
+                            <tr>
+                                <td data-bind="text: company"></td>
+                                <td data-bind="text: firstName"></td>
+                                <td data-bind="text: lastName"></td>
+                                <td data-bind="text: email"></td>
+                                <td data-bind="text: price"></td>
+                                <td data-bind="text: fee"></td>
+                                <td data-bind="text: result"></td>
+                                <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
+                                <td class="low-padding align-center">
+                                    <span class="button-group compact">
+                                        <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
+                                           title="Edit"></a>
+                                        <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                           data-bind="click: deleteParticipant, clickBubble: false"></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-footer silver-gradient">
+      					      There are <strong data-bind="text: participants().length"></strong> participants
+        				</div>
+<!--                    </div>-->
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{{> add-participant}}
+{{> add-exam}}
