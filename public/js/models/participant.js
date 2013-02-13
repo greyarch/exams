@@ -13,7 +13,7 @@ define(['js/libs/knockout-2.2.0.js', 'js/ajax.js'], function (ko, ajax) {
         self.pass = ko.observable(json.pass || false);
 
         self.passStyle = ko.computed(function () {
-            return self.pass() ? 'icon-tick glossy green-gradient' : 'icon-cross glossy red-gradient';
+            return self.pass() ? 'icon-tick icon-green icon-size2' : 'icon-cross icon-red icon-size2';
         });
 
         self.toJSON = function () {

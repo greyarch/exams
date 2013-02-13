@@ -137,56 +137,56 @@
                 </div>
             </div>
             <div class="new-row-mobile nine-columns twelve-columns-tablet">
-<!--                    <div class="scrollable">-->
-                        <table class="table responsive-table">
-				            <div class="table-header silver-gradient button-height">
-				                <h3 style="display: inline">Participants</h3>
-				                
-				                <div class="float-right">
-				                    <a data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant"
-                               			class="button icon-plus blue-gradient glossy">Add</a>
-                                </div>
-				            </div>
 
-                            <thead>
-	                        <tr>   
-	                            <th scope="col" width="15%" class="hide-on-tablet-portrait">Company</th>
-	                            <th scope="col">First Name</th>
-	                            <th scope="col">Last Name</th>
-	                            <th scope="col" width="15%" class="hide-on-tablet-portrait">Email</th>
-	                            <th scope="col" width="10%" class="hide-on-tablet">Price</th>
-	                            <th scope="col" width="10%" class="hide-on-tablet">Board Fee</th>
-	                            <th scope="col" width="10%" class="hide-on-mobile-portrait">Result, %</th>
-	                            <th scope="col" width="10%" class="hide-on-mobile-portrait">Pass/Fail</th>
-	                            <th scope="col" width="80">Actions</th>
-	                        </tr>    
-                            </thead>
+	            <div class="table-header silver-gradient button-height">
+	                <h3 style="display: inline">Participants</h3>
+	                
+	                <div class="float-right">
+	                    <a data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant"
+                   			class="button icon-plus blue-gradient glossy">Add</a>
+                    </div>
+	            </div>
 
-                            <tbody data-bind="foreach: participants">
-                            <tr>
-                                <td data-bind="text: company"></td>
-                                <td data-bind="text: firstName"></td>
-                                <td data-bind="text: lastName"></td>
-                                <td data-bind="text: email"></td>
-                                <td data-bind="text: price"></td>
-                                <td data-bind="text: fee"></td>
-                                <td data-bind="text: result"></td>
-                                <td><span data-bind="css: passStyle" style="width: 100%; height: 100%"></span></td>
-                                <td class="low-padding align-center">
-                                    <span class="button-group compact">
-                                        <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
-                                           title="Edit"></a>
-                                        <a class="button icon-trash with-tooltip confirm" title="Delete"
-                                           data-bind="click: deleteParticipant, clickBubble: false"></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="table-footer silver-gradient">
-      					      There are <strong data-bind="text: participants().length"></strong> participants
-        				</div>
-<!--                    </div>-->
+                <table class="table responsive-table">
+
+                    <thead>
+                    <tr>   
+                        <th scope="col" width="15%" class="hide-on-tablet-portrait">Company</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col" width="15%" class="hide-on-tablet-portrait">Email</th>
+                        <th scope="col" width="10%" class="hide-on-tablet">Price</th>
+                        <th scope="col" width="10%" class="hide-on-tablet">Board Fee</th>
+                        <th scope="col" width="10%" class="hide-on-mobile-portrait">Result, %</th>
+                        <th scope="col" width="10%" class="hide-on-mobile-portrait">Pass/Fail</th>
+                        <th scope="col" width="80">Actions</th>
+                    </tr>    
+                    </thead>
+
+                    <tbody data-bind="foreach: participants">
+                    <tr>
+                        <td data-bind="text: company"></td>
+                        <td data-bind="text: firstName"></td>
+                        <td data-bind="text: lastName"></td>
+                        <td data-bind="text: email"></td>
+                        <td data-bind="text: price"></td>
+                        <td data-bind="text: fee"></td>
+                        <td data-bind="text: result"></td>
+                        <td class="align-center"><span data-bind="css: passStyle"></span></td>
+                        <td class="low-padding align-center">
+                            <span class="button-group compact">
+                                <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
+                                   title="Edit"></a>
+                                <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                   data-bind="click: deleteParticipant, clickBubble: false"></a>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="table-footer silver-gradient">
+				      There are <strong data-bind="text: participants().length"></strong> participants
+				</div>
             </div>
         </div>
 
