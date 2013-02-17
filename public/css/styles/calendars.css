@@ -33,7 +33,8 @@
 
 	/* Month and scroll arrows */
 	.calendar > caption {
-		color: white;
+/*		color: white; */
+/*		color: white; */
 		font-size: 17px;
 		height: 38px;
 		padding: 0 34px;
@@ -41,7 +42,7 @@
 		font-weight: bold;
 		white-space: nowrap;
 		border: 1px solid #004795;
-		background: #00438d url(../../img/old-browsers/colors/bg_blue-gradient.png) repeat-x;
+/*		background: #00438d url(../../img/old-browsers/colors/bg_blue-gradient.png) repeat-x; 
 		-webkit-background-size: 100% 100%;
 		-moz-background-size: 100% 100%;
 		-o-background-size: 100% 100%;
@@ -51,7 +52,25 @@
 		background: -moz-linear-gradient(top, #006aac, #00438d);
 		background: -ms-linear-gradient(top, #006aac, #00438d);
 		background: -o-linear-gradient(top, #006aac, #00438d);
-		background: linear-gradient(top, #006aac, #00438d);
+		background: linear-gradient(top, #006aac, #00438d); */
+
+/* Start of Mitko Addition */
+		color: #666666;
+		background: #d6dadf url(../img/old-browsers/colors/bg_silver-gradient.png) repeat-x;
+		-webkit-background-size: 100% 100%;
+		-moz-background-size: 100% 100%;
+		-o-background-size: 100% 100%;
+		background-size: 100% 100%;
+		background: -webkit-gradient(linear, left top, left bottom, from(#efeff4), to(#d6dadf));
+		background: -webkit-linear-gradient(top, #efeff4, #d6dadf);
+		background: -moz-linear-gradient(top, #efeff4, #d6dadf);
+		background: -ms-linear-gradient(top, #efeff4, #d6dadf);
+		background: -o-linear-gradient(top, #efeff4, #d6dadf);
+		background: linear-gradient(top, #efeff4, #d6dadf);
+		border-color: #cccccc;
+
+/* End of Mitko Addition */
+
 		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.45);
 		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.45);
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.45);
@@ -66,7 +85,8 @@
 			width: 34px;
 			line-height: 38px;
 			font-size: 12px;
-			color: white;
+/*			color: white; */
+			color: #666666; 
 			}
 			.cal-prev {
 				float: left;
@@ -78,7 +98,8 @@
 			}
 			a.cal-prev,
 			a.cal-next {
-				color: white;
+/*				color: white; */
+				color: #666666;
 				-webkit-transition: text-indent 300ms;
 				-moz-transition: text-indent 300ms;
 				-ms-transition: text-indent 300ms;

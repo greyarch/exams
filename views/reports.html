@@ -21,12 +21,13 @@
 <script src="/js/libs/setup.js"></script>
 
 <!-- Template functions -->
-<!--<script src="/js/libs/developr.input.js"></script>-->
+<script src="/js/libs/developr.input.js"></script>
 <script src="/js/libs/developr.navigable.js"></script>
 <script src="/js/libs/developr.notify.js"></script>
 <script src="/js/libs/developr.scroll.js"></script>
 <script src="/js/libs/developr.tooltip.js"></script>
 <script src="/js/libs/developr.modal.js"></script>
+<script src="/js/libs/developr.table.js"></script>
 <script src="/js/libs/developr.scroll.js"></script>
 <script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
 <script src="/js/libs/moment.min.js"></script>
@@ -93,25 +94,29 @@
     </hgroup>
 
     <div class="with-padding">
-        <div class="table-header button-height">
+        <div class="table-header silver-gradient button-height">
             All registered exam participants
-                <div class="float-right">
-                    <a href="/reports/participants.csv" class="button  blue-gradient glossy">Download as CSV</a>
-                </div>
+            
+            <div class="float-right">
+                 <a href="/reports/participants.csv" class="button icon-download blue-gradient glossy"> CSV</a>
+           </div>
         </div>
 
-        <table class="table">
+       <table class="table responsive-table">
             <thead>
-            <th scope="col" class="header">Company</th>
-            <th scope="col" class="header">First Name</th>
-            <th scope="col" class="header">Last Name</th>
-            <th scope="col" class="header">Email</th>
-            <th scope="col" class="header">Price</th>
-            <th scope="col" class="header">Board Fee</th>
-            <th scope="col" class="header">Result, %</th>
-            <th scope="col" class="header">Pass/Fail</th>
-            <th scope="col" class="header">Exam Type</th>
+            <tr>   
+                <th scope="col" width="15%" class="hide-on-tablet-portrait">Company</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col" width="15%" class="hide-on-tablet-portrait">Email</th>
+                <th scope="col" width="10%" class="hide-on-tablet">Price</th>
+                <th scope="col" width="10%" class="hide-on-tablet">Board Fee</th>
+                <th scope="col" width="10%" class="hide-on-mobile-portrait">Result, %</th>
+                <th scope="col" width="10%" class="hide-on-mobile-portrait">Pass/Fail</th>
+                <th scope="col" width="80">Exam Type</th>
+            </tr>    
             </thead>
+
             <tbody>
             {{#each participants}}
             <tr>
@@ -129,8 +134,8 @@
             </tbody>
         </table>
 
-        <div class="table-footer">
-            <a href="/reports/participants.csv" class="button blue-gradient glossy">Download as CSV</a>
+        <div class="table-footer silver-gradient">
+            <a href="/reports/participants.csv" class="button icon-download blue-gradient glossy"> CSV</a>
         </div>
     </div>
 </section>

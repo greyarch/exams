@@ -36,7 +36,7 @@
 <script src="/js/libs/setup.js"></script>
 
 <!-- Template functions -->
-<!--<script src="/js/libs/developr.input.js"></script>-->
+<script src="/js/libs/developr.input.js"></script>
 <script src="/js/libs/developr.navigable.js"></script>
 <script src="/js/libs/developr.notify.js"></script>
 <script src="/js/libs/developr.message.js"></script>
@@ -134,9 +134,9 @@
 
 
         <table class="table responsive-table" id="examTypeTable">
-            <div class="table-header button-height">
-                <div class="float-right ">
-                    <a id="examtype-add" class="button icon-plus  blue-gradient glossy">Add</a>
+            <div class="table-header silver-gradient button-height">
+                <div class="float-right">
+                    <a id="examtype-add" class="button icon-plus blue-gradient glossy">Add</a>
                 </div>
                 &nbsp
             </div>
@@ -146,7 +146,7 @@
                 <th scope="col"><input type="checkbox" name="check-all" id="check-all" value="1"></th>
                 <th scope="col">Exam Type</th>
                 <th scope="col" width="15%" class="align-center hide-on-mobile">Tag</th>
-                <th scope="col" width="100" class="align-right">Actions</th>
+                <th scope="col" width="100" class="align-center">Actions</th>
             </tr>
             </thead>
 
@@ -157,13 +157,13 @@
                 <td data-bind="text: title"></td>
                 <td data-bind="text: tag"></td>
                 <td class="low-padding align-center">
-								<span class="button-group compact">
-									<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
-									
-									<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
-                                       onclick="$(this).removeTooltip()"
-                                       data-bind="click: deleteExamType, clickBubble: false"></a>
-								</span>
+					<span class="button-group compact">
+						<a href="#" class="button icon-pencil with-tooltip" title="Edit"></a>
+						
+						<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"
+                           onclick="$(this).removeTooltip()"
+                           data-bind="click: deleteExamType, clickBubble: false"></a>
+					</span>
                 </td>
 
             </tr>
@@ -171,29 +171,11 @@
 
         </table>
 
-        <form method="post" action="" class="table-footer button-height large-margin-bottom">
-            <div class="float-right">
-                <div class="button-group">
-                    <a href="#" title="First page" class="button blue-gradient glossy"><span
-                            class="icon-previous"></span></a>
-                    <a href="#" title="Previous page" class="button blue-gradient glossy"><span
-                            class="icon-backward"></span></a>
-                </div>
-
-                <div class="button-group">
-                    <a href="#" title="Page 1" class="button blue-gradient glossy active">1</a>
-                    <a href="#" title="Page 2" class="button blue-gradient glossy">2</a>
-                </div>
-
-                <div class="button-group">
-                    <a href="#" title="Next page" class="button blue-gradient glossy"><span class="icon-forward"></span></a>
-                    <a href="#" title="Last page" class="button blue-gradient glossy"><span
-                            class="icon-next"></span></a>
-                </div>
-            </div>
-
+        <div class="table-footer silver-gradient">
             There are <strong data-bind="text: examtypes().length"></strong> items
-        </form>
+        </div>
+
 
     </div>
+    	
 </section>
