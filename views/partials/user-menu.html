@@ -40,10 +40,10 @@
             <li>
                 <ul class="calendar-menu" data-bind="foreach: nextExams">
                     <li>
-                        <a href="" title="Select Exam" data-bind="click: function() {selectExam($data)}">
+                        <a href="" title="Select Exam" data-bind="click: function() {$root.selectCurrentExam($data)}">
                             <time data-bind="attr: {datetime: date}">
-                                <b data-bind="text: day"></b>
-                                <span data-bind="text: month"></span>
+                                <b data-bind="text: jsDate().date()"></b>
+                                <span data-bind="text: jsDate().format('MMM')"></span>
                             </time>
                             <span class="green" data-bind="text: title"></span><br>
                             <span data-bind="text: place"></span>

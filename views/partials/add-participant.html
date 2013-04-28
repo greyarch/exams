@@ -1,4 +1,4 @@
-<form  data-bind="submit: saveParticipant, with: participant" id="add-participant" style="display: none; width: 500px;">
+<form  data-bind="submit: saveParticipant" id="add-participant" style="display: none; width: 500px;">
     <fieldset class="fieldset fields-list">
 
         <legend class="legend">Participant</legend>
@@ -11,12 +11,12 @@
 
         <div class="field-block button-height">
             <label for="part-firstname" class="label"><b>First Name</b></label>
-            <input data-bind="value: firstName" type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
+            <input data-bind="value: first_name" type="text" name="part-firstname" id="part-firstname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
             <label for="part-lastname" class="label"><b>Last Name</b></label>
-            <input data-bind="value: lastName" type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
+            <input data-bind="value: last_name" type="text" name="part-lastname" id="part-lastname" class="input validate[required]" value="" data-tooltip-options='{"position":"right"}' required>
         </div>
 
         <div class="field-block button-height">
@@ -41,9 +41,9 @@
                 <label for="part-result" class="label mid-margin-right"><b>Exam result</b></label>
                 <input data-bind="value: result" type="number" name="part-result" id="part-result" class="input mid-margin-bottom" value="">
             </div>
-            <div>
+            <div data-bind="click: passHandle, switch: pass" id="part-pass-div">
                 <label for="part-pass" class="label mid-margin-right"><b>Exam Passed?</b></label>
-                <input data-bind="checked: pass" type="checkbox" name="pass" id="part-pass" class="switch medium" data-text-on="YES" data-text-off="NO">
+                <input type="checkbox" name="pass" id="part-pass" class="switch medium" data-text-on="YES" data-text-off="NO">
             </div>
         </div>
 

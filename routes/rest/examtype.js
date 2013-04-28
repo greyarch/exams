@@ -20,7 +20,7 @@ module.exports = function (app, auth, db) {
     });
 
     //delete an Exam Type with an id
-    app.delete('/examtype/id/:id', auth.rest, function (req, res) {
+    app.delete('/examtype/:id', auth.rest, function (req, res) {
         console.log("deleting an Exam type with id " + req.params.id);
         db.safeQuery('DELETE FROM exam_types WHERE id = ?', [req.params.id], res, function (result) {
             console.log('result is: ', result);

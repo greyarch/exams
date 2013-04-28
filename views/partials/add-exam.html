@@ -1,4 +1,4 @@
-<form data-bind="submit: saveExam, with: exam" id="add-exam" style="display: none; width: 500px;">
+<form data-bind="submit: saveExam" id="add-exam" style="display: none; width: 500px;">
     <fieldset class="fieldset fields-list">
 
         <legend class="legend">Exam</legend>
@@ -11,21 +11,21 @@
 
         <div class="field-block button-height">
             <label for="exam-place" class="label"><b>Place</b></label>
-            <select class="exams-select" id="exam-place" data-bind="options: $parent.availablePlaces, value: place"></select>
+            <select class="select" id="exam-place" data-bind="options: availablePlaces, value: place"></select>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-date" class="label" style="color:black">Date</label>
              <span class="input">
                 <span class="icon-calendar"></span>
-                <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: date" required/>
+                <input id="exam-date" type="text" class="input-unstyled datepicker" data-bind="value: jsDate().format('YYYY-MM-D')" required/>
              </span>
         </div>
 
         <div class="field-block button-height">
             <label for="exam-type" class="label"><b>Exam Type</b></label>
-            <select class="exams-select" id="exam-type"
-                    data-bind="options: $parent.examtypes, optionsText: 'tag', optionsValue: 'id', value: typeId"></select>
+            <select class="select" id="exam-type"
+                    data-bind="options: examtypes, optionsText: 'tag', optionsValue: 'id', value: exam_type_id"></select>
         </div>
 
         <div class="field-block button-height">
@@ -40,8 +40,8 @@
 
             <div>
                 <label for="exam-test" class="label mid-margin-right"><b>Test</b></label>
-                <select class="exams-select" id="exam-test"
-                        data-bind="options: $parent.tests, optionsText: 'tag', optionsValue: 'id', value: testId"></select>
+                <select class="select" id="exam-test"
+                        data-bind="options: tests, optionsText: 'tag', optionsValue: 'id', value: test_id"></select>
             </div>
         </div>
 

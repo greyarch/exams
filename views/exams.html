@@ -33,12 +33,11 @@
 <script src="/js/libs/developr.scroll.js"></script>
 <script src="/js/libs/glDatePicker/glDatePicker.min.js"></script>
 <script src="/js/libs/moment.min.js"></script>
-<script src="/js/modal.js"></script>
+<script src="/js/vm/modal.js"></script>
+<script src="/js/libs/store.min.js"></script>
+
 <script type="text/javascript" data-main="js/vm/exams/exams-page-vm.js" src="/js/require.js"></script>
 
-<!-- jQuery Form Validation -->
-<!--<script src="/js/libs/formValidator/jquery.validationEngine.js?v=1"></script>-->
-<!--<script src="/js/libs/formValidator/languages/jquery.validationEngine-en.js?v=1"></script>-->
 {{/contentFor}}
 
 {{#contentFor "pageShortcuts"}}
@@ -110,14 +109,14 @@
                     </div>
                     <div class="scrollable">
                         <ul class="events small-margin-bottom" data-bind="foreach: exams">
-                            <li data-bind="style: {'background-color': isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
-                                <a href="#" class="event-description" data-bind="click: selectExam">
+                            <li data-bind="style: {'background-color': $root.isSelectedExam($data) ? 'lightcyan' : 'inherit'}">
+                                <a href="#" class="event-description" data-bind="click: $root.selectExam">
                                     <span class="event-date with-month">
-                                        <span data-bind="text: day"></span>
+                                        <span data-bind="text: jsDate().date()"></span>
                                         <span class="event-month">
-                                            <span data-bind="text: month"></span>
+                                            <span data-bind="text: jsDate().format('MMM')"></span>
                                             /
-                                            <span data-bind="text: year"></span>
+                                            <span data-bind="text: jsDate().year()"></span>
                                         </span>
                                     </span>
                                     <h4 data-bind="text: title"></h4>
@@ -136,63 +135,58 @@
                     </div>
                 </div>
             </div>
-            <div class="new-row-mobile nine-columns twelve-columns-tablet">
 
-	            <div class="table-header silver-gradient button-height">
-	                <h3 style="display: inline">Participants</h3>
-	                
-	                <div class="float-right">
-	                    <a data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant"
-                   			class="button icon-plus blue-gradient glossy">Add</a>
+            <div class="block large-margin-bottom" style="padding-bottom: 7px">
+                <div class="block-title">
+                    <h3>Participants</h3>
+
+                    <div class="button-group absolute-right">
+                        <a class="button icon-plus blue-gradient glossy"
+                           data-bind="css: {disabled: !hasSelectedExam()}, click: addParticipant">Add</a>
                     </div>
-	            </div>
-
-                <table class="table responsive-table">
-
-                    <thead>
-                    <tr>   
-                        <th scope="col" width="15%" class="hide-on-tablet-portrait">Company</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col" width="15%" class="hide-on-tablet-portrait">Email</th>
-                        <th scope="col" width="10%" class="hide-on-tablet">Price</th>
-                        <th scope="col" width="10%" class="hide-on-tablet">Board Fee</th>
-                        <th scope="col" width="10%" class="hide-on-mobile-portrait">Result, %</th>
-                        <th scope="col" width="10%" class="hide-on-mobile-portrait">Pass/Fail</th>
-                        <th scope="col" width="80">Actions</th>
-                    </tr>    
-                    </thead>
-
-                    <tbody data-bind="foreach: participants">
-                    <tr>
-                        <td data-bind="text: company"></td>
-                        <td data-bind="text: firstName"></td>
-                        <td data-bind="text: lastName"></td>
-                        <td data-bind="text: email"></td>
-                        <td data-bind="text: price"></td>
-                        <td data-bind="text: fee"></td>
-                        <td data-bind="text: result"></td>
-                        <td class="align-center"><span data-bind="css: passStyle"></span></td>
-                        <td class="low-padding align-center">
-                            <span class="button-group compact">
-                                <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
-                                   title="Edit"></a>
-                                <a class="button icon-trash with-tooltip confirm" title="Delete"
-                                   data-bind="click: deleteParticipant, clickBubble: false"></a>
-                            </span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="table-footer silver-gradient">
-				      There are <strong data-bind="text: participants().length"></strong> participants
-				</div>
+                </div>
+                <div class="scrollable">
+                    <table class="table responsive-table responsive-table-on">
+                        <thead>
+                        <th scope="col" class="header">Company</th>
+                        <th scope="col" class="header">First Name</th>
+                        <th scope="col" class="header">Last Name</th>
+                        <th scope="col" class="header">Email</th>
+                        <th scope="col" class="header">Price</th>
+                        <th scope="col" class="header">Board Fee</th>
+                        <th scope="col" class="header">Result, %</th>
+                        <th scope="col" class="header">Pass/Fail</th>
+                        <th scope="col" class="header">Actions</th>
+                        </thead>
+                        <tbody data-bind="foreach: participants">
+                        <tr>
+                            <td data-bind="text: company"></td>
+                            <td data-bind="text: first_name"></td>
+                            <td data-bind="text: last_name"></td>
+                            <td data-bind="text: email"></td>
+                            <td data-bind="text: price"></td>
+                            <td data-bind="text: fee"></td>
+                            <td data-bind="text: result"></td>
+                            <td><span data-bind="text: passText, css: passClass"></span></td>
+                            <td class="low-padding align-center">
+                                    <span class="button-group compact">
+                                        <a data-bind="click: editParticipant" class="button icon-pencil with-tooltip"
+                                           title="Edit"></a>
+                                        <a class="button icon-trash with-tooltip confirm" title="Delete"
+                                           data-bind="click: deleteParticipant, clickBubble: false"></a>
+                                    </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
 </section>
 
-{{> add-participant}}
+
 {{> add-exam}}
+{{> add-participant}}

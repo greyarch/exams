@@ -1,0 +1,18 @@
+require.config({
+    baseUrl:'/js/libs',
+    paths:{
+        underscore:'underscore-min',
+        knockback:'knockback-core.min',
+        knockout:'knockout-2.2.0',
+        backbone:'backbone-min'
+    },
+    shim:{
+        "backbone":{
+            "deps":["underscore"],
+            "exports":"Backbone"
+        },
+        underscore:{
+            exports:'_'
+        }
+    }
+});
