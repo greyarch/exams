@@ -1,21 +1,13 @@
-require(['/js/require-config.js', '/js/vm/error-handling.js'], function() {
+require(['/js/require-config.js', '/js/vm/error-handling.js', '/js/vm/ko-extend.js', '/js/vm/pubsub.js'], function() {
     require(['underscore', 'knockback', 'knockout', 'backbone', '/js/collections/exams.js',
         '/js/collections/examtypes.js', '/js/collections/participants.js', '/js/collections/tests.js',
         '/js/models/exam.js', '/js/vm/exams/exam-vm.js', '/js/models/participant.js', '/js/vm/exams/participant-vm.js', '/js/vm/admin/user-menu-vm.js'],
         function (_, kb, ko, Backbone, AllExams, AllExamTypes, Participants, AllTests, Exam, ExamVM, Participant, ParticipantVM, UserMenuVM) {
             var self = this;
-            dispatcher = _.clone(Backbone.Events);
 
             AllExams.fetch();
             AllExamTypes.fetch();
             AllTests.fetch();
-
-            ko.extenders.persist = function (target, option) {
-                target.subscribe(function (newValue) {
-                    store.set(option, newValue);
-                });
-                return target;
-            };
 
             self.examParticipants = new Participants();
 
@@ -48,7 +40,7 @@ require(['/js/require-config.js', '/js/vm/error-handling.js'], function() {
                     $.modal.current.closeModal();
                     self.editedParticipant.set({exam_id:self.selectedExamId()});
                     self.editedParticipant.save(null, {error:onErr});
-                    self.examParticipants.fetch()
+                    self.examParticipants.fetch();
                 });
 
             self.addExam = function () {

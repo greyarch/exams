@@ -1,7 +1,7 @@
 require(['/js/require-config.js'], function () {
     require(['underscore', 'knockback', 'knockout', 'backbone', '/js/collections/exams.js',
-        '/js/collections/examtypes.js', '/js/models/examtype.js', '/js/vm/exams/exam-vm.js'],
-        function (_, kb, ko, Backbone, AllExams, AllExamTypes, ExamType, ExamVM) {
+        '/js/collections/examtypes.js', '/js/models/examtype.js', '/js/vm/admin/user-menu-vm.js'],
+        function (_, kb, ko, Backbone, AllExams, AllExamTypes, ExamType, UserMenuVM) {
             var self = this;
 
             AllExamTypes.fetch();
@@ -30,17 +30,7 @@ require(['/js/require-config.js'], function () {
                 self.newExamType(false);
             };
 
-            self.nextExams = kb.collectionObservable(AllExams, {view_model:ExamVM, filters:function (model) {
-                return model.get('date') < moment().format('YYYY-MM-DD');
-            }});
-
-            self.selectCurrentExam = function (exam) {
-                var examId = typeof exam === "number" ? exam : exam.model().get('id');
-                store.set("selectedExamId", examId);
-                document.location = "/exams";
-            };
-
             ko.applyBindings(self, $('#main')[0]);
-            ko.applyBindings(self, $('#menu')[0]);
+            ko.applyBindings(new UserMenuVM(AllExams), $('#menu')[0]);
         });
 });

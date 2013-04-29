@@ -1,4 +1,4 @@
-define(['knockout', 'knockback'], function (ko, kb) {
+define(['knockout', 'knockback', '/js/vm/pubsub.js'], function (ko, kb) {
     var ExamVM = kb.ViewModel.extend({
         constructor:function (model) {
             var self = this;
