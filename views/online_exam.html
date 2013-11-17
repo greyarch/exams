@@ -1,0 +1,83 @@
+{{#contentFor "pageStyles"}}
+<link rel="stylesheet" href="/css/styles/switches.css?v=1">
+<link rel="stylesheet" href="/css/events.css">
+<link rel="stylesheet" href="/css/styles/table.css">
+<link rel="stylesheet" href="/css/styles/modal.css">
+<link rel="stylesheet" href="/css/styles/form.css">
+<link rel="stylesheet" href="/css/styles/dashboard.css">
+<link rel="stylesheet" href="/js/libs/glDatePicker/developr.css">
+
+<!-- jQuery Form Validation -->
+<link rel="stylesheet" href="/js/libs/formValidator/developr.validationEngine.css?v=1">{{/contentFor}} {{#contentFor "pageScripts"}}
+<!-- Scripts -->
+<script src="/js/libs/jquery-1.8.2.min.js"></script>
+<script src="/js/libs/setup.js"></script>
+
+<!-- Template functions -->
+<script src="/js/libs/developr.input.js"></script>
+<script src="/js/libs/developr.navigable.js"></script>
+<script src="/js/libs/developr.notify.js"></script>
+<script src="/js/libs/developr.scroll.js"></script>
+<script src="/js/libs/developr.tooltip.js"></script>
+<script type="text/javascript" data-main="js/vm/online-exam-page-vm.js" src="/js/require.js"></script>
+{{/contentFor}} {{#contentFor "pageShortcuts"}}
+<li>
+<li><a href="/exams" class="shortcut-agenda" title="Exams">Exams</a></li>
+<li><a href="/reports" class="shortcut-stats" title="Reports">Reports</a></li>
+<li class="current"><a href="#" class="shortcut-notes" title="Online Exam">Online Exam</a></li>
+{{/contentFor}}
+
+<body class="clearfix with-menu with-shortcuts">
+
+    <!-- Prompt IE 6 users to install Chrome Frame -->
+    <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a
+    href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
+    href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
+
+    <!-- Title bar -->
+    <header role="banner" id="title-bar">
+        <h2>ExaMS</h2>
+    </header>
+
+    <!-- Button to open/hide menu -->
+    <a href="#" id="open-menu">
+        <span>Menu</span>
+    </a>
+
+    <!-- Button to open/hide shortcuts -->
+    <a href="#" id="open-shortcuts">
+        <span class="icon-thumbs"></span>
+    </a>
+
+    <!-- Main content -->
+
+    <section role="main" id="main">
+
+        <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...
+        </noscript>
+
+        <hgroup id="main-title" class="thin">
+            <h1>Take an exam</h1>
+        </hgroup>
+
+        <div class="with-padding">
+            <form action="#" data-bind="submit: submit" style="width:200px">
+                <fieldset class="fieldset fields-list">
+                    <div class="field-block button-height">
+                        <label for="quiz" class="label"><b>Exam code:</b></label>
+                        <input data-bind="value: quiz" type="text" name="quiz" id="exam-title" class="input validate[required]" data-tooltip-options='{"position":"right"}' required>
+                    </div>
+                    <div class="field-block button-height">
+                        <label for="cmuid" class="label"><b>Your personal code:</b></label>
+                        <input data-bind="value: cmuid" type="text" name="cmuid" id="exam-title" class="input validate[required]" data-tooltip-options='{"position":"right"}' required>
+                    </div>
+                </fieldset>
+                <button type="submit" class="button glossy mid-margin-right">
+                    <span class="button-icon"><span class="icon-tick"></span></span>
+                    Go to exam
+                </button>
+            </form>
+        </div>
+
+    </section>

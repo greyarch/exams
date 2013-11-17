@@ -1,4 +1,8 @@
-module.exports = function (app, auth, db) {
+module.exports = function (app, auth, db, io) {
+    var broadcastExamsChanged = function () {
+        io.sockets.emit("exams-changed");
+    };
+
     //create exam
     app.post('/exam', auth.rest, function (req, res) {
         var exam = req.body;
@@ -7,6 +11,7 @@ module.exports = function (app, auth, db) {
         db.safeQuery('INSERT INTO exams SET ?', exam, res, function (result) {
             console.log('result is: ', result);
             res.json(201, exam);
+            broadcastExamsChanged();
         });
     });
 
@@ -38,6 +43,7 @@ module.exports = function (app, auth, db) {
         db.safeQuery('UPDATE exams SET ? WHERE id = ?', [exam, req.params.id], res, function (rows) {
             console.log('exams are: ', rows);
             res.json(200, rows);
+            broadcastExamsChanged();
         });
     });
 
@@ -58,6 +64,7 @@ module.exports = function (app, auth, db) {
             db.safeQuery('DELETE FROM participants WHERE exam_id = ?', [req.params.id], res, function (result) {
                 console.log('result deleting all participants is: ', result);
                 res.end();
+                broadcastExamsChanged();
             });
         });
     });

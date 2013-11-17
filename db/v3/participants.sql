@@ -1,0 +1,1 @@
+ALTER TABLE `admin_exams`.`participants` ADD COLUMN `cm_user_id` VARCHAR(8) NOT NULL AFTER `id`;

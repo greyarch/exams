@@ -9,6 +9,12 @@ require(['/js/require-config.js', '/js/vm/error-handling.js', '/js/vm/ko-extend.
             AllExamTypes.fetch();
             AllTests.fetch();
 
+            var socket = io.connect(location.origin);
+            socket.on('exams-changed', function () {
+                console.log("received exams-changed event from the server; updating exams collection");
+                AllExams.fetch();
+            });
+
             self.examParticipants = new Participants();
 
             self.availablePlaces = ['Sofia, Bulgaria', 'Bucharest, Romania'];
@@ -33,9 +39,11 @@ require(['/js/require-config.js', '/js/vm/error-handling.js', '/js/vm/ko-extend.
                     self.editedExam.set({date:$('#exam-date').val()}); //TODO remove ugly hack
                     $.modal.current.closeModal();
                     self.editedExam.save(null, {error:onErr});
-                    AllExams.fetch()
+                    AllExams.fetch();
+                    socket.emit('exams-changed', { exam: self.editedExam });
                 }).on('delete-exam', function (examId) {
                     if (examId === self.selectedExamId()) self.selectedExamId(null);
+                    socket.emit('exams-changed', {examId: examId});
                 }).on('save-participant', function () {
                     $.modal.current.closeModal();
                     self.editedParticipant.set({exam_id:self.selectedExamId()});

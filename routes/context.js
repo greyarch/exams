@@ -13,3 +13,9 @@ exports.reports = {
 //        {name: "financial", url: "#", title: "Financial", roles: ["admin"]}
     ]
 }
+		
+exports.online_exam = {
+    menu: [
+        {name: "online_exam", url: "/online_exam", title: "Online Exam", roles: ["admin", "test", "exam", "author", "user"]}
+    ]
+}

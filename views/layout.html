@@ -9,9 +9,7 @@
 <!--[if (IE 9)&!(IEMobile)]>
 <html class="no-js ie9" lang="en"><![endif]-->
 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-
-{{{block "pageHTML"}}}
-
+<html class="no-js" lang="en">
 <!--<![endif]-->
 
 <head>
@@ -85,12 +83,22 @@
 
 
 {{{body}}}
-
 <!-- End main content -->
 
 <!-- Side tabs shortcuts -->
+<ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
+    {{{block "pageShortcuts"}}}
+    <!-- Disabled shortcuts -->
+    <!-- For Future Modules use
+        <li><span class="shortcut-messages" title="Messages">Messages</a></li>
+        <li><span class="shortcut-contacts" title="Certificates">Certificates</a></li>
+        <li><span class="shortcut-medias" title="Medias">Medias</a></li>
+        <li><span class="shortcut-stats" title="Stats">Stats</a></li>
+        <li><span class="shortcut-settings" title="Settings">Settings</a></li>
+        <li><span class="shortcut-notes" title="Notes">Notes</span></li>
+    -->
+</ul>
 
-{{{block "pageShortcuts"}}}
 
 <!-- Sidebar/drop-down menu -->
 {{# if user}}

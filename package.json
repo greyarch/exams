@@ -1,15 +1,26 @@
 {
- "name":"exams",
-  "version":"0.1.0",
-  "dependencies":{
-      "express":"3.x",
-      "mysql":"",
-      "express-hbs":"",
-      "passport":"",
-      "passport-local":"",
-      "optimist":"",
-      "calendar":"",
-      "moment":"",
-      "lodash":"1.0.x"
-  }
+  "name" : "exams",
+  "version" : "0.1.0",
+  "dependencies" : {
+    "express" : "3.x",
+    "mysql" : "",
+    "express-hbs" : "",
+    "passport" : "",
+    "passport-local" : "",
+    "optimist" : "",
+    "calendar" : "",
+    "moment" : "",
+    "lodash" : "1.0.x",
+    "socket.io" : "0.9.x"
+  },
+  "author" : {
+    "name" : "",
+    "email" : ""
+  },
+  "description" : "",
+  "keywords" : [ "" ],
+  "bugs" : {
+    "web" : "null"
+  },
+  "main" : "app.js"
 }

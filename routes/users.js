@@ -1,6 +1,6 @@
 module.exports = function (app, auth, db) {
     app.get('/login', function (req, res) {
-        res.render('login.html');
+        res.render('login.html', {additional_classes:'linen'});
     });
 
     app.post('/login', function (req, res, next) {
